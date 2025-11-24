@@ -3,13 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="./src/output.css" rel="stylesheet">
+    <title>Movie Sections</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
-<body class="bg-indigo-500">
+<body class="bg-[#0B0D17] text-white p-8">
 
-     <!--run this on terminal first step (npm run dev) -->
+    <div class="max-w-7xl mx-auto space-y-16">
 
-    <p>i will divide who handle this</p>
+        <!-- SECTION 1: RECOMMENDED FOR YOU -->
+        <section>
+            <!-- Header -->
+            <div class="flex justify-between items-end mb-6">
+                <h2 class="text-2xl font-bold tracking-wide">Recomended for you</h2>
+                <a href="#" class="text-blue-600 hover:text-blue-500 text-sm font-medium transition">see all</a>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-xl mb-3">
+                        <!-- Image (Magic Theme) -->
+                        <img src="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?q=80&w=800&auto=format&fit=crop" 
+                             alt="Movie Poster" 
+                             class="w-full h-[380px] object-cover transform group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                    </div>
+                    
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight mb-1">Fantastic Beasts</h3>
+                            <p class="text-gray-400 text-xs font-light">Action/Romantic</p>
+                        </div>
+                        <div class="flex items-center gap-1 text-yellow-500 text-sm font-semibold">
+                            <i class="fas fa-star text-xs"></i> 4.2
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-xl mb-3">
+                        <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=800&auto=format&fit=crop" 
+                             alt="Movie Poster" 
+                             class="w-full h-[380px] object-cover transform group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight mb-1">Fantastic Beasts</h3>
+                            <p class="text-gray-400 text-xs font-light">Action/Romantic</p>
+                        </div>
+                        <div class="flex items-center gap-1 text-yellow-500 text-sm font-semibold">
+                            <i class="fas fa-star text-xs"></i> 4.2
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-xl mb-3">
+                        <img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?q=80&w=800&auto=format&fit=crop" 
+                             alt="Movie Poster" 
+                             class="w-full h-[380px] object-cover transform group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight mb-1">Fantastic Beasts</h3>
+                            <p class="text-gray-400 text-xs font-light">Action/Romantic</p>
+                        </div>
+                        <div class="flex items-center gap-1 text-yellow-500 text-sm font-semibold">
+                            <i class="fas fa-star text-xs"></i> 4.2
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-xl mb-3">
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800&auto=format&fit=crop" 
+                             alt="Movie Poster" 
+                             class="w-full h-[380px] object-cover transform group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-lg leading-tight mb-1">Fantastic Beasts</h3>
+                            <p class="text-gray-400 text-xs font-light">Action/Romantic</p>
+                        </div>
+                        <div class="flex items-center gap-1 text-yellow-500 text-sm font-semibold">
+                            <i class="fas fa-star text-xs"></i> 4.2
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: TOP-RATED MOVIES (DORA BANNER) -->
+        <section>
+            <h2 class="text-3xl font-bold text-center mb-8 tracking-wide">Top-Rated Movies</h2>
+            
+            <div class="relative w-full h-[500px] rounded-3xl overflow-hidden group">
+                <!-- Background Image (Jungle Theme) -->
+                <img src="https://images.unsplash.com/photo-1550100136-e074fa714874?q=80&w=1600&auto=format&fit=crop" 
+                     alt="Dora Background" 
+                     class="absolute inset-0 w-full h-full object-cover object-center transform group-hover:scale-105 transition duration-1000">
+                
+                <!-- Gradient Overlay (Left to Right) -->
+                <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent"></div>
+
+                <!-- Content -->
+                <div class="absolute inset-y-0 left-0 flex flex-col justify-center max-w-xl px-12 md:px-16 z-10">
+                    <!-- Title -->
+                    <h1 class="text-6xl md:text-7xl font-serif text-white mb-2 tracking-tight">Dora</h1>
+                    
+                    <!-- Ratings -->
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="flex text-yellow-400 text-sm gap-1">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-gray-300 text-sm border-l border-gray-500 pl-4">Explore movie</span>
+                    </div>
+
+                    <!-- Description -->
+                    <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-8 pr-10">
+                        The term 'Dora trailer' can refer to several different trailers, most notably the 2019 live-action movie Dora and the Lost City of Gold or the 2024 animated series on Paramount+. Let's watch video is the official trailer for the Dora movie.
+                    </p>
+
+                    <!-- Button -->
+                    <button class="w-fit bg-[#5A4AF4] hover:bg-[#4839cc] text-white px-8 py-3 rounded-full font-semibold flex items-center gap-3 transition shadow-lg shadow-indigo-500/30 group-hover:gap-4">
+                        View trailer 
+                        <span class="bg-black/20 rounded-full w-5 h-5 flex items-center justify-center">
+                            <i class="fas fa-play text-[10px]"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
 </body>
 </html>
