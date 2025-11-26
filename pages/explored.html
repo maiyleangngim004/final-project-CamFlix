@@ -16,129 +16,160 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="../src/input.css" />
+    <link rel="stylesheet" href="../src/input.css"/>
+    <link rel="stylesheet" href="../src/style.css"/>
+    <link rel="stylesheet" href="../src/output.css">
+    
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+
   </head>
   <script src="https://cdn.tailwindcss.com"></script>
-  <body class="dark:bg-gray-900">
-    <header
-      class="w-full px-6 py-4 flex items-center justify-between relative z-50 shrink-0 dark:bg-gray-900"
-    >
-      <div class="flex items-center gap-1">
-        <a href="#" class="text-3xl font-bold tracking-tight">
-          <div>
-            <h3 class="dark:text-white text-[40px] font-type-logo">
-              <span class="text-white">Cam</span
-              ><span class="text-[#432DD7]">Flix</span>
-            </h3>
-          </div>
-        </a>
-      </div>
 
-      <div class="hidden md:flex flex-1 max-w-md mx-8">
-        <div class="relative w-full">
-          <div
-            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-          >
-            <svg
-              class="h-5 w-5 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </div>
-          <input
-            type="text"
-            class="block w-full pl-10 pr-3 py-2 border border-gray-600 rounded-full leading-5 bg-transparent text-gray-300 placeholder-gray-400 focus:outline-none focus:border-[var(--color-indigo-500)] focus:ring-1 focus:ring-[var(--color-indigo-500)] sm:text-sm transition duration-150 ease-in-out"
-            placeholder="Search..."
-          />
-        </div>
-      </div>
 
-      <nav class="hidden md:flex items-center gap-6">
-        <a
-          href="#"
-          class="font-medium hover:text-[var(--color-indigo-500)] transition-colors"
-          >Home</a
-        >
-        <a
-          href="#"
-          class="font-medium hover:text-[var(--color-indigo-500)] transition-colors hidden sm:block"
-          >About us</a
-        >
-        <a
-          href="#"
-          class="flex items-center gap-1 font-medium hover:text-[var(--color-indigo-500)] transition-colors"
-        >
-          Let's Explore
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </a>
-        <button
-          class="p-2 rounded-full bg-white text-black hover:bg-gray-200 transition"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-            />
-          </svg>
-        </button>
-      </nav>
 
-      <button
-        id="mobile-menu-btn"
-        class="md:hidden text-white p-2 focus:outline-none"
-      >
-        <svg
-          class="w-8 h-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16m-7 6h7"
-          ></path>
+<body class="bg-background-light dark:bg-[var(--color-background)]">
+
+  <header id="header" class="fixed top-0 left-0 w-full z-50 px-6 py-4 flex items-center justify-between
+     bg-transparent transition-all duration-300">
+
+  <!-- Logo -->
+  <div class="flex items-center gap-1">
+    <a href="#" class="text-3xl font-bold tracking-tight drop-shadow-md">
+      <span class="text-white font-type-logo">Cam</span>
+      <span class="text-blue-500 font-type-logo">Flix</span>
+    </a>
+  </div>
+
+  <!-- Search bar -->
+  <div class="hidden md:flex flex-1 max-w-md mx-8">
+    <div class="relative w-full">
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
-      </button>
-    </header>
+      </div>
+     <input type="text"
+       class="block w-full pl-10 pr-3 py-2 border border-gray-600/50 bg-gray-600/50 rounded-full leading-5 
+              text-white focus:outline-none focus:ring-1 sm:text-sm 
+              transition duration-150 ease-in-out"
+       placeholder="Search..." />
+    </div>
+  </div>
 
-    <h1 class="text-2xl font-bold ml-7 mt-7 dark:text-white">
+  <!-- Nav links -->
+  <nav class="hidden md:flex items-center gap-6 text-white">
+    <a href="#" class="hover:text-gray-400 transition-colors">Home</a>
+    <a href="#" class="hover:text-gray-400 transition-colors">About Us</a>
+    <a href="#" class="inline-flex items-center gap-1 hover:text-gray-400 transition-colors">
+      <span>Let's Explore</span>
+      <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+
+    <!-- Dark / Light Mode Button -->
+    <button id="theme-toggle" class="p-2 rounded-full bg-white text-black hover:bg-gray-200 transition shadow-lg">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu button -->
+  <button id="mobile-menu-btn" class="md:hidden text-white p-2 focus:outline-none drop-shadow-md">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+    </svg>
+  </button>
+
+</header>
+
+<!-- CAROUSEL -->
+<div id="default-carousel" class="relative w-full h-screen" data-carousel="slide">
+  <!-- Carousel wrapper -->
+  <div class="relative h-full overflow-hidden">
+    <!-- Slide 1 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+      <img src="https://cdnb.artstation.com/p/assets/images/images/053/000/821/large/sonu-avtar-title.jpg?1661189157"
+           class="absolute w-full h-full object-cover inset-0" alt="Movie 1">
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <img src="https://mir-s3-cdn-cf.behance.net/projects/404/28917d237964319.Y3JvcCwyNzAwLDIxMTEsMCw3OTU.jpg"
+           class="absolute w-full h-full object-cover inset-0" alt="Movie 2">
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <img src="https://i.ytimg.com/vi/pNIRHvS2bLM/hq720.jpg"
+           class="absolute w-full h-full object-cover inset-0" alt="Movie 3">
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+    </div>
+  </div>
+
+  <!-- Slider indicators -->
+  <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
+    <button type="button" class="w-3 h-3 rounded-full bg-white/50 hover:bg-white" data-carousel-slide-to="0"></button>
+    <button type="button" class="w-3 h-3 rounded-full bg-white/50 hover:bg-white" data-carousel-slide-to="1"></button>
+    <button type="button" class="w-3 h-3 rounded-full bg-white/50 hover:bg-white" data-carousel-slide-to="2"></button>
+  </div>
+
+  <!-- Slider controls -->
+  <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4" data-carousel-prev>
+    <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-sm">
+      <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </span>
+  </button>
+  <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4" data-carousel-next>
+    <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-sm">
+      <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </span>
+  </button>
+</div>
+
+
+
+<!-- SCRIPT -->
+<script>
+  // Dark/Light mode toggle
+  const toggleButton = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  toggleButton.addEventListener('click', () => html.classList.toggle('dark'));
+
+  // Scroll header effect (only blur, no color change)
+  const header = document.getElementById('header');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) { // adjust scroll threshold
+      header.classList.add('backdrop-blur-md', 'bg-black/40'); // keeps transparency but adds blur
+    } else {
+      header.classList.remove('backdrop-blur-md', 'bg-black/40');
+    }
+  });
+</script>
+
+            
+    <h1 class="text-2xl font-bold ml-7 mt-7 dark:text-white font-type">
       Explore movies here
     </h1>
 
     <div
-      class="dark:bg-gray-900 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-5"
-    >
+      class="dark:bg-background grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-5">
       <!-- Movie Card -->
-      <div class="card dark:text-white">
+      <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
         <div>
           <a href="#">
             <img
@@ -151,22 +182,23 @@
         <div class="mt-2 mb-2 flex justify-around items-start">
           <!-- LEFT SIDE (Title + Genre) -->
           <div>
-            <span class="block font-semibold text-[28px]">John Carter</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[18px]">
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
               Action / Romance
             </p>
           </div>
 
           <!-- RIGHT SIDE (Rating) -->
           <span
-            class="text-[20px] mt-1 flex items-center gap-1.5 text-amber-300"
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
           >
             <i class="fa-solid fa-star"></i>
-            <span class="text-white">4.2</span>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
           </span>
         </div>
       </div>
-      <div class="card dark:text-white">
+     
+       <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
         <div>
           <a href="#">
             <img
@@ -179,22 +211,24 @@
         <div class="mt-2 mb-2 flex justify-around items-start">
           <!-- LEFT SIDE (Title + Genre) -->
           <div>
-            <span class="block font-semibold text-[28px]">John Carter</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[18px]">
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
               Action / Romance
             </p>
           </div>
 
           <!-- RIGHT SIDE (Rating) -->
           <span
-            class="text-[20px] mt-1 flex items-center gap-1.5 text-amber-300"
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
           >
             <i class="fa-solid fa-star"></i>
-            <span class="text-white">4.2</span>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
           </span>
         </div>
       </div>
-      <div class="card dark:text-white">
+     
+
+       <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
         <div>
           <a href="#">
             <img
@@ -207,22 +241,24 @@
         <div class="mt-2 mb-2 flex justify-around items-start">
           <!-- LEFT SIDE (Title + Genre) -->
           <div>
-            <span class="block font-semibold text-[28px]">John Carter</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[18px]">
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
               Action / Romance
             </p>
           </div>
 
           <!-- RIGHT SIDE (Rating) -->
           <span
-            class="text-[20px] mt-1 flex items-center gap-1.5 text-amber-300"
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
           >
             <i class="fa-solid fa-star"></i>
-            <span class="text-white">4.2</span>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
           </span>
         </div>
       </div>
-      <div class="card dark:text-white">
+     
+
+       <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
         <div>
           <a href="#">
             <img
@@ -235,22 +271,24 @@
         <div class="mt-2 mb-2 flex justify-around items-start">
           <!-- LEFT SIDE (Title + Genre) -->
           <div>
-            <span class="block font-semibold text-[28px]">John Carter</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[18px]">
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
               Action / Romance
             </p>
           </div>
 
           <!-- RIGHT SIDE (Rating) -->
           <span
-            class="text-[20px] mt-1 flex items-center gap-1.5 text-amber-300"
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
           >
             <i class="fa-solid fa-star"></i>
-            <span class="text-white">4.2</span>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
           </span>
         </div>
       </div>
-      <div class="card dark:text-white">
+     
+
+       <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
         <div>
           <a href="#">
             <img
@@ -263,22 +301,24 @@
         <div class="mt-2 mb-2 flex justify-around items-start">
           <!-- LEFT SIDE (Title + Genre) -->
           <div>
-            <span class="block font-semibold text-[28px]">John Carter</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[18px]">
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
               Action / Romance
             </p>
           </div>
 
           <!-- RIGHT SIDE (Rating) -->
           <span
-            class="text-[20px] mt-1 flex items-center gap-1.5 text-amber-300"
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
           >
             <i class="fa-solid fa-star"></i>
-            <span class="text-white">4.2</span>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
           </span>
         </div>
       </div>
-      <div class="card dark:text-white">
+     
+
+       <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
         <div>
           <a href="#">
             <img
@@ -291,22 +331,24 @@
         <div class="mt-2 mb-2 flex justify-around items-start">
           <!-- LEFT SIDE (Title + Genre) -->
           <div>
-            <span class="block font-semibold text-[28px]">John Carter</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[18px]">
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
               Action / Romance
             </p>
           </div>
 
           <!-- RIGHT SIDE (Rating) -->
           <span
-            class="text-[20px] mt-1 flex items-center gap-1.5 text-amber-300"
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
           >
             <i class="fa-solid fa-star"></i>
-            <span class="text-white">4.2</span>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
           </span>
         </div>
       </div>
-      <div class="card dark:text-white">
+     
+
+       <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
         <div>
           <a href="#">
             <img
@@ -319,22 +361,24 @@
         <div class="mt-2 mb-2 flex justify-around items-start">
           <!-- LEFT SIDE (Title + Genre) -->
           <div>
-            <span class="block font-semibold text-[28px]">John Carter</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[18px]">
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
               Action / Romance
             </p>
           </div>
 
           <!-- RIGHT SIDE (Rating) -->
           <span
-            class="text-[20px] mt-1 flex items-center gap-1.5 text-amber-300"
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
           >
             <i class="fa-solid fa-star"></i>
-            <span class="text-white">4.2</span>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
           </span>
         </div>
       </div>
-      <div class="card dark:text-white">
+     
+
+       <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
         <div>
           <a href="#">
             <img
@@ -347,22 +391,24 @@
         <div class="mt-2 mb-2 flex justify-around items-start">
           <!-- LEFT SIDE (Title + Genre) -->
           <div>
-            <span class="block font-semibold text-[28px]">John Carter</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[18px]">
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
               Action / Romance
             </p>
           </div>
 
           <!-- RIGHT SIDE (Rating) -->
           <span
-            class="text-[20px] mt-1 flex items-center gap-1.5 text-amber-300"
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
           >
             <i class="fa-solid fa-star"></i>
-            <span class="text-white">4.2</span>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
           </span>
         </div>
       </div>
-      <div class="card dark:text-white">
+     
+
+       <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
         <div>
           <a href="#">
             <img
@@ -375,22 +421,24 @@
         <div class="mt-2 mb-2 flex justify-around items-start">
           <!-- LEFT SIDE (Title + Genre) -->
           <div>
-            <span class="block font-semibold text-[28px]">John Carter</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[18px]">
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
               Action / Romance
             </p>
           </div>
 
           <!-- RIGHT SIDE (Rating) -->
           <span
-            class="text-[20px] mt-1 flex items-center gap-1.5 text-amber-300"
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
           >
             <i class="fa-solid fa-star"></i>
-            <span class="text-white">4.2</span>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
           </span>
         </div>
       </div>
-      <div class="card dark:text-white">
+     
+
+       <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
         <div>
           <a href="#">
             <img
@@ -403,22 +451,24 @@
         <div class="mt-2 mb-2 flex justify-around items-start">
           <!-- LEFT SIDE (Title + Genre) -->
           <div>
-            <span class="block font-semibold text-[28px]">John Carter</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[18px]">
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
               Action / Romance
             </p>
           </div>
 
           <!-- RIGHT SIDE (Rating) -->
           <span
-            class="text-[20px] mt-1 flex items-center gap-1.5 text-amber-300"
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
           >
             <i class="fa-solid fa-star"></i>
-            <span class="text-white">4.2</span>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
           </span>
         </div>
       </div>
-      <div class="card dark:text-white">
+     
+
+       <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
         <div>
           <a href="#">
             <img
@@ -431,22 +481,24 @@
         <div class="mt-2 mb-2 flex justify-around items-start">
           <!-- LEFT SIDE (Title + Genre) -->
           <div>
-            <span class="block font-semibold text-[28px]">John Carter</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[18px]">
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
               Action / Romance
             </p>
           </div>
 
           <!-- RIGHT SIDE (Rating) -->
           <span
-            class="text-[20px] mt-1 flex items-center gap-1.5 text-amber-300"
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
           >
             <i class="fa-solid fa-star"></i>
-            <span class="text-white">4.2</span>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
           </span>
         </div>
       </div>
-      <div class="card dark:text-white">
+     
+
+       <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
         <div>
           <a href="#">
             <img
@@ -459,45 +511,49 @@
         <div class="mt-2 mb-2 flex justify-around items-start">
           <!-- LEFT SIDE (Title + Genre) -->
           <div>
-            <span class="block font-semibold text-[28px]">John Carter</span>
-            <p class="text-gray-600 dark:text-gray-300 text-[18px]">
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
               Action / Romance
             </p>
           </div>
 
           <!-- RIGHT SIDE (Rating) -->
           <span
-            class="text-[20px] mt-1 flex items-center gap-1.5 text-amber-300"
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
           >
             <i class="fa-solid fa-star"></i>
-            <span class="text-white">4.2</span>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
           </span>
         </div>
+      </div>
+     
+       
       </div>
     </div>
+
     <div class="flex justify-center mt-6">
       <button
-        class="flex items-center justify-center rounded-2xl dark:bg-blue-700 hover:bg-blue-800 dark:text-white font-bold w-[100px] h-[50px] text-center"
+        class="flex items-center justify-center rounded-2xl dark:bg-[var(--color-primary)] dark:hover:bg-[var(--color-accents)] text-white bg-[var(--color-primary-light)] hover:bg-[var(--color-accents)] font-bold w-[100px] h-[50px] text-center font-type"
       >
         Load More
       </button>
     </div>
 
     <footer
-      class="dark:bg-gray-900 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-20 mb-10 place-items-center"
+      class="dark:bg-[var(--color-background)] bg-background-light grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-20 mb-10 place-items-center"
     >
       <div class="space-y-7">
         <div>
           <h3 class="dark:text-white text-[40px] font-type-logo">
             <span class="text-white">Cam</span
-            ><span class="text-[#432DD7]">Flix</span>
+            ><span class="text-blue-600">Flix</span>
           </h3>
         </div>
 
         <div>
           <a
             href="mailto:sovanrothapit@gmail.com"
-            class="dark:text-white text-[25px]"
+            class="dark:text-white text-[25px] font-type" 
             >support@camflix.com</a
           >
         </div>
@@ -530,7 +586,7 @@
         <div>
           <a
             href="mailto:sovanrothapit@gmail.com"
-            class="dark:text-white text-[25px]"
+            class="dark:text-white text-[25px] font-type"
             >info.istad@gmail.com</a
           >
         </div>
@@ -552,27 +608,27 @@
       </div>
 
       <div>
-        <h3 class="dark:text-white text-[25px]">Quick Link</h3>
+        <h3 class="dark:text-white text-[25px] font-type">Quick Link</h3>
         <div class="space-y-7 mt-6">
-          <div><a class="dark:text-white text-[20px]" href="#">Home</a></div>
+          <div><a class="dark:text-white text-[20px] font-type" href="#">Home</a></div>
           <div>
-            <a class="dark:text-white text-[20px]" href="#">About Us</a>
+            <a class="dark:text-white text-[20px] font-type" href="#">About Us</a>
           </div>
           <div>
-            <a class="dark:text-white text-[20px]" href="#">Explore Moives</a>
+            <a class="dark:text-white text-[20px] font-type" href="#">Explore Moives</a>
           </div>
         </div>
       </div>
 
       <div>
-        <h3 class="dark:text-white text-[25px]">Support</h3>
+        <h3 class="dark:text-white text-[25px] font-type">Support</h3>
         <div class="space-y-7 mt-6">
-          <div><a class="dark:text-white text-[20px]" href="#">FAQs</a></div>
+          <div><a class="dark:text-white text-[20px] font-type" href="#">FAQs</a></div>
           <div>
-            <a class="dark:text-white text-[20px]" href="#">Support Centre</a>
+            <a class="dark:text-white text-[20px] font-type" href="#">Support Centre</a>
           </div>
           <div>
-            <a class="dark:text-white text-[20px]" href="#">Contact Us</a>
+            <a class="dark:text-white text-[20px] font-type" href="#">Contact Us</a>
           </div>
         </div>
       </div>
@@ -580,7 +636,7 @@
 
     <hr />
 
-    <p class="dark:text-white text-[18px] flex justify-center mt-5 mb-5">
+    <p class="dark:text-white text-[18px] flex justify-center mt-5 mb-5 font-type">
       @copy right 2025 CamFlix. All right reserved.
     </p>
   </body>
