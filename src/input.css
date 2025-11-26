@@ -1,1 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+@theme {
+
+    /* color style for dark mode */
+    --color-primary: #4F39F6;
+    --color-secondary: oklch(90.5% 0.182 98.111);
+    --color-accents: oklch(35.9% 0.144 278.697);
+    --color-text-color: #EEF2FF;
+    --color-background: #101828;
+    --color-description-color: #6A7282;
+
+    /* color style for light mode */
+    --color-primary-light: oklch(45.7% 0.24 277.023);
+    --color-secondary-light: oklch(90.5% 0.182 98.111);
+    --color-accents: oklch(35.9% 0.144 278.697);
+    --color-text-color-light: oklch(25.7% 0.09 281.288);
+    --color-background-light: oklch(87% 0.065 274.039);
+    --color-description-color-light: oklch(44.6% 0.03 256.802);
+
+
+    /* Font Sizes */
+    --text-size-h1: 65px;
+    --text-size-h2: 40px;
+    --text-size-h3: 32px;
+    --text-size-body: 24px;
+    --text-size-small: 18px;
+    --text-size-extra-small:12px;
+
+    /* Font style */
+    --font-type: "Roboto", sans-serif;
+    --font-type-logo:"Pacifico", cursive;
+
+
+
+}

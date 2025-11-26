@@ -8,7 +8,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -19,17 +21,17 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Noto Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-                        mono: ['ui-monospace', 'monospace'],
+                        sans: ['"Noto Sans"', 'Inter', 'sans-serif'],
                     },
                     colors: {
-                        indigo: {
-                            500: 'var(--color-indigo-500)',
-                        },
-                        gray: {
-                            900: 'var(--color-gray-900)',
-                        },
-                        primary: 'var(--color-indigo-500)',
+                        primary: '#6366F1', // Indigo 500
+                        dark: '#0B0D17',
+                        card: '#151926',
+                        accent: '#6366F1'
+                    },
+                    screens: {
+                        'xs': '475px',
+                        // default tailwind breakpoints: sm: 640px, md: 768px, lg: 1024px, xl: 1280px
                     }
                 }
             }
@@ -37,352 +39,460 @@
     </script>
 
     <style>
-        @layer theme {
-
-            :root,
-            :host {
-                --font-sans: "Noto Sans", ui-sans-serif, system-ui, sans-serif;
-                --color-indigo-500: oklch(58.5% 0.233 277.117);
-                --color-gray-900: oklch(21% 0.034 264.665);
-                --default-font-family: var(--font-sans);
-            }
+        /* Custom scrollbar to match the dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        @layer base {
-
-            *,
-            ::after,
-            ::before {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-                border: 0 solid;
-            }
-
-            html,
-            :host {
-                line-height: 1.5;
-                font-family: var(--default-font-family);
-            }
+        ::-webkit-scrollbar-track {
+            background: #0B0D17;
         }
 
-        body {
-            font-family: var(--default-font-family);
-            background-color: #0f0f11;
-            margin: 0;
-            padding: 0;
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
         }
 
-        .hero-bg {
-            background-image: url('https://i.pinimg.com/736x/07/9a/33/079a333e42c8bd9c514e7fb2d6934997.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
 
-        /* Overlay for the background image to make text readable */
-        .hero-overlay {
-            background: rgba(10, 10, 15, 0.7);
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        /* Smooth scrolling for the whole container */
-        .scroll-container {
-            scroll-behavior: smooth;
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .menu-closed {
+            transform: translateX(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .menu-open {
+            transform: translateX(0);
+            opacity: 1;
+            pointer-events: auto;
         }
     </style>
 </head>
 
-<body class="text-white h-screen flex flex-col relative overflow-hidden">
+<body class="bg-dark text-white font-sans antialiased overflow-x-hidden">
 
-    <!-- Global background overlay (optional, acts as fallback) -->
-    <div class="absolute inset-0 bg-black/20 pointer-events-none z-0"></div>
-
-    <!-- Main Scrollable Container -->
-    <div class="relative z-10 w-full h-full flex flex-col overflow-y-auto scroll-container snap-y snap-mandatory">
-
-        <!-- Header: Made Absolute to overlay the Hero Section -->
-        <header class="absolute top-0 left-0 w-full px-6 py-4 flex items-center justify-between z-50">
-            <div class="flex items-center gap-1">
-                <a href="#" class="text-3xl font-bold tracking-tight drop-shadow-md">
-                    <span class="text-white">Cam</span><span class="text-[var(--color-indigo-500)]">Flix</span>
-                </a>
-            </div>
-
-            <div class="hidden md:flex flex-1 max-w-md mx-8">
-                <div class="relative w-full">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </div>
-                    <input type="text"
-                        class="block w-full pl-10 pr-3 py-2 border border-gray-600/50 rounded-full leading-5 bg-black/40 backdrop-blur-sm text-gray-300 placeholder-gray-400 focus:outline-none focus:border-[var(--color-indigo-500)] focus:ring-1 focus:ring-[var(--color-indigo-500)] sm:text-sm transition duration-150 ease-in-out"
-                        placeholder="Search...">
-                </div>
-            </div>
-
-            <nav class="hidden md:flex items-center gap-6">
-                <a href="#"
-                    class="font-medium hover:text-[var(--color-indigo-500)] transition-colors drop-shadow-md">Home</a>
-                <a href="#"
-                    class="font-medium hover:text-[var(--color-indigo-500)] transition-colors hidden sm:block drop-shadow-md">About
-                    us</a>
-                <a href="#"
-                    class="flex items-center gap-1 font-medium hover:text-[var(--color-indigo-500)] transition-colors drop-shadow-md">
-                    Let's Explore
-                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                </a>
-                <button class="p-2 rounded-full bg-white text-black hover:bg-gray-200 transition shadow-lg">
-                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                </button>
-            </nav>
-
-            <button id="mobile-menu-btn" class="md:hidden text-white p-2 focus:outline-none drop-shadow-md">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
-                    </path>
-                </svg>
-            </button>
-        </header>
-
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu"
-            class="fixed inset-0 bg-black/95 z-[60] hidden flex-col items-center justify-center space-y-8 transition-opacity duration-300 md:hidden">
-            <button id="close-menu-btn" class="absolute top-6 right-6 text-gray-400 hover:text-white">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
-            </button>
-            <a href="#"
-                class="text-2xl font-bold text-white hover:text-[var(--color-indigo-500)] transition-colors mobile-link">Home</a>
-            <a href="#"
-                class="text-2xl font-bold text-white hover:text-[var(--color-indigo-500)] transition-colors mobile-link">About
-                us</a>
-            <a href="#"
-                class="text-2xl font-bold text-white hover:text-[var(--color-indigo-500)] transition-colors mobile-link flex items-center gap-2">Let's
-                Explore</a>
+    <!-- Navigation -->
+    <nav
+        class="absolute top-0 left-0 w-full z-50 px-4 md:px-8 py-4 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent">
+        <div class="flex items-center gap-2 z-50">
+            <span class="text-2xl md:text-3xl font-bold font-serif text-white drop-shadow-md">
+                Cam<span class="text-primary">Flix</span>
+            </span>
         </div>
 
-        <!-- SECTION 1: HERO / HOME (100vh) -->
-        <main
-            class="h-screen w-full shrink-0 flex flex-col items-center justify-center text-center px-4 hero-bg relative snap-start">
-            <!-- Overlay specifically for the hero background -->
-            <div class="absolute inset-0 hero-overlay"></div>
-
-            <!-- Content -->
-            <div class="relative z-10 max-w-4xl mx-auto mt-16">
-                <h1
-                    class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 tracking-tight drop-shadow-xl leading-tight">
-                    All movies are in there! <br />
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Free to
-                        watch.</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-200 mb-10 font-light drop-shadow-md max-w-2xl mx-auto">
-                    Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV without paying more.
-                </p>
-                <button
-                    class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-[var(--color-indigo-500)] rounded-full hover:brightness-110 hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transform hover:scale-105">
-                    <span>Let's Watch</span>
-                    <div
-                        class="ml-2 w-6 h-6 rounded-full bg-black/20 flex items-center justify-center group-hover:bg-black/30 transition-colors">
-                        <svg class="w-3 h-3 text-white fill-current" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                        </svg>
-                    </div>
-                </button>
-            </div>
-
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10 opacity-70">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
-            </div>
-
-            <section>
-
-            </section>
-        </main>
-
-        <!-- SECTION 2: CAROUSEL (100vh) -->
-        <div id="default-carousel" class="relative w-full h-screen shrink-0 snap-start" data-carousel="slide">
-            <!-- Carousel wrapper (Full Height) -->
-            <div class="relative h-full w-full overflow-hidden rounded-none">
-                <!-- Item 1 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="https://i.pinimg.com/736x/ee/04/f6/ee04f662c4e272deb5cb8036f64c0d77.jpg"
-                        class="absolute block w-full h-full object-cover inset-0" alt="Movie 1">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80">
-                    </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="https://i.pinimg.com/736x/06/35/bf/0635bf6e3bbbe6d85b0f167c3ade5614.jpg"
-                        class="absolute block w-full h-full object-cover inset-0" alt="Movie 2">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80">
-                    </div>
-                </div>
-                <!-- Item 3 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="https://i.pinimg.com/736x/27/b9/5c/27b95c3ab9120a3a052f5cd8d2ac13b2.jpg"
-                        class="absolute block w-full h-full object-cover inset-0" alt="Movie 3">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80">
-                    </div>
-                </div>
-                <!-- Item 4 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="https://i.pinimg.com/736x/3f/d8/07/3fd807e5659a6a50894401cc5b111098.jpg"
-                        class="absolute block w-full h-full object-cover inset-0" alt="Movie 4">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80">
-                    </div>
-                </div>
-                <!-- Item 5 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="https://i.pinimg.com/736x/4a/6f/1d/4a6f1d0c21f1e9a4f697816720dc002b.jpg"
-                        class="absolute block w-full h-full object-cover inset-0" alt="Movie 5">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slider indicators -->
-            <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                <button type="button" class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"
-                    aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-                <button type="button" class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"
-                    aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                <button type="button" class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"
-                    aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-                <button type="button" class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"
-                    aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-                <button type="button" class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"
-                    aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
-            </div>
-
-            <!-- Slider controls -->
-            <button type="button"
-                class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                data-carousel-prev>
-                <span
-                    class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-black/30 group-hover:bg-black/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none backdrop-blur-sm transition-all">
-                    <svg class="w-5 h-5 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m15 19-7-7 7-7" />
-                    </svg>
-                    <span class="sr-only">Previous</span>
-                </span>
-            </button>
-            <button type="button"
-                class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                data-carousel-next>
-                <span
-                    class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-black/30 group-hover:bg-black/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none backdrop-blur-sm transition-all">
-                    <svg class="w-5 h-5 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m9 5 7 7-7 7" />
-                    </svg>
-                    <span class="sr-only">Next</span>
-                </span>
-            </button>
+        <!-- Desktop Search Bar -->
+        <div
+            class="hidden lg:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 w-80 xl:w-96 border border-white/10 focus-within:border-primary transition-colors">
+            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+            <input type="text" placeholder="Search movies..."
+                class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400 focus:ring-0">
         </div>
 
-        <!-- Footer (Normal flow after carousel) -->
-        <footer class="bg-gray-900 border-t border-gray-800 pt-16 pb-8 shrink-0 snap-start">
-            <div class="max-w-7xl mx-auto px-8">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-2">
-                            <span class="text-2xl font-bold font-serif text-white">Cam<span
-                                    class="text-[var(--color-indigo-500)]">Flix</span></span>
-                        </div>
-                        <div class="space-y-4">
-                            <a href="mailto:support@camflix.com"
-                                class="block text-gray-400 hover:text-white transition">support@camflix.com</a>
-                            <div class="flex gap-6">
-                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+            <a href="#" class="text-gray-300 hover:text-primary transition">Home</a>
+            <a href="#" class="text-gray-300 hover:text-primary transition">About us</a>
+            <a href="#" class="text-gray-300 hover:text-primary transition">Let's Explore</a>
+            <i class="fa-solid fa-sun fa-lg"></i>
+        </div>
 
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-2">
-                            <img src="./img/istad-logo.png" alt="istad-logo" class="w-24 h-auto">
-                        </div>
-                        <div class="space-y-4">
-                            <a href="mailto:info.istad@gmail.com"
-                                class="block text-gray-400 hover:text-white transition">info.istad@gmail.com</a>
-                            <div class="flex gap-6">
-                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden z-50 text-white focus:outline-none p-2">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+    </nav>
 
-                    <div>
-                        <h4 class="font-bold mb-6 text-white">Quick link</h4>
-                        <ul class="space-y-4 text-gray-400 text-sm">
-                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Home</a></li>
-                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">About us</a></li>
-                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Explore Movies</a>
-                            </li>
-                        </ul>
-                    </div>
+    <!-- Mobile Full Screen Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-dark/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 menu-closed md:hidden">
+        <!-- Close Button (Also handled by main toggle, but visual clarity) -->
 
-                    <div>
-                        <h4 class="font-bold mb-6 text-white">Support</h4>
-                        <ul class="space-y-4 text-gray-400 text-sm">
-                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">FAQs</a></li>
-                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Support Centre</a>
-                            </li>
-                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Mobile Search -->
+        <div class="w-3/4 max-w-sm flex items-center bg-white/10 rounded-full px-4 py-3 border border-white/20">
+            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+            <input type="text" placeholder="Search..."
+                class="bg-transparent border-none outline-none text-base w-full text-white placeholder-gray-400">
+        </div>
 
-                <div class="border-t border-gray-800 pt-8 text-center">
-                    <p class="text-gray-500 text-xs">copyright 2025 CamFlix. All right reserved.</p>
-                </div>
-            </div>
-        </footer>
+        <a href="#" class="text-2xl font-bold text-white hover:text-primary transition" onclick="toggleMenu()">Home</a>
+        <a href="#" class="text-2xl font-bold text-gray-300 hover:text-primary transition" onclick="toggleMenu()">About
+            us</a>
+        <a href="#" class="text-2xl font-bold text-gray-300 hover:text-primary transition"
+            onclick="toggleMenu()">Explore</a>
 
     </div>
 
+    <!-- Hero Section -->
+    <header class="relative w-full min-h-[85vh] md:h-[80vh] flex items-center justify-center">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="https://i.pinimg.com/736x/07/9a/33/079a333e42c8bd9c514e7fb2d6934997.jpg"
+                class="w-full h-full object-cover opacity-60" alt="Hero Background">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent"></div>
+            <!-- Side gradients for better text readability on wide screens -->
+            <div class="absolute inset-0 bg-gradient-to-r from-dark/30 via-transparent to-dark/30"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center max-w-4xl px-4 mt-16 md:mt-10">
+            <h1
+                class="text-4xl xs:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 md:mb-6 leading-tight drop-shadow-xl">
+                All movies are here! <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Free to
+                    watch.</span>
+            </h1>
+            <p class="text-gray-200 mb-8 text-lg md:text-xl font-light max-w-xl mx-auto">Stream unlimited movies and TV
+                shows on your phone, tablet, laptop, and TV.</p>
+            <button
+                class="group bg-primary hover:bg-indigo-600 text-white px-8 py-3 md:py-4 rounded-full font-bold transition-all transform hover:scale-105 active:scale-95 flex items-center gap-3 mx-auto shadow-[0_0_20px_rgba(99,102,241,0.5)]">
+                Let's Watch
+                <span class="bg-white/20 rounded-full w-6 h-6 flex items-center justify-center">
+                    <i class="fa-solid fa-play text-xs"></i>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-[1400px] mx-auto px-4 md:px-8 pb-20 -mt-20 relative z-20">
+
+        <!-- Recommended Section -->
+        <div class="mb-12 md:mb-16">
+            <div class="flex justify-between items-end mb-6">
+                <h2 class="text-xl md:text-2xl font-bold">Recommended for you</h2>
+                <a href="#" class="text-primary text-sm hover:underline">See all</a>
+            </div>
+
+            <!-- Responsive Grid: 2 cols phone, 3 cols tablet, 4 cols laptop, 5 cols desktop -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+                <!-- Card 1 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=500&q=80"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                        <!-- Play button on hover -->
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <div
+                                class="w-12 h-12 bg-primary/90 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm">
+                                <i class="fa-solid fa-play text-white ml-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold truncate text-sm md:text-base">Fantastic Beasts</h3>
+                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                        <span>Adventure</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i
+                                class="fa-solid fa-star text-[10px]"></i> 4.7</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=500&q=80"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h3 class="font-semibold truncate text-sm md:text-base">The Sorcerer's Stone</h3>
+                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                        <span>Fantasy</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i
+                                class="fa-solid fa-star text-[10px]"></i> 4.5</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1535666669445-e8c35bd3b2ee?auto=format&fit=crop&w=500&q=80"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h3 class="font-semibold truncate text-sm md:text-base">Blue Mystics</h3>
+                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                        <span>Sci-Fi</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i
+                                class="fa-solid fa-star text-[10px]"></i> 4.8</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=500&q=80"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h3 class="font-semibold truncate text-sm md:text-base">Dark Castle</h3>
+                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                        <span>Horror</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i
+                                class="fa-solid fa-star text-[10px]"></i> 4.2</span>
+                    </div>
+                </div>
+
+                <!-- Card 5 (Hidden on mobile/tablet to keep grid balanced, shown on desktop) -->
+                <div class="group cursor-pointer hidden lg:block">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?auto=format&fit=crop&w=500&q=80"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h3 class="font-semibold truncate text-sm md:text-base">Cyber Punk</h3>
+                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                        <span>Sci-Fi</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i
+                                class="fa-solid fa-star text-[10px]"></i> 4.6</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Movie (Big Banner) -->
+        <div class="mb-12 md:mb-16">
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-center md:text-left">Featured Movie</h2>
+            <div
+                class="relative w-full h-[500px] md:h-[450px] lg:h-[550px] rounded-2xl overflow-hidden group shadow-2xl flex flex-col md:block">
+                <!-- Image Container -->
+                <div class="absolute inset-0 z-0">
+                    <img src=".//img/Dora trailer.jpg" alt="Dora Banner"
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 object-center md:object-top">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-dark via-dark/60 md:via-dark/40 to-transparent">
+                    </div>
+                </div>
+
+                <!-- Content Container -->
+                <div
+                    class="absolute bottom-0 md:top-1/2 md:-translate-y-1/2 left-0 w-full md:w-1/2 p-6 md:p-12 lg:p-16 z-10 flex flex-col justify-end md:justify-center h-full">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-shadow leading-tight">Dora and the
+                        Lost City</h2>
+
+                    <div class="flex flex-wrap items-center gap-3 mb-4">
+                        <div class="flex text-yellow-400 text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <span
+                            class="text-gray-300 text-xs md:text-sm bg-white/10 px-2 py-1 rounded backdrop-blur-sm">2024</span>
+                        <span
+                            class="text-gray-300 text-xs md:text-sm bg-white/10 px-2 py-1 rounded backdrop-blur-sm">PG-13</span>
+                        <span class="text-white text-sm opacity-80">Adventure</span>
+                    </div>
+
+                    <p
+                        class="text-gray-200 mb-6 text-sm md:text-base line-clamp-3 md:line-clamp-4 leading-relaxed max-w-lg drop-shadow-md">
+                        Join Dora in her most dangerous adventure yet. Deep in the jungle, mysteries await as she leads
+                        a team of explorers to uncover the lost city of gold. A thrilling ride for the whole family that
+                        brings childhood memories to life.
+                    </p>
+
+                    <div class="flex gap-4">
+                        <button
+                            class="bg-primary hover:bg-indigo-600 text-white px-6 py-3 rounded-full font-medium transition flex items-center gap-2 shadow-lg hover:shadow-primary/50">
+                            Watch Now <i class="fa-solid fa-play"></i>
+                        </button>
+                        <button
+                            class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-6 py-3 rounded-full font-medium transition border border-white/20">
+                            + List
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Section -->
+        <div class="mb-12">
+            <div class="flex justify-between items-end mb-6">
+                <h2 class="text-xl md:text-2xl font-bold">Upcoming Movies</h2>
+                <a href="#" class="text-primary text-sm hover:underline">See all</a>
+            </div>
+
+            <!-- Responsive Grid Same as Above -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+                <!-- Card 1 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?auto=format&fit=crop&w=500&q=80"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h3 class="font-semibold truncate text-sm md:text-base">Night Agents</h3>
+                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                        <span>Action</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i
+                                class="fa-solid fa-star text-[10px]"></i> 4.9</span>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=500&q=80"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h3 class="font-semibold truncate text-sm md:text-base">The Darkest Hour</h3>
+                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                        <span>Drama</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i
+                                class="fa-solid fa-star text-[10px]"></i> 4.5</span>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1478720568477-152d02322db8?auto=format&fit=crop&w=500&q=80"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h3 class="font-semibold truncate text-sm md:text-base">Nature's Wrath</h3>
+                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                        <span>Docu</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i
+                                class="fa-solid fa-star text-[10px]"></i> 5.0</span>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=500&q=80"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h3 class="font-semibold truncate text-sm md:text-base">Fantastic Beasts 2</h3>
+                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                        <span>Fantasy</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i
+                                class="fa-solid fa-star text-[10px]"></i> 4.6</span>
+                    </div>
+                </div>
+                <!-- Card 5 (Desktop) -->
+                <div class="group cursor-pointer hidden lg:block">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&w=500&q=80"
+                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h3 class="font-semibold truncate text-sm md:text-base">Blade Runner</h3>
+                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                        <span>Sci-Fi</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i
+                                class="fa-solid fa-star text-[10px]"></i> 4.9</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 pt-12 md:pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl md:text-3xl font-bold font-serif text-white">Cam<span
+                                class="text-primary">Flix</span></span>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <a href="mailto:support@camflix.com"
+                            class="block text-gray-400 hover:text-primary transition">support@camflix.com</a>
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <a href="https://www.cstad.edu.kh/" target="_blank" rel="noopener noreferrer">
+                            <img src="./img/istad-logo.png" alt="ISTAD Logo" class="h-10 w-auto object-contain">
+                        </a>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <a href="mailto:info.istad@gmail.com"
+                            class="block text-gray-400 hover:text-primary transition">info.istad@gmail.com</a>
+                        <div class="flex gap-4">
+                            <a href="https://www.facebook.com/istad.com" target="_blank"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-primary transition">Home</a></li>
+                        <li><a href="#" class="hover:text-primary transition">About us</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Explore Movies</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Support</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-primary transition">FAQs</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Support Centre</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500 text-xs">copyright 2025 CamFlix. All right reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
     <script>
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        const closeBtn = document.getElementById('close-menu-btn');
-        const links = document.querySelectorAll('.mobile-link');
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
 
         function toggleMenu() {
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('menu-closed');
+                mobileMenu.classList.add('menu-open');
+                // Change icon to X
+                menuBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                mobileMenu.classList.remove('menu-open');
+                mobileMenu.classList.add('menu-closed');
+                // Change icon back to bars
+                menuBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
+                document.body.style.overflow = ''; // Enable scrolling
+            }
         }
 
-        btn.addEventListener('click', toggleMenu);
-        closeBtn.addEventListener('click', toggleMenu);
-        links.forEach(link => link.addEventListener('click', toggleMenu));
+        menuBtn.addEventListener('click', toggleMenu);
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-
 </body>
 
 </html>
