@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - CamFlix</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#0B0D17] text-white flex flex-col min-h-screen">
+
+    <!-- UPDATED NAVIGATION BAR -->
+    <nav class="absolute top-0 left-0 w-full z-50 px-8 py-5 flex items-center justify-between bg-gradient-to-b from-black/80 to-transparent">
+        
+        <!-- Logo -->
+        <div class="flex items-center">
+            <a href="index.html" class="text-3xl font-bold tracking-wide">
+                <span class="text-white">Cam</span><span class="text-[#5A4AF4]">Flix</span>
+            </a>
+        </div>
+
+        <!-- Search Bar (Centered) -->
+        <div class="hidden md:flex flex-1 max-w-xs mx-8 relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+            <input type="text" 
+                   placeholder="Search..." 
+                   class="w-full bg-white/5 border border-white/20 rounded-full py-2.5 pl-10 pr-4 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-[#5A4AF4] focus:bg-black/40 transition">
+        </div>
+
+        <!-- Right Menu -->
+        <div class="hidden md:flex items-center gap-8 font-medium text-white/90">
+            <a href="index.html" class="hover:text-white transition">Home</a>
+            <a href="#" class="hover:text-white transition">About us</a>
+            <a href="#" class="flex items-center gap-2 hover:text-white transition group">
+                Let's Explore 
+                <i class="fa-solid fa-chevron-right text-xs group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            
+            <!-- Icon Button -->
+            <button class="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center hover:bg-gray-200 transition shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                <i class="fa-solid fa-sun text-sm"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button (Visible on small screens) -->
+        <button class="md:hidden text-white text-xl">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- HEADER / HERO -->
+    <header class="pt-40 pb-8 px-6 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
+        <p class="text-gray-400 max-w-xl mx-auto">
+            We'd love to hear from you. Send us a message below.
+        </p>
+    </header>
+
+    <!-- MAIN CONTACT SECTION -->
+    <main class="flex-grow w-full max-w-3xl mx-auto px-6 pb-24">
+        
+        <!-- Contact Form (Centered) -->
+        <div class="bg-[#151926] p-8 md:p-12 rounded-2xl border border-white/5 relative overflow-hidden shadow-2xl shadow-blue-900/10">
+            <!-- Background decorative glow -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+            <form action="#" class="space-y-6 relative z-10">
+                
+                <!-- Email Field -->
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-gray-300">Email Address</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-3.5 text-gray-500">
+                            <i class="fa-regular fa-envelope"></i>
+                        </span>
+                        <input type="email" placeholder="you@example.com" class="w-full bg-[#0B0D17] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600">
+                    </div>
+                </div>
+
+                <!-- Message Field -->
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-gray-300">Message</label>
+                    <textarea rows="6" placeholder="How can we help you?" class="w-full bg-[#0B0D17] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition resize-none placeholder-gray-600"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="button" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 rounded-lg transition duration-300 shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 group">
+                    Send Message
+                    <i class="fa-solid fa-paper-plane group-hover:translate-x-1 transition-transform"></i>
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0B0D17] pt-16 pb-8 border-t border-white/5 relative z-20 text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <!-- Column 1: CamFlix Info -->
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold">
+                        <span class="text-white">Cam</span><span class="text-indigo-500">Flix</span>
+                    </h2>
+                    <a href="mailto:support@camflix.com" class="block text-gray-200 hover:text-white transition">support@camflix.com</a>
+                    <div class="flex gap-6">
+                        <a href="#" class="text-white text-xl hover:text-indigo-500 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="text-white text-xl hover:text-indigo-500 transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="text-white text-xl hover:text-indigo-500 transition"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <!-- Column 2: ISTAD Info -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2">
+                        <img src="https://istad.co/resources/img/logo_md.png" alt="ISTAD Logo" class="w-10 h-10 object-contain"> 
+                        <span class="text-2xl font-bold text-blue-600">ISTAD</span>
+                    </div>
+                    <a href="mailto:info.istad@gmail.com" class="block text-gray-200 hover:text-white transition">info.istad@gmail.com</a>
+                    <div class="flex gap-6">
+                        <a href="#" class="text-white text-xl hover:text-blue-600 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="text-white text-xl hover:text-blue-600 transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="text-white text-xl hover:text-blue-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <!-- Column 3: Quick Link -->
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Quick link</h3>
+                    <ul class="space-y-4 text-gray-300">
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="hover:text-white transition">About us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Explore Movies</a></li>
+                    </ul>
+                </div>
+                <!-- Column 4: Support -->
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Support</h3>
+                    <ul class="space-y-4 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition">FAQs</a></li>
+                        <li><a href="#" class="hover:text-white transition">Support Centre</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Bottom Bar: Copyright -->
+            <div class="border-t border-white/10 pt-8 text-center">
+                <p class="text-sm text-gray-400">copy right 2025 CamFlix. All right reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
