@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API testing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #0f172a;
+            color: #f1f5f9;
+        }
+        header {
+            padding: 1.5rem;
+            text-align: center;
+            background: #1e293b;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        #movies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+        .movie-card {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .movie-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+        }
+        .movie-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+        }
+        .movie-content {
+            padding: 1rem;
+        }
+        .movie-title {
+            font-size: 1rem;
+            margin: 0 0 0.5rem;
+        }
+        .movie-meta {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        .movie-overview {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #e2e8f0;
+        }
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: #f87171;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Popular Movies</h1>
+        <p>Data fetched live from TMDB</p>
+    </header>
+    <section id="movies">
+        <!-- Movie cards injected here -->
+    </section>
+    
+    <template id="movie-template">
+        <article class="movie-card">
+            <img loading="lazy" alt="Movie poster">
+            <div class="movie-content">
+                <h2 class="movie-title"></h2>
+                <div class="movie-meta"></div>
+                <p class="movie-overview"></p>
+            </div>
+        </article>
+    </template>
+
+    <script>
+        const moviesContainer = document.getElementById('movies');
+        const movieTemplate = document.getElementById('movie-template');
+        const API_URL = 'https://api.themoviedb.org/3/movie/popular?api_key=4113f3ad734e747a5b463cde8c55de42&language=en-US&page=1';
+        const IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
+
+        async function loadMovies() {
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error('Network response was not ok');
+
+                const data = await response.json();
+                renderMovies(data.results);
+            } catch (error) {
+                moviesContainer.innerHTML = `<p class="error">Failed to load movies: ${error.message}</p>`;
+            }
+        }
+
+        function renderMovies(movies) {
+            moviesContainer.innerHTML = '';
+
+            movies.forEach(movie => {
+                const card = movieTemplate.content.cloneNode(true);
+                const img = card.querySelector('img');
+                const title = card.querySelector('.movie-title');
+                const meta = card.querySelector('.movie-meta');
+                const overview = card.querySelector('.movie-overview');
+
+                img.src = movie.poster_path ? `${IMAGE_BASE}${movie.poster_path}` : 'https://placehold.co/500x750?text=No+Image';
+                img.alt = `${movie.title} poster`;
+
+                title.textContent = movie.title;
+                meta.textContent = `Release: ${movie.release_date || 'TBA'} • Rating: ${movie.vote_average?.toFixed(1) ?? 'N/A'}`;
+                overview.textContent = movie.overview || 'No synopsis available.';
+
+                moviesContainer.appendChild(card);
+            });
+        }
+
+        loadMovies();
+    </script>
+</body>
+</html>
