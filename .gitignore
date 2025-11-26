@@ -3,3 +3,8 @@ node_modules/
 
 # VS Code settings
 .vscode/
+
+API_test_fetching.html
+index_test_API.html
+
+js/

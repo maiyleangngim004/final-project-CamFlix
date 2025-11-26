@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 @theme {
 
@@ -30,5 +31,8 @@
 
     /* Font style */
     --font-type: "Roboto", sans-serif;
+    --font-type-logo:"Pacifico", cursive;
+
+
 
 }
