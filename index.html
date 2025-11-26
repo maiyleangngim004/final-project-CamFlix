@@ -80,15 +80,15 @@
     </style>
 </head>
 
-<body class="bg-dark text-white font-sans antialiased overflow-x-hidden">
+<body id="homePage" class="bg-dark text-white font-sans antialiased overflow-x-hidden">
 
     <!-- Navigation -->
     <nav
         class="absolute top-0 left-0 w-full z-50 px-4 md:px-8 py-4 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent">
         <div class="flex items-center gap-2 z-50">
-            <span class="text-2xl md:text-3xl font-bold font-serif text-white drop-shadow-md">
-                Cam<span class="text-primary">Flix</span>
-            </span>
+            <a href="#homePage" rel="noopener noreferrer">
+                <img src="./img/CamFlix-Logo.png" alt="camflix Logo" class="h-16 w-auto object-contain">
+            </a>
         </div>
 
         <!-- Desktop Search Bar -->
@@ -101,7 +101,7 @@
 
         <!-- Desktop Navigation Links -->
         <div class="hidden md:flex items-center gap-6 text-sm font-medium">
-            <a href="#" class="text-gray-300 hover:text-primary transition">Home</a>
+            <a href="#homePage" class="text-gray-300 hover:text-primary transition">Home</a>
             <a href="#" class="text-gray-300 hover:text-primary transition">About us</a>
             <a href="#" class="text-gray-300 hover:text-primary transition">Let's Explore</a>
             <i class="fa-solid fa-sun fa-lg"></i>
@@ -137,8 +137,7 @@
     <header class="relative w-full min-h-[85vh] md:h-[80vh] flex items-center justify-center">
         <!-- Background Image -->
         <div class="absolute inset-0">
-            <img src="https://i.pinimg.com/736x/07/9a/33/079a333e42c8bd9c514e7fb2d6934997.jpg"
-                class="w-full h-full object-cover opacity-60" alt="Hero Background">
+            <img src="./img/bg-home-page-short.png" class="w-full h-full object-cover opacity-60" alt="Hero Background">
             <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent"></div>
             <!-- Side gradients for better text readability on wide screens -->
             <div class="absolute inset-0 bg-gradient-to-r from-dark/30 via-transparent to-dark/30"></div>
@@ -165,230 +164,230 @@
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-[1400px] mx-auto px-4 md:px-8 pb-20 -mt-20 relative z-20">
+    <main class="max-w-[1400px] mx-auto px-4 md:px-8 pb-20 relative z-20"></main>
 
-        <!-- Recommended Section -->
-        <div class="mb-12 md:mb-16">
-            <div class="flex justify-between items-end mb-6">
-                <h2 class="text-xl md:text-2xl font-bold">Recommended for you</h2>
-                <a href="#" class="text-primary text-sm hover:underline">See all</a>
-            </div>
-
-            <!-- Responsive Grid: 2 cols phone, 3 cols tablet, 4 cols laptop, 5 cols desktop -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                <!-- Card 1 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=500&q=80"
-                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
-                        <!-- Play button on hover -->
-                        <div
-                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <div
-                                class="w-12 h-12 bg-primary/90 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm">
-                                <i class="fa-solid fa-play text-white ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="font-semibold truncate text-sm md:text-base">Fantastic Beasts</h3>
-                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
-                        <span>Adventure</span>
-                        <span class="text-yellow-400 flex items-center gap-1"><i
-                                class="fa-solid fa-star text-[10px]"></i> 4.7</span>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=500&q=80"
-                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <h3 class="font-semibold truncate text-sm md:text-base">The Sorcerer's Stone</h3>
-                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
-                        <span>Fantasy</span>
-                        <span class="text-yellow-400 flex items-center gap-1"><i
-                                class="fa-solid fa-star text-[10px]"></i> 4.5</span>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1535666669445-e8c35bd3b2ee?auto=format&fit=crop&w=500&q=80"
-                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <h3 class="font-semibold truncate text-sm md:text-base">Blue Mystics</h3>
-                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
-                        <span>Sci-Fi</span>
-                        <span class="text-yellow-400 flex items-center gap-1"><i
-                                class="fa-solid fa-star text-[10px]"></i> 4.8</span>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=500&q=80"
-                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <h3 class="font-semibold truncate text-sm md:text-base">Dark Castle</h3>
-                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
-                        <span>Horror</span>
-                        <span class="text-yellow-400 flex items-center gap-1"><i
-                                class="fa-solid fa-star text-[10px]"></i> 4.2</span>
-                    </div>
-                </div>
-
-                <!-- Card 5 (Hidden on mobile/tablet to keep grid balanced, shown on desktop) -->
-                <div class="group cursor-pointer hidden lg:block">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?auto=format&fit=crop&w=500&q=80"
-                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <h3 class="font-semibold truncate text-sm md:text-base">Cyber Punk</h3>
-                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
-                        <span>Sci-Fi</span>
-                        <span class="text-yellow-400 flex items-center gap-1"><i
-                                class="fa-solid fa-star text-[10px]"></i> 4.6</span>
-                    </div>
-                </div>
-            </div>
+    <!-- Recommended Section -->
+    <div class="mb-12 md:mb-16">
+        <div class="flex justify-between items-end mb-6">
+            <h2 class="text-xl md:text-2xl font-bold">Recommended for you</h2>
+            <a href="#" class="text-primary text-sm hover:underline">See all</a>
         </div>
 
-        <!-- Featured Movie (Big Banner) -->
-        <div class="mb-12 md:mb-16">
-            <h2 class="text-xl md:text-2xl font-bold mb-6 text-center md:text-left">Featured Movie</h2>
-            <div
-                class="relative w-full h-[500px] md:h-[450px] lg:h-[550px] rounded-2xl overflow-hidden group shadow-2xl flex flex-col md:block">
-                <!-- Image Container -->
-                <div class="absolute inset-0 z-0">
-                    <img src=".//img/Dora trailer.jpg" alt="Dora Banner"
-                        class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 object-center md:object-top">
+        <!-- Responsive Grid: 2 cols phone, 3 cols tablet, 4 cols laptop, 5 cols desktop -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+            <!-- Card 1 -->
+            <div class="group cursor-pointer">
+                <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                    <!-- Play button on hover -->
                     <div
-                        class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-dark via-dark/60 md:via-dark/40 to-transparent">
-                    </div>
-                </div>
-
-                <!-- Content Container -->
-                <div
-                    class="absolute bottom-0 md:top-1/2 md:-translate-y-1/2 left-0 w-full md:w-1/2 p-6 md:p-12 lg:p-16 z-10 flex flex-col justify-end md:justify-center h-full">
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-shadow leading-tight">Dora and the
-                        Lost City</h2>
-
-                    <div class="flex flex-wrap items-center gap-3 mb-4">
-                        <div class="flex text-yellow-400 text-sm">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
+                        class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <div
+                            class="w-12 h-12 bg-primary/90 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm">
+                            <i class="fa-solid fa-play text-white ml-1"></i>
                         </div>
-                        <span
-                            class="text-gray-300 text-xs md:text-sm bg-white/10 px-2 py-1 rounded backdrop-blur-sm">2024</span>
-                        <span
-                            class="text-gray-300 text-xs md:text-sm bg-white/10 px-2 py-1 rounded backdrop-blur-sm">PG-13</span>
-                        <span class="text-white text-sm opacity-80">Adventure</span>
                     </div>
+                </div>
+                <h3 class="font-semibold truncate text-sm md:text-base">Fantastic Beasts</h3>
+                <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                    <span>Adventure</span>
+                    <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star text-[10px]"></i>
+                        4.7</span>
+                </div>
+            </div>
 
-                    <p
-                        class="text-gray-200 mb-6 text-sm md:text-base line-clamp-3 md:line-clamp-4 leading-relaxed max-w-lg drop-shadow-md">
-                        Join Dora in her most dangerous adventure yet. Deep in the jungle, mysteries await as she leads
-                        a team of explorers to uncover the lost city of gold. A thrilling ride for the whole family that
-                        brings childhood memories to life.
-                    </p>
+            <!-- Card 2 -->
+            <div class="group cursor-pointer">
+                <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="font-semibold truncate text-sm md:text-base">The Sorcerer's Stone</h3>
+                <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                    <span>Fantasy</span>
+                    <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star text-[10px]"></i>
+                        4.5</span>
+                </div>
+            </div>
 
-                    <div class="flex gap-4">
-                        <button
-                            class="bg-primary hover:bg-indigo-600 text-white px-6 py-3 rounded-full font-medium transition flex items-center gap-2 shadow-lg hover:shadow-primary/50">
-                            Watch Now <i class="fa-solid fa-play"></i>
-                        </button>
-                        <button
-                            class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-6 py-3 rounded-full font-medium transition border border-white/20">
-                            + List
-                        </button>
-                    </div>
+            <!-- Card 3 -->
+            <div class="group cursor-pointer">
+                <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1535666669445-e8c35bd3b2ee?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="font-semibold truncate text-sm md:text-base">Blue Mystics</h3>
+                <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                    <span>Sci-Fi</span>
+                    <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star text-[10px]"></i>
+                        4.8</span>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="group cursor-pointer">
+                <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="font-semibold truncate text-sm md:text-base">Dark Castle</h3>
+                <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                    <span>Horror</span>
+                    <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star text-[10px]"></i>
+                        4.2</span>
+                </div>
+            </div>
+
+            <!-- Card 5 (Hidden on mobile/tablet to keep grid balanced, shown on desktop) -->
+            <div class="group cursor-pointer hidden lg:block">
+                <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="font-semibold truncate text-sm md:text-base">Cyber Punk</h3>
+                <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                    <span>Sci-Fi</span>
+                    <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star text-[10px]"></i>
+                        4.6</span>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Upcoming Section -->
-        <div class="mb-12">
-            <div class="flex justify-between items-end mb-6">
-                <h2 class="text-xl md:text-2xl font-bold">Upcoming Movies</h2>
-                <a href="#" class="text-primary text-sm hover:underline">See all</a>
+    <!-- Featured Movie (Big Banner) -->
+    <div class="mb-12 md:mb-16">
+        <h2 class="text-xl md:text-2xl font-bold mb-6 text-center md:text-left">Featured Movie</h2>
+        <div
+            class="relative w-full h-[500px] md:h-[450px] lg:h-[550px] rounded-2xl overflow-hidden group shadow-2xl flex flex-col md:block">
+            <!-- Image Container -->
+            <div class="absolute inset-0 z-0">
+                <img src=".//img/Dora trailer.jpg" alt="Dora Banner"
+                    class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 object-center md:object-top">
+                <div
+                    class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-dark via-dark/60 md:via-dark/40 to-transparent">
+                </div>
             </div>
 
-            <!-- Responsive Grid Same as Above -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-                <!-- Card 1 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?auto=format&fit=crop&w=500&q=80"
-                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+            <!-- Content Container -->
+            <div
+                class="absolute bottom-0 md:top-1/2 md:-translate-y-1/2 left-0 w-full md:w-1/2 p-6 md:p-12 lg:p-16 z-10 flex flex-col justify-end md:justify-center h-full">
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-shadow leading-tight">Dora and the
+                    Lost City</h2>
+
+                <div class="flex flex-wrap items-center gap-3 mb-4">
+                    <div class="flex text-yellow-400 text-sm">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
                     </div>
-                    <h3 class="font-semibold truncate text-sm md:text-base">Night Agents</h3>
-                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
-                        <span>Action</span>
-                        <span class="text-yellow-400 flex items-center gap-1"><i
-                                class="fa-solid fa-star text-[10px]"></i> 4.9</span>
-                    </div>
+                    <span
+                        class="text-gray-300 text-xs md:text-sm bg-white/10 px-2 py-1 rounded backdrop-blur-sm">2024</span>
+                    <span
+                        class="text-gray-300 text-xs md:text-sm bg-white/10 px-2 py-1 rounded backdrop-blur-sm">PG-13</span>
+                    <span class="text-white text-sm opacity-80">Adventure</span>
                 </div>
-                <!-- Card 2 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=500&q=80"
-                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <h3 class="font-semibold truncate text-sm md:text-base">The Darkest Hour</h3>
-                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
-                        <span>Drama</span>
-                        <span class="text-yellow-400 flex items-center gap-1"><i
-                                class="fa-solid fa-star text-[10px]"></i> 4.5</span>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1478720568477-152d02322db8?auto=format&fit=crop&w=500&q=80"
-                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <h3 class="font-semibold truncate text-sm md:text-base">Nature's Wrath</h3>
-                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
-                        <span>Docu</span>
-                        <span class="text-yellow-400 flex items-center gap-1"><i
-                                class="fa-solid fa-star text-[10px]"></i> 5.0</span>
-                    </div>
-                </div>
-                <!-- Card 4 -->
-                <div class="group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=500&q=80"
-                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <h3 class="font-semibold truncate text-sm md:text-base">Fantastic Beasts 2</h3>
-                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
-                        <span>Fantasy</span>
-                        <span class="text-yellow-400 flex items-center gap-1"><i
-                                class="fa-solid fa-star text-[10px]"></i> 4.6</span>
-                    </div>
-                </div>
-                <!-- Card 5 (Desktop) -->
-                <div class="group cursor-pointer hidden lg:block">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&w=500&q=80"
-                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                    </div>
-                    <h3 class="font-semibold truncate text-sm md:text-base">Blade Runner</h3>
-                    <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
-                        <span>Sci-Fi</span>
-                        <span class="text-yellow-400 flex items-center gap-1"><i
-                                class="fa-solid fa-star text-[10px]"></i> 4.9</span>
-                    </div>
+
+                <p
+                    class="text-gray-200 mb-6 text-sm md:text-base line-clamp-3 md:line-clamp-4 leading-relaxed max-w-lg drop-shadow-md">
+                    Join Dora in her most dangerous adventure yet. Deep in the jungle, mysteries await as she leads
+                    a team of explorers to uncover the lost city of gold. A thrilling ride for the whole family that
+                    brings childhood memories to life.
+                </p>
+
+                <div class="flex gap-4">
+                    <button
+                        class="bg-primary hover:bg-indigo-600 text-white px-6 py-3 rounded-full font-medium transition flex items-center gap-2 shadow-lg hover:shadow-primary/50">
+                        Watch Now <i class="fa-solid fa-play"></i>
+                    </button>
+                    <button
+                        class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-6 py-3 rounded-full font-medium transition border border-white/20">
+                        + List
+                    </button>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Upcoming Section -->
+    <div class="mb-12">
+        <div class="flex justify-between items-end mb-6">
+            <h2 class="text-xl md:text-2xl font-bold">Upcoming Movies</h2>
+            <a href="#" class="text-primary text-sm hover:underline">See all</a>
+        </div>
+
+        <!-- Responsive Grid Same as Above -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+            <!-- Card 1 -->
+            <div class="group cursor-pointer">
+                <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="font-semibold truncate text-sm md:text-base">Night Agents</h3>
+                <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                    <span>Action</span>
+                    <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star text-[10px]"></i>
+                        4.9</span>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="group cursor-pointer">
+                <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="font-semibold truncate text-sm md:text-base">The Darkest Hour</h3>
+                <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                    <span>Drama</span>
+                    <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star text-[10px]"></i>
+                        4.5</span>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="group cursor-pointer">
+                <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1478720568477-152d02322db8?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="font-semibold truncate text-sm md:text-base">Nature's Wrath</h3>
+                <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                    <span>Docu</span>
+                    <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star text-[10px]"></i>
+                        5.0</span>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="group cursor-pointer">
+                <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="font-semibold truncate text-sm md:text-base">Fantastic Beasts 2</h3>
+                <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                    <span>Fantasy</span>
+                    <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star text-[10px]"></i>
+                        4.6</span>
+                </div>
+            </div>
+            <!-- Card 5 (Desktop) -->
+            <div class="group cursor-pointer hidden lg:block">
+                <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 bg-card shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&w=500&q=80"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <h3 class="font-semibold truncate text-sm md:text-base">Blade Runner</h3>
+                <div class="flex items-center justify-between text-xs text-gray-400 mt-1">
+                    <span>Sci-Fi</span>
+                    <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star text-[10px]"></i>
+                        4.9</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     </main>
 
@@ -397,9 +396,10 @@
         <div class="max-w-7xl mx-auto px-6 md:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12">
                 <div class="space-y-4">
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl md:text-3xl font-bold font-serif text-white">Cam<span
-                                class="text-primary">Flix</span></span>
+                    <div class="flex items-center gap">
+                        <a href="#homePage" rel="noope-1ner noreferrer">
+                            <img src="./img/CamFlix-Logo.png" alt="camflix Logo" class="h-16 w-auto object-contain">
+                        </a>
                     </div>
                     <div class="space-y-4 text-sm">
                         <a href="mailto:support@camflix.com"
