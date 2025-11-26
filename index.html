@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CamFlix - Movie Streaming Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0B0D17',
+                        card: '#151926',
+                        accent: '#6366F1' // Indigo/Purple mix
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar to match the dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0D17; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-dark text-white font-sans antialiased overflow-x-hidden">
+
+    <nav class="absolute top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">CamFlix</span>
+        </div>
+
+        <div class="hidden md:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 w-96 border border-white/10">
+            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+            <input type="text" placeholder="Search movies..." class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400">
+        </div>
+
+        <div class="flex items-center gap-6 text-sm font-medium">
+            <a href="#" class="text-white hover:text-blue-400 transition">Home</a>
+            <a href="#" class="text-gray-300 hover:text-white transition">About us</a>
+            <a href="#" class="text-gray-300 hover:text-white transition">Let's Explore</a>
+            <div class="w-8 h-8 rounded-full bg-gray-600 overflow-hidden border border-white/20">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80" alt="User" />
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative w-full h-[70vh] flex items-center justify-center">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1600&q=80" class="w-full h-full object-cover opacity-60" alt="Hero Background">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 text-center max-w-2xl px-4 mt-20">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">All movies are in there!<br> Free to watch.</h1>
+            <p class="text-gray-300 mb-8 text-lg">What movie do you want to watch?</p>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition flex items-center gap-2 mx-auto shadow-lg shadow-blue-600/30">
+                Let's Watch <i class="fa-solid fa-circle-play"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-20 -mt-10 relative z-20">
+        
+        <div class="mb-12">
+            <div class="flex justify-between items-end mb-6">
+                <h2 class="text-xl font-bold">Recommended for you</h2>
+                <a href="#" class="text-blue-500 text-sm hover:underline">see all</a>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3">
+                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <h3 class="font-semibold truncate">Fantastic Beasts</h3>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span>Action/Adventure</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.7</span>
+                    </div>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3">
+                        <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                    </div>
+                    <h3 class="font-semibold truncate">The Sorcerer's Stone</h3>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span>Fantasy</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.5</span>
+                    </div>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3">
+                        <img src="https://images.unsplash.com/photo-1535666669445-e8c35bd3b2ee?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                    </div>
+                    <h3 class="font-semibold truncate">Blue Mystics</h3>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span>Sci-Fi</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.8</span>
+                    </div>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                    </div>
+                    <h3 class="font-semibold truncate">Dark Castle</h3>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span>Horror</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-16">
+            <h2 class="text-xl font-bold mb-6 text-center">Top-Rated Movies</h2>
+            <div class="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden group">
+                <img src="./Images/Dora trailer image (1).jpg" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/40 to-transparent"></div>
+                
+                <div class="absolute top-1/2 -translate-y-1/2 left-8 md:left-16 max-w-lg">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-2">Dora</h2>
+                    <div class="flex items-center gap-2 mb-4 text-yellow-400">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <span class="text-white text-sm ml-2">| Explore movie</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 text-sm md:text-base line-clamp-3">
+                        Join Dora in her most dangerous adventure yet. Deep in the jungle, mysteries await as she leads a team of explorers to uncover the lost city of gold. A thrilling ride for the whole family.
+                    </p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition flex items-center gap-2">
+                        View trailer <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-16">
+             <div class="flex justify-between items-end mb-6">
+                <h2 class="text-xl font-bold">Popular Movies</h2>
+                <a href="#" class="text-blue-500 text-sm hover:underline">see all</a>
+            </div>
+             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3">
+                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                    </div>
+                    <h3 class="font-semibold truncate">Fantastic Beasts</h3>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span>Action/Adventure</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.7</span>
+                    </div>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3">
+                        <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                    </div>
+                    <h3 class="font-semibold truncate">The Sorcerer's Stone</h3>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span>Fantasy</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.5</span>
+                    </div>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3">
+                        <img src="https://images.unsplash.com/photo-1535666669445-e8c35bd3b2ee?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                    </div>
+                    <h3 class="font-semibold truncate">Blue Mystics</h3>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span>Sci-Fi</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.8</span>
+                    </div>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                    </div>
+                    <h3 class="font-semibold truncate">Dark Castle</h3>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span>Horror</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-16">
+            <h2 class="text-xl font-bold mb-6 text-center">Popular Movies</h2>
+            <div class="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden group">
+                <img src="./Images/19bafed5-9852-416f-974a-771dd700e8e7-1764070908.png" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 object-top">
+                <div class="absolute inset-0 bg-gradient-to-r from-dark via-dark/20 to-transparent"></div>
+                <div class="absolute bottom-0 w-full h-20 bg-gradient-to-t from-dark to-transparent"></div>
+                
+                <div class="absolute top-1/2 -translate-y-1/2 left-8 md:left-16 max-w-lg">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-2">Avengers</h2>
+                    <div class="flex items-center gap-2 mb-4 text-yellow-400">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <span class="text-white text-sm ml-2">| Explore now</span>
+                    </div>
+                    <p class="text-gray-300 mb-6 text-sm md:text-base drop-shadow-md">
+                        The ultimate brand has had a massive cultural impact, creating shared fan experiences, immersive worlds and shaping the modern cinematic universe.
+                    </p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition flex items-center gap-2 shadow-lg shadow-blue-500/20">
+                        View trailer <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-12">
+            <div class="flex justify-between items-end mb-6">
+                <h2 class="text-xl font-bold">Upcoming Movies</h2>
+                <a href="#" class="text-blue-500 text-sm hover:underline">see all</a>
+            </div>
+            
+             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3">
+                        <img src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                    </div>
+                    <h3 class="font-semibold truncate">Night Agents</h3>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span>Action</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.9</span>
+                    </div>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3">
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                    </div>
+                    <h3 class="font-semibold truncate">The Darkest Hour</h3>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span>Drama</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.5</span>
+                    </div>
+                </div>
+                 <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3">
+                        <img src="https://images.unsplash.com/photo-1478720568477-152d02322db8?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                    </div>
+                    <h3 class="font-semibold truncate">Nature's Wrath</h3>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span>Documentary</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> 5.0</span>
+                    </div>
+                </div>
+                 <div class="group cursor-pointer">
+                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden mb-3">
+                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                    </div>
+                    <h3 class="font-semibold truncate">Fantastic Beasts 2</h3>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span>Fantasy</span>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> 4.6</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+            <!-- Footer (Normal flow after carousel) -->
+        <footer class="bg-gray-900 border-t border-gray-800 pt-16 pb-8 shrink-0 snap-start">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl font-bold font-serif text-white">Cam<span
+                                    class="text-[var(--color-indigo-500)]">Flix</span></span>
+                        </div>
+                        <div class="space-y-4">
+                            <a href="mailto:support@camflix.com"
+                                class="block text-gray-400 hover:text-white transition">support@camflix.com</a>
+                            <div class="flex gap-6">
+                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
+                                        class="fab fa-twitter"></i></a>
+                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-2">
+                            <img src="./img/istad-logo.png" alt="istad-logo" class="w-24 h-auto">
+                        </div>
+                        <div class="space-y-4">
+                            <a href="mailto:info.istad@gmail.com"
+                                class="block text-gray-400 hover:text-white transition">info.istad@gmail.com</a>
+                            <div class="flex gap-6">
+                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
+                                        class="fab fa-twitter"></i></a>
+                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-6 text-white">Quick link</h4>
+                        <ul class="space-y-4 text-gray-400 text-sm">
+                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Home</a></li>
+                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">About us</a></li>
+                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Explore Movies</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-6 text-white">Support</h4>
+                        <ul class="space-y-4 text-gray-400 text-sm">
+                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">FAQs</a></li>
+                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Support Centre</a>
+                            </li>
+                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 pt-8 text-center">
+                    <p class="text-gray-500 text-xs">copyright 2025 CamFlix. All right reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+
+</body>
+</html>
