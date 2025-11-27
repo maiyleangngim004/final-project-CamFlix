@@ -83,8 +83,8 @@
 <body id="homePage" class="bg-dark text-white font-sans antialiased overflow-x-hidden">
 
     <!-- Navigation -->
-    <nav
-        class="absolute top-0 left-0 w-full z-50 px-4 md:px-8 py-4 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent">
+    <nav id="mainNav"
+        class="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-4 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent transition-all duration-300">
         <div class="flex items-center gap-2 z-50">
             <a href="#homePage" rel="noopener noreferrer">
                 <img src="./img/CamFlix-Logo.png" alt="camflix Logo" class="h-16 w-auto object-contain">
@@ -93,7 +93,7 @@
 
         <!-- Desktop Search Bar -->
         <div
-            class="hidden lg:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 w-80 xl:w-96 border border-white/10 focus-within:border-primary transition-colors">
+            class="hidden md:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 flex-1 max-w-md mx-6 xl:w-96 border border-white/10 focus-within:border-primary transition-colors">
             <i class="fa-solid fa-search text-gray-400 mr-3"></i>
             <input type="text" placeholder="Search movies..."
                 class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400 focus:ring-0">
@@ -137,7 +137,8 @@
     <header class="relative w-full min-h-[85vh] md:h-[80vh] flex items-center justify-center">
         <!-- Background Image -->
         <div class="absolute inset-0">
-            <img src="./img/bg-home-page-short.png" class="w-full h-full object-cover opacity-60" alt="Hero Background">
+            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1600&q=80"
+                class="w-full h-full object-cover opacity-60" alt="Hero Background">
             <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent"></div>
             <!-- Side gradients for better text readability on wide screens -->
             <div class="absolute inset-0 bg-gradient-to-r from-dark/30 via-transparent to-dark/30"></div>
@@ -490,8 +491,29 @@
                 document.body.style.overflow = ''; // Enable scrolling
             }
         }
-
         menuBtn.addEventListener('click', toggleMenu);
+
+        // Background navigation on scroll
+        // Scroll Event Listener
+        window.addEventListener('scroll', () => {
+            const mainNav = document.getElementById('mainNav');
+
+            if (window.scrollY > 50) {
+                // SCROLLED DOWN: Apply Glass Effect
+                // 1. Remove the initial gradient
+                mainNav.classList.remove('bg-gradient-to-b', 'from-black/90', 'to-transparent');
+
+                // 2. Add the glass classes (Same style as search bar)
+                // bg-black/40 makes it semi-transparent dark
+                // backdrop-blur-md creates the blur
+                // border-b border-white/10 creates the thin glass edge
+                mainNav.classList.add('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+            } else {
+                // AT THE TOP: Reset to original
+                mainNav.classList.remove('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+                mainNav.classList.add('bg-gradient-to-b', 'from-black/90', 'to-transparent');
+            }
+        });
     </script>
 </body>
 
