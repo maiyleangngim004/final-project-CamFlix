@@ -67,13 +67,15 @@
         }
 
         .menu-closed {
-            transform: translateX(100%);
+            transform: translateY(-100%);
+            /* Moves it UP above the screen */
             opacity: 0;
             pointer-events: none;
         }
 
         .menu-open {
-            transform: translateX(0);
+            transform: translateY(0);
+            /* Slides DOWN to natural position */
             opacity: 1;
             pointer-events: auto;
         }
@@ -84,10 +86,10 @@
 
     <!-- Navigation -->
     <nav id="mainNav"
-        class="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-4 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent transition-all duration-300">
+        class="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-2 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent transition-all duration-300">
         <div class="flex items-center gap-2 z-50">
             <a href="#homePage" rel="noopener noreferrer">
-                <img src="./img/CamFlix-Logo.png" alt="camflix Logo" class="h-16 w-auto object-contain">
+                <img src="./img/CamFlix-Logo.png" alt="camflix Logo" class="h-12 w-auto object-contain">
             </a>
         </div>
 
@@ -169,7 +171,7 @@
 
     <!-- Recommended Section -->
     <div class="mb-12 md:mb-16">
-        <div class="flex justify-between items-end mb-6">
+        <div class="flex justify-between items-end mb-6 w-auto">
             <h2 class="text-xl md:text-2xl font-bold">Recommended for you</h2>
             <a href="#" class="text-primary text-sm hover:underline">See all</a>
         </div>
