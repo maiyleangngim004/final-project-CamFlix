@@ -92,27 +92,18 @@
 
         <!-- Hero / masthead -->
     <main class="bg-gray-900 text-gray-50 flex-1 pt-24">
-        <section id="hero-section" class="relative w-full h-[65vh] flex items-end overflow-hidden">
-            <img id="hero-bg" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=2000&q=80" alt="Movie still" class="absolute inset-0 w-full h-full object-cover opacity-70 blur-md scale-110" aria-hidden="true">
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"></div>
-            <div class="relative z-10 w-full max-w-5xl mx-auto px-6 pb-12 space-y-4">
-                <p id="hero-genres" class="text-sm uppercase tracking-[0.3em] text-gray-300">Action • Adventure</p>
-                <h1 id="hero-title" class="text-4xl md:text-5xl font-bold leading-tight">Featured Movie</h1>
-                <p id="hero-tagline" class="text-lg md:text-xl text-gray-300 max-w-3xl">Discover more about this blockbuster hit right now.</p>
-                <div class="flex flex-wrap items-center gap-4 text-sm md:text-base text-gray-300">
-                    <span class="flex items-center gap-2"><i class="fa-regular fa-calendar"></i><span id="hero-release">--</span></span>
-                    <span class="flex items-center gap-2"><i class="fa-regular fa-clock"></i><span id="hero-runtime">--</span></span>
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-language"></i><span id="hero-languages">--</span></span>
-                    <span class="flex items-center gap-2 text-amber-400"><i class="fa-solid fa-star"></i><span id="hero-rating">--</span></span>
-                </div>
-            </div>
-        </section>
-        <section id="movie-details" class="py-12" aria-labelledby="details-heading">
+
+        
+        <section id="movie-details" class=" mt-[50px]" aria-labelledby="details-heading">
             <div class="max-w-6xl mx-auto px-6">
-                <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
-                    <figure class="flex-shrink-0">
-                        <img id="movie-poster" class="w-full max-w-md lg:max-w-lg rounded-2xl shadow-lg object-cover" 
-                            src="https://placehold.co/400x600?text=Loading" 
+                <!-- <img id="hero-bg" alt="Movie still" class="absolute inset-0 w-full h-full object-cover opacity-50 blur-4xl scale-40" aria-hidden="true"> -->
+                <div class=" relative flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+                    <figure class="flex-shrink-0 relative">
+                        <div id="poster-loader" class="absolute inset-0 w-full lg:w-100 rounded-2xl shadow-lg bg-gradient-to-br from-gray-700 to-gray-900 animate-pulse"></div>
+                        <img id="movie-poster" class="w-full lg:w-100 min-h-auto rounded-2xl shadow-lg object-cover opacity-0 transition-opacity duration-300" 
+                            src="" 
+                            loading="lazy"
+                            decoding="async"
                             alt="Movie poster">
                     </figure>
                     
@@ -185,7 +176,7 @@
         <section class="py-12" id="cast" aria-labelledby="cast-heading">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="flex items-center justify-between mb-8">
-                    <h2 id="cast-heading" class="text-3xl font-bold">Cast & Crew</h2>
+                    <h2 id="cast-heading" class="text-3xl font-bold">Actors and Actresses</h2>
                     <p class="text-sm text-gray-400">Top billed actors</p>
                 </div>
                 <div class="w-full overflow-x-auto pb-6">
