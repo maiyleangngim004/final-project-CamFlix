@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CamFlix - Free Movies</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans"', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366F1', // Indigo 500
+                        dark: '#0B0D17',
+                        card: '#151926',
+                        accent: '#6366F1'
+                    },
+                    screens: {
+                        'xs': '475px',
+                        // default tailwind breakpoints: sm: 640px, md: 768px, lg: 1024px, xl: 1280px
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar to match the dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0B0D17;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .menu-closed {
+            transform: translateY(-100%);
+            /* Moves it UP above the screen */
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .menu-open {
+            transform: translateY(0);
+            /* Slides DOWN to natural position */
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+
+    <link rel="stylesheet" href="../src/output.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+
+
+<body id="homePage" class="bg-dark text-white font-sans antialiased overflow-x-hidden">
+    <!-- Navigation -->
+    <nav id="mainNav"
+        class="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-2 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent transition-all duration-300">
+        <div class="flex items-center gap-2 z-50">
+            <a href="#homePage" rel="noopener noreferrer">
+                <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-12 w-auto object-contain">
+            </a>
+        </div>
+
+        <!-- Desktop Search Bar -->
+        <div
+            class="hidden md:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 flex-1 max-w-md mx-6 xl:w-96 border border-white/10 focus-within:border-primary transition-colors">
+            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+            <input type="text" placeholder="Search movies..."
+                class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400 focus:ring-0">
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+            <a href="../index.html" class="text-gray-300 hover:text-primary transition">Home</a>
+            <a href="about.html" class="text-gray-300 hover:text-primary transition">About us</a>
+            <a href="explored.html" class="text-gray-300 hover:text-primary transition flex items-center gap-1 whitespace-nowrap">Let's Explore 
+                <svg class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+            <!-- <i class="fa-solid fa-sun fa-lg"></i> -->
+            <button id="theme-toggle" class="p-1 rounded-full bg-white text-black hover:bg-gray-200 transition shadow-lg">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden z-50 text-white focus:outline-none p-2">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+    </nav>
+
+
+
+<!-- Main content -->
+<!-- CAROUSEL -->
+<div id="default-carousel" class="relative w-full h-screen" data-carousel="slide">
+  <!-- Carousel wrapper -->
+  <div class="relative h-full overflow-hidden">
+    <!-- Slide 1 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+      <img src="https://cdnb.artstation.com/p/assets/images/images/053/000/821/large/sonu-avtar-title.jpg?1661189157"
+           class="absolute w-full h-full object-cover inset-0" alt="Movie 1">
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <img src="https://mir-s3-cdn-cf.behance.net/projects/404/28917d237964319.Y3JvcCwyNzAwLDIxMTEsMCw3OTU.jpg"
+           class="absolute w-full h-full object-cover inset-0" alt="Movie 2">
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <img src="https://i.ytimg.com/vi/pNIRHvS2bLM/hq720.jpg"
+           class="absolute w-full h-full object-cover inset-0" alt="Movie 3">
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+    </div>
+  </div>
+
+  <!-- Slider indicators -->
+  <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3">
+    <button type="button" class="w-3 h-3 rounded-full bg-white/50 hover:bg-white" data-carousel-slide-to="0"></button>
+    <button type="button" class="w-3 h-3 rounded-full bg-white/50 hover:bg-white" data-carousel-slide-to="1"></button>
+    <button type="button" class="w-3 h-3 rounded-full bg-white/50 hover:bg-white" data-carousel-slide-to="2"></button>
+  </div>
+
+  <!-- Slider controls -->
+  <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4" data-carousel-prev>
+    <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-sm">
+      <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </span>
+  </button>
+  <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4" data-carousel-next>
+    <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-sm">
+      <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </span>
+  </button>
+</div>
+
+
+<!-- Explore Content Section -->
+            
+    <h1 class="text-2xl font-bold ml-7 mt-7 dark:text-white font-type">
+      Explore movies here
+    </h1>
+
+    <div class="dark:bg-[var(--color-background)] bg-background-light mt-3">
+        <!-- dark:bg-background grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-5 -->
+      <!-- Movie Card -->
+
+     
+
+       <!-- <div class="card dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)]">
+        <div>
+          <a href="#">
+            <img
+              class="w-[291px] h-[376px] object-cover mx-auto rounded-3xl transform transition-transform duration-300 hover:scale-90 ease-in-out"
+              src="../asset/photo_2025-11-21_17-13-50.jpg"
+              alt=""
+          /></a>
+        </div>
+
+        <div class="mt-2 mb-2 flex justify-around items-start">
+          <div>
+            <span class="block font-semibold text-[28px] font-type">John Carter</span>
+            <p class=" text-[18px] font-type dark:text-[var(--color-description-color)] text-[var(--color-description-color-light)]">
+              Action / Romance
+            </p>
+          </div>
+
+          <span
+            class="text-[20px] mt-1 flex items-center gap-1.5 text-[var(--color-secondary)]"
+          >
+            <i class="fa-solid fa-star"></i>
+            <span class="dark:text-[var(--color-text-color)] text-[var(--color-text-color-light)] font-type">4.2</span>
+          </span>
+        </div>
+      </div>
+      -->
+    </div>
+    <template id="movie-card-template-explored">
+        <div class="group cursor-pointer movie-card" data-movie-id="">
+            <div class="relative aspect-2/3 rounded-xl overflow-hidden mb-3 w-full">
+                <img src="" class="w-full min-h-60 object-cover group-hover:scale-110 transition duration-300" alt="Movie Poster">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+            </div>
+            <div class="flex place-content-between">
+                <h3 class="font-semibold truncate movie-title"></h3>
+                <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> <span class="movie-rating"></span></span>
+            </div>
+            <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                <span class="movie-genre"></span>
+            </div>
+        </div>
+    </template>
+    
+
+    <script>
+        
+      (function () {
+        const API_KEY = '4113f3ad734e747a5b463cde8c55de42';
+        const IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
+        let allExploredMovies = [];
+        let exploredExpanded = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+          const gridParent = document.querySelector('h1 + div');
+          if (!gridParent) return;
+
+          // Use the static <template id="movie-card-template-explored"> present in the HTML
+
+          // Create explored grid
+          const exploredGrid = document.createElement('div');
+          exploredGrid.id = 'explored-grid';
+          exploredGrid.className = 'grid grid-cols-2 md:grid-cols-4 gap-8 mt-5 px-4';
+          exploredGrid.innerHTML = '<div class="col-span-full text-center text-gray-400 py-10">Loading movies...</div>';
+
+          // Clear existing static cards and insert our grid
+          gridParent.innerHTML = '';
+          gridParent.appendChild(exploredGrid);
+
+          // Hook existing Load More / See All button if present
+          const loadMoreBtn = document.querySelector('div.flex.justify-center.mt-5 button');
+          if (loadMoreBtn) {
+            loadMoreBtn.id = 'explore-see-all-btn';
+            loadMoreBtn.textContent = 'see all';
+            loadMoreBtn.addEventListener('click', () => {
+              exploredExpanded = !exploredExpanded;
+              renderExploredMovies(exploredExpanded ? allExploredMovies : allExploredMovies.slice(0, 16));
+              loadMoreBtn.textContent = exploredExpanded ? 'see less' : 'see all';
+            });
+          }
+
+          loadExploredMovies();
+        });
+
+        async function loadExploredMovies() {
+          const url = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=16`;
+          try {
+            const res = await fetch(url);
+            const json = await res.json();
+            allExploredMovies = json.results || [];
+            renderExploredMovies(allExploredMovies.slice(0, 16));
+          } catch (err) {
+            console.error('Failed to load explored movies', err);
+            const g = document.getElementById('explored-grid');
+            if (g) g.innerHTML = '<div class="col-span-full text-center text-red-500 py-10">Failed to load movies</div>';
+          }
+        }
+
+        // function renderExploredMovies(movies) {
+        //   const grid = document.getElementById('explored-grid');
+        //   if (!grid) return;
+        //   grid.innerHTML = '';
+        //   const tpl = document.getElementById('movie-card-template-explored');
+        //   movies.forEach((movie) => {
+        //     const frag = tpl.content.cloneNode(true);
+        //     const cardEl = frag.querySelector('.movie-card') || frag.firstElementChild;
+        //     const img = frag.querySelector('img');
+        //     if (img) img.src = movie.poster_path ? IMAGE_BASE + movie.poster_path : '../asset/photo_2025-11-21_17-13-50.jpg';
+        //     if (img) img.alt = movie.title || movie.name || 'Movie Poster';
+        //     if (cardEl && cardEl.dataset) cardEl.dataset.movieId = movie.id;
+        //     const titleEl = frag.querySelector('.movie-title');
+        //     if (titleEl) titleEl.textContent = movie.title || movie.name || 'Untitled';
+        //     const ratingEl = frag.querySelector('.movie-rating');
+        //     if (ratingEl) ratingEl.textContent = movie.vote_average ? movie.vote_average.toFixed(1) : '0.0';
+        //     const clickTarget = frag.querySelector('.movie-card') || frag;
+        //     clickTarget.addEventListener('click', (e) => {
+        //       e.preventDefault();
+        //       window.location.href = '../pages/detail.html?movieId=' + movie.id;
+        //     });
+        //     grid.appendChild(frag);
+        //   });
+        // }
+
+        
+            function renderExploredMovies(movies) {
+            const grid = document.getElementById('explored-grid');
+            grid.innerHTML = '';
+
+            movies.forEach(movie => {
+                const card = document.getElementById('movie-card-template-explored').content.cloneNode(true);
+                const cardElement = card.querySelector('.movie-card');
+                const img = card.querySelector('img');
+                const title = card.querySelector('.movie-title');
+                const genre = card.querySelector('.movie-genre');
+                const rating = card.querySelector('.movie-rating');
+
+                cardElement.dataset.movieId = movie.id;
+                img.src = movie.poster_path ? `${IMAGE_BASE}${movie.poster_path}` : 'https://placehold.co/500x750?text=No+Image';
+                img.alt = movie.title;
+                title.textContent = movie.title;
+                genre.textContent = movie.release_date ? `${movie.release_date}` : 'No date available';
+                rating.textContent = movie.vote_average?.toFixed(1) ?? 'N/A';
+
+                // Add click listener
+                cardElement.addEventListener('click', () => {
+                    window.location.href = `./detail.html?movieId=${movie.id}`;
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+      })();
+
+
+    </script>
+
+        <div class="flex justify-center mt-5 mb-5">
+            <button id="explore-see-all-btn"
+                class="flex items-center justify-center rounded-2xl dark:bg-[var(--color-primary)] dark:hover:bg-[var(--color-accents)] text-white bg-[var(--color-primary-light)] hover:bg-[var(--color-accents)] font-md w-[100px] h-[40px] text-center font-type">
+                see all
+            </button>
+        </div>
+
+    <!-- Mobile Full Screen Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-dark/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 menu-closed md:hidden">
+        <!-- Close Button (Also handled by main toggle, but visual clarity) -->
+
+        <!-- Mobile Search -->
+        <div class="w-3/4 max-w-sm flex items-center bg-white/10 rounded-full px-4 py-3 border border-white/20">
+            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+            <input type="text" placeholder="Search..."
+                class="bg-transparent border-none outline-none text-base w-full text-white placeholder-gray-400">
+        </div>
+
+        <a href="../index.html" class="text-2xl font-bold text-white hover:text-primary transition" onclick="toggleMenu()">Home</a>
+        <a href="about.html" class="text-2xl font-bold text-gray-300 hover:text-primary transition" onclick="toggleMenu()">About
+            us</a>
+        <a href="explored.html" class="text-2xl font-bold text-gray-300 hover:text-primary transition"
+            onclick="toggleMenu()">Explore</a>
+
+    </div>
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 pt-12 md:pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12 justify-items-center">
+                <div class="space-y-4">
+                    <div class="flex items-center gap">
+                        <a href="../index.html" rel="noopener noreferrer">
+                            <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-16 w-auto object-contain">
+                        </a>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <a href="mailto:support@camflix.com"
+                            class="block text-gray-400 hover:text-primary transition">support@camflix.com</a>
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <a href="https://www.cstad.edu.kh/" target="_blank" rel="noopener noreferrer">
+                            <img src="../Images/ISTAD-log.png" alt="ISTAD Logo" class="h-10 w-auto object-contain">
+                        </a>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <a href="mailto:info.istad@gmail.com"
+                            class="block text-gray-400 hover:text-primary transition">info.istad@gmail.com</a>
+                        <div class="flex gap-4">
+                            <a href="https://www.facebook.com/istad.com" target="_blank"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="../index.html" class="hover:text-primary transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-primary transition">About us</a></li>
+                        <li><a href="explored.html" class="hover:text-primary transition">Explore Movies</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Support</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-primary transition">FAQs</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Support Centre</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500 text-xs">copyright 2025 CamFlix. All right reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+    <!-- Scripts -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('menu-closed');
+                mobileMenu.classList.add('menu-open');
+                // Change icon to X
+                menuBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                mobileMenu.classList.remove('menu-open');
+                mobileMenu.classList.add('menu-closed');
+                // Change icon back to bars
+                menuBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
+                document.body.style.overflow = ''; // Enable scrolling
+            }
+        }
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Background navigation on scroll
+        // Scroll Event Listener
+        window.addEventListener('scroll', () => {
+            const mainNav = document.getElementById('mainNav');
+
+            if (window.scrollY > 50) {
+                mainNav.classList.remove('bg-gradient-to-b', 'from-black/90', 'to-transparent');
+                mainNav.classList.add('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+            } else {
+                // AT THE TOP: Reset to original
+                mainNav.classList.remove('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+                mainNav.classList.add('bg-gradient-to-b', 'from-black/90', 'to-transparent');
+            }
+        });
+    </script>
+
+
+
+
+
+</body>
+
+</html>
