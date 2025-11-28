@@ -1,12 +1,276 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../src/output.css">
+    <title>CamFlix - Free Movies</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans"', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366F1', // Indigo 500
+                        dark: '#0B0D17',
+                        card: '#151926',
+                        accent: '#6366F1'
+                    },
+                    screens: {
+                        'xs': '475px',
+                        // default tailwind breakpoints: sm: 640px, md: 768px, lg: 1024px, xl: 1280px
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar to match the dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0B0D17;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .menu-closed {
+            transform: translateY(-100%);
+            /* Moves it UP above the screen */
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .menu-open {
+            transform: translateY(0);
+            /* Slides DOWN to natural position */
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+
 </head>
-<body class="bg-gray-900">
-    
+
+<body id="homePage" class="bg-background-light dark:text-background-light dark:bg-background text-white font-sans antialiased overflow-x-hidden">
+    <!-- Navigation -->
+    <nav id="mainNav"
+        class="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-2 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent transition-all duration-300">
+        <div class="flex items-center gap-2 z-50">
+            <a href="#homePage" rel="noopener noreferrer">
+                <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-12 w-auto object-contain">
+            </a>
+        </div>
+
+        <!-- Desktop Search Bar -->
+        <div
+            class="hidden md:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 flex-1 max-w-md mx-6 xl:w-96 border border-white/10 focus-within:border-primary transition-colors">
+            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+            <input type="text" placeholder="Search movies..."
+                class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400 focus:ring-0">
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+            <a href="../index.html" class="text-gray-300 hover:text-primary transition">Home</a>
+            <a href="about.html" class="text-gray-300 hover:text-primary transition">About us</a>
+            <a href="explored.html" class="text-gray-300 hover:text-primary transition flex items-center gap-1 whitespace-nowrap">Let's Explore 
+                <svg class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+            <!-- <i class="fa-solid fa-sun fa-lg"></i> -->
+            <button id="theme-toggle" class="p-1 rounded-full bg-white text-black hover:bg-gray-200 transition shadow-lg">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden z-50 text-white focus:outline-none p-2">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Full Screen Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-dark/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 menu-closed md:hidden">
+        <!-- Close Button (Also handled by main toggle, but visual clarity) -->
+
+        <!-- Mobile Search -->
+        <div class="w-3/4 max-w-sm flex items-center bg-white/10 rounded-full px-4 py-3 border border-white/20">
+            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+            <input type="text" placeholder="Search..."
+                class="bg-transparent border-none outline-none text-base w-full text-white placeholder-gray-400">
+        </div>
+
+        <a href="#" class="text-2xl font-bold text-white hover:text-primary transition" onclick="toggleMenu()">Home</a>
+        <a href="#" class="text-2xl font-bold text-gray-300 hover:text-primary transition" onclick="toggleMenu()">About
+            us</a>
+        <a href="#" class="text-2xl font-bold text-gray-300 hover:text-primary transition"
+            onclick="toggleMenu()">Explore</a>
+
+    </div>
+
+    <!-- Main Content -->
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 pt-12 md:pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12 justify-items-center">
+                <div class="space-y-4">
+                    <div class="flex items-center gap">
+                        <a href="index.html" rel="noopener noreferrer">
+                            <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-16 w-auto object-contain">
+                        </a>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <a href="mailto:support@camflix.com"
+                            class="block text-gray-400 hover:text-primary transition">support@camflix.com</a>
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <a href="https://www.cstad.edu.kh/" target="_blank" rel="noopener noreferrer">
+                            <img src="../Images/ISTAD-log.png" alt="ISTAD Logo" class="h-10 w-auto object-contain">
+                        </a>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <a href="mailto:info.istad@gmail.com"
+                            class="block text-gray-400 hover:text-primary transition">info.istad@gmail.com</a>
+                        <div class="flex gap-4">
+                            <a href="https://www.facebook.com/istad.com" target="_blank"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-primary transition">Home</a></li>
+                        <li><a href="#" class="hover:text-primary transition">About us</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Explore Movies</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Support</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-primary transition">FAQs</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Support Centre</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500 text-xs">copyright 2025 CamFlix. All right reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scripts to make the blur when scroll down -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('menu-closed');
+                mobileMenu.classList.add('menu-open');
+                // Change icon to X
+                menuBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                mobileMenu.classList.remove('menu-open');
+                mobileMenu.classList.add('menu-closed');
+                // Change icon back to bars
+                menuBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
+                document.body.style.overflow = ''; // Enable scrolling
+            }
+        }
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Background navigation on scroll
+        // Scroll Event Listener
+        window.addEventListener('scroll', () => {
+            const mainNav = document.getElementById('mainNav');
+
+            if (window.scrollY > 50) {
+                mainNav.classList.remove('bg-gradient-to-b', 'from-black/90', 'to-transparent');
+                mainNav.classList.add('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+            } else {
+                // AT THE TOP: Reset to original
+                mainNav.classList.remove('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+                mainNav.classList.add('bg-gradient-to-b', 'from-black/90', 'to-transparent');
+            }
+        });
+    </script>
+
 </body>
+
 </html>
