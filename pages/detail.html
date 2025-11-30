@@ -114,8 +114,10 @@
                                     
                                     <!-- Share -->
                                     <div class="text-center">
-                                        <i class="fa-solid fa-share-nodes text-2xl mb-1"></i>
-                                        <p class="text-sm">Share</p>
+                                        <a class="share">
+                                           <i class="fa-solid fa-share-nodes text-2xl mb-1"></i>
+                                            <p class="text-sm">Share</p>
+                                        </a>
                                     </div>
                                     
                                     <!-- Rating -->
@@ -130,6 +132,12 @@
                                         <p class="text-sm">Rating</p>
                                     </div>
                                 </div>
+
+                                <!-- <div class="">
+                                    <button>
+                                        Facebook
+                                    </button>
+                                </div> -->
                                 
                                 <!-- Action Buttons -->
                                 <div class="flex flex-col sm:flex-row gap-4 pt-6">
@@ -485,6 +493,16 @@
                 });
             }
         });
+    </script>
+    <!-- media share -->
+    <script>
+        const link =encodeURI(window.location.href);
+        const msg = encodeURIComponent('Hey, I found this article');
+        const title = encodeURIComponent(document.querySelector('title').textContent);
+
+        console.log([link, msg, title]);
+        const fb = document.querySelector('.share');
+        fb.href = `https://www.facebook.com/share.php?u=$(link)`;
     </script>
 </body>
 </html>
