@@ -184,10 +184,10 @@
         <div class="mb-12">
             <div class="flex justify-between items-end mb-6">
                 <h2 class="text-xl font-bold">Recommended for you</h2>
-                <button id="rec-see-all-btn" class="text-blue-500 text-sm hover:underline">see all</button>
+                <button id="rec-see-all-btn" class="text-blue-500 text-sm hover:underline">see more</button>
             </div>
             
-            <div id="recommended-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6 overflow-hidden transition-all duration-500" style="max-height: 500px;">
+            <div id="recommended-grid" class="grid grid-cols-2 md:grid-cols-5 gap-6 overflow-hidden transition-all duration-500" style="max-height: 620px;">
                 <div class="col-span-full text-center text-gray-400 py-10">Loading recommended movies...</div>
             </div>
         </div>
@@ -196,13 +196,13 @@
         <div class="mb-16">
             <h2 class="text-xl font-bold mb-6 text-center">Popular Movies</h2>
             <div class="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden group">
-                <img src="./Images/19bafed5-9852-416f-974a-771dd700e8e7-1764070908.png" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 object-top">
+                <img src="https://i.pinimg.com/1200x/e3/8f/99/e38f99da415b31db6f852709e7108866.jpg" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700 object-top">
                 <div class="absolute inset-0 bg-gradient-to-r from-dark via-dark/20 to-transparent"></div>
                 <div class="absolute bottom-0 w-full h-20 bg-gradient-to-t from-dark to-transparent"></div>
                 
-                <div class="absolute top-1/2 -translate-y-1/2 left-8 md:left-16 max-w-lg">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-2">Avengers</h2>
-                    <div class="flex items-center gap-2 mb-4 text-yellow-400">
+                <div id="info-banner" class="absolute top-1/2 -translate-y-1/2 left-8 md:left-16 max-w-lg">
+                    <h2 id="k-pop" class="text-4xl md:text-5xl font-bold mb-2"></h2>
+                    <div id="movie-rating-popular" class="flex items-center gap-2 mb-4 text-yellow-400">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -210,10 +210,10 @@
                         <i class="fa-solid fa-star-half-stroke"></i>
                         <span class="text-white text-sm ml-2">| Explore now</span>
                     </div>
-                    <p class="text-gray-300 mb-6 text-sm md:text-base drop-shadow-md">
+                    <p id="popular-movie-overview"  class="text-gray-300 mb-6 text-sm md:text-base drop-shadow-md">
                         The ultimate brand has had a massive cultural impact, creating shared fan experiences, immersive worlds and shaping the modern cinematic universe.
                     </p>
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition flex items-center gap-2 shadow-lg shadow-blue-500/20">
+                    <button id="popular-banner-trailer" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition flex items-center gap-2 shadow-lg shadow-blue-500/20">
                         View trailer <i class="fa-solid fa-play"></i>
                     </button>
                 </div>
@@ -224,10 +224,10 @@
         <div class="mb-12">
             <div class="flex justify-between items-end mb-6">
                 <h2 class="text-xl font-bold">Popular Movies</h2>
-                <button id="pop-see-all-btn" class="text-blue-500 text-sm hover:underline">see all</button>
+                <button id="pop-see-all-btn" class="text-blue-500 text-sm hover:underline">see more</button>
             </div>
             
-            <div id="popular-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6 overflow-hidden transition-all duration-500" style="max-height: 500px;">
+            <div id="popular-grid" class="grid grid-cols-2 md:grid-cols-5 gap-6 overflow-hidden transition-all duration-500" style="max-height: 620px;">
                 <div class="col-span-full text-center text-gray-400 py-10">Loading popular movies...</div>
             </div>
         </div>
@@ -236,12 +236,12 @@
         <div class="mb-16">
             <h2 class="text-xl font-bold mb-6 text-center">Top-Rated Movies</h2>
             <div class="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden group">
-                <img src="./Images/Dora trailer image (1).jpg" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
+                <img src="https://i.pinimg.com/736x/66/1a/a0/661aa01be9f22cd49696501d462d84ae.jpg" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700">
                 <div class="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/40 to-transparent"></div>
                 
                 <div class="absolute top-1/2 -translate-y-1/2 left-8 md:left-16 max-w-lg">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-2">Dora</h2>
-                    <div class="flex items-center gap-2 mb-4 text-yellow-400">
+                    <h2 id="top-rate-title" class="text-4xl md:text-5xl font-bold mb-2"></h2>
+                    <div id="movie-rating-topRate"  class="flex items-center gap-2 mb-4 text-yellow-400">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -249,10 +249,10 @@
                         <i class="fa-regular fa-star"></i>
                         <span class="text-white text-sm ml-2">| Explore movie</span>
                     </div>
-                    <p class="text-gray-300 mb-6 text-sm md:text-base line-clamp-3">
+                    <p id="top-rate-overview" class="text-gray-300 mb-6 text-sm md:text-base line-clamp-3">
                         Join Dora in her most dangerous adventure yet. Deep in the jungle, mysteries await as she leads a team of explorers to uncover the lost city of gold. A thrilling ride for the whole family.
                     </p>
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition flex items-center gap-2">
+                    <button id="topRate-banner-trailer" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition flex items-center gap-2">
                         View trailer <i class="fa-solid fa-play"></i>
                     </button>
                 </div>
@@ -263,9 +263,9 @@
         <div class="mb-16">
              <div class="flex justify-between items-end mb-6">
                 <h2 class="text-xl font-bold">Top-Rated Movies</h2>
-                <button id="toprated-see-all-btn" class="text-blue-500 text-sm hover:underline">see all</button>
+                <button id="toprated-see-all-btn" class="text-blue-500 text-sm hover:underline">see more</button>
             </div>
-             <div id="toprated-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6 overflow-hidden transition-all duration-500" style="max-height: 500px;">
+             <div id="toprated-grid" class="grid grid-cols-2 md:grid-cols-5 gap-6 overflow-hidden transition-all duration-500" style="max-height: 620px;">
                 <div class="col-span-full text-center text-gray-400 py-10">Loading top-rated movies...</div>
             </div>
         </div>
@@ -275,10 +275,10 @@
         <div class="mb-12">
             <div class="flex justify-between items-end mb-6">
                 <h2 class="text-xl font-bold">Upcoming Movies</h2>
-                <button id="upcoming-see-all-btn" class="text-blue-500 text-sm hover:underline">see all</button>
+                <button id="upcoming-see-all-btn" class="text-blue-500 text-sm hover:underline">see more</button>
             </div>
             
-             <div id="upcoming-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6 overflow-hidden transition-all duration-500" style="max-height: 500px;">
+             <div id="upcoming-grid" class="grid grid-cols-2 md:grid-cols-5 gap-6 overflow-hidden transition-all duration-500" style="max-height: 620px;">
                 <div class="col-span-full text-center text-gray-400 py-10">Loading upcoming movies...</div>
             </div>
         </div>
@@ -462,7 +462,7 @@
 
                 const data = await response.json();
                 allRecommendedMovies = data.results || [];
-                renderRecommendedMovies(allRecommendedMovies.slice(0, 4));
+                renderRecommendedMovies(allRecommendedMovies.slice(0, 5));
             } catch (error) {
                 console.error('Error loading recommended movies:', error);
                 const grid = document.getElementById('recommended-grid');
@@ -480,7 +480,7 @@
 
                 const data = await response.json();
                 allPopularMovies = data.results || [];
-                renderPopularMovies(allPopularMovies.slice(0, 4));
+                renderPopularMovies(allPopularMovies.slice(0, 5));
             } catch (error) {
                 console.error('Error loading popular movies:', error);
                 const grid = document.getElementById('popular-grid');
@@ -550,12 +550,12 @@
         // Fetch top-rated movies
         async function loadTopRatedMovies() {
             try {
-                const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`);
+                const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=12`);
                 if (!response.ok) throw new Error('Failed to fetch movies');
                 
                 const data = await response.json();
                 allTopRatedMovies = data.results;
-                renderTopRatedMovies(allTopRatedMovies.slice(0, 4));
+                renderTopRatedMovies(allTopRatedMovies.slice(0, 5));
             } catch (error) {
                 console.error('Error loading top-rated movies:', error);
                 document.getElementById('toprated-grid').innerHTML = '<div class="col-span-full text-center text-red-500">Failed to load movies</div>';
@@ -599,7 +599,7 @@
                 
                 const data = await response.json();
                 allUpcomingMovies = data.results;
-                renderUpcomingMovies(allUpcomingMovies.slice(0, 4));
+                renderUpcomingMovies(allUpcomingMovies.slice(0, 5));
             } catch (error) {
                 console.error('Error loading upcoming movies:', error);
                 document.getElementById('upcoming-grid').innerHTML = '<div class="col-span-full text-center text-red-500">Failed to load movies</div>';
@@ -636,7 +636,7 @@
         }
 
 
-        // See all toggle for recommended movies
+        // see more toggle for recommended movies
         document.getElementById('rec-see-all-btn').addEventListener('click', function() {
             const grid = document.getElementById('recommended-grid');
             const btn = this;
@@ -647,13 +647,13 @@
                 grid.style.maxHeight = 'none';
                 btn.textContent = 'see less';
             } else {
-                renderRecommendedMovies(allRecommendedMovies.slice(0, 4));
+                renderRecommendedMovies(allRecommendedMovies.slice(0, 5));
                 grid.style.maxHeight = '500px';
-                btn.textContent = 'see all';
+                btn.textContent = 'see more';
             }
         });
 
-        // See all toggle for popular movies
+        // see more toggle for popular movies
         document.getElementById('pop-see-all-btn').addEventListener('click', function() {
             const grid = document.getElementById('popular-grid');
             const btn = this;
@@ -664,13 +664,13 @@
                 grid.style.maxHeight = 'none';
                 btn.textContent = 'see less';
             } else {
-                renderPopularMovies(allPopularMovies.slice(0, 4));
+                renderPopularMovies(allPopularMovies.slice(0, 5));
                 grid.style.maxHeight = '500px';
-                btn.textContent = 'see all';
+                btn.textContent = 'see more';
             }
         });
 
-        // See all toggle for top-rated movies
+        // see more toggle for top-rated movies
         document.getElementById('toprated-see-all-btn').addEventListener('click', function() {
             const grid = document.getElementById('toprated-grid');
             const btn = this;
@@ -681,13 +681,13 @@
                 grid.style.maxHeight = 'none';
                 btn.textContent = 'see less';
             } else {
-                renderTopRatedMovies(allTopRatedMovies.slice(0, 4));
+                renderTopRatedMovies(allTopRatedMovies.slice(0, 5));
                 grid.style.maxHeight = '500px';
-                btn.textContent = 'see all';
+                btn.textContent = 'see more';
             }
         });
 
-        // See all toggle for upcoming movies
+        // see more toggle for upcoming movies
         document.getElementById('upcoming-see-all-btn').addEventListener('click', function() {
             const grid = document.getElementById('upcoming-grid');
             const btn = this;
@@ -698,9 +698,9 @@
                 grid.style.maxHeight = 'none';
                 btn.textContent = 'see less';
             } else {
-                renderUpcomingMovies(allUpcomingMovies.slice(0, 4));
+                renderUpcomingMovies(allUpcomingMovies.slice(0, 5));
                 grid.style.maxHeight = '500px';
-                btn.textContent = 'see all';
+                btn.textContent = 'see more';
             }
         });
 
@@ -740,6 +740,8 @@
     });
     </script>
 
+
+<script src="js/index.js" defer></script>
 
 </body>
 

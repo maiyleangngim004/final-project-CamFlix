@@ -150,20 +150,32 @@
     <main class="bg-gray-900 text-gray-50 flex-1 pt-24">
 
         
-        <section id="movie-details" class=" mt-[50px]" aria-labelledby="details-heading">
+        <section id="movie-details" class="mt-[25px]" aria-labelledby="details-heading">
             <div class="max-w-6xl mx-auto px-6">
-                <!-- <img id="hero-bg" alt="Movie still" class="absolute inset-0 w-full h-full object-cover opacity-50 blur-4xl scale-40" aria-hidden="true"> -->
-                <div class=" relative flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
-                    <figure class="flex-shrink-0 relative">
-                        <div id="poster-loader" class="absolute inset-0 w-full lg:w-100 rounded-2xl shadow-lg bg-gradient-to-br from-gray-700 to-gray-900 animate-pulse"></div>
-                        <img id="movie-poster" class="w-full lg:w-100 min-h-auto rounded-2xl shadow-lg object-cover opacity-0 transition-opacity duration-300" 
-                            src="" 
-                            loading="lazy"
-                            decoding="async"
-                            alt="Movie poster">
+                <div class="relative flex flex-col align-items-center lg:flex-row items-start gap-8 lg:gap-12">
+                    <figure class="flex media-container items-center flex-shrink-0 relative w-[600px] h-[500px]">
+                    <div id="poster-loader"
+                        class="absolute inset-0 rounded-2xl shadow-lg bg-gradient-to-br from-gray-700 to-gray-900 animate-pulse">
+                    </div>
+
+                    <!-- Poster -->
+                    <img id="movie-poster"
+                        class="absolute inset-0 w-full h-full rounded-2xl shadow-lg object-cover opacity-0 transition-opacity duration-300"
+                        src=""
+                        loading="lazy"
+                        alt="Movie poster">
+
+                    <!-- Trailer iframe (hidden by default) -->
+                    <iframe id="movie-trailer"
+                            class="absolute inset-0 w-full h-full rounded-2xl shadow-lg hidden"
+                            src=""
+                            allow="autoplay; encrypted-media"
+                            allowfullscreen>
+                    </iframe>
                     </figure>
+
                     
-                    <article class="mt-5 flex-1 space-y-6">
+                    <article class="flex-1 space-y-4">
                         <header class="space-y-2">
                             <p class="text-sm uppercase tracking-[0.3em] text-gray-400" id="details-heading">Movie overview</p>
                             <h1 id="movie-title" class="text-4xl lg:text-5xl font-bold">Loading title...</h1>
@@ -197,10 +209,10 @@
                         </section>
                         
                         <section class="flex flex-wrap gap-8 pt-4">
-                            <div class="text-center">
+                            <!-- <div class="text-center">
                                 <i class="fa-regular fa-heart text-2xl mb-1"></i>
                                 <p class="text-sm">Favorite</p>
-                            </div>
+                            </div> -->
                             <div class="text-center">
                                 <i class="fa-solid fa-share-nodes text-2xl mb-1"></i>
                                 <p class="text-sm">Share</p>
@@ -217,9 +229,9 @@
                             </div>
                         </section>
                         
-                        <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                        <div class="flex flex-col sm:flex-row gap-4 pt-3">
                             <button id="trailer-btn" class="bg-blue-600 hover:bg-blue-700 text-white text-xl font-medium py-3 px-6 rounded-xl transition duration-200 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
-                                View Trailer
+                                Watch Trailer
                                 <i class="fa-regular fa-circle-play"></i>
                             </button>
                         </div>
@@ -403,7 +415,7 @@
 
 
 
-    <script src="../js/cardDetail.js" defer></script>
+    <script src="../js/detail_script.js" defer></script>
 </body>
 
 </html>
