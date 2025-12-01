@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Movies</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <style>
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .line-clamp-1 {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .search-result-item {
+            transition: all 0.2s ease;
+        }
+        
+        .search-result-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .no-results {
+            color: #9CA3AF;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .skeleton {
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Hide scrollbar for dropdown */
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 min-h-screen">
+
+    <!-- Search Container -->
+    <div class="container mx-auto px-4 pt-8">
+        <div class="relative w-full max-w-2xl mx-auto">
+            <div class="flex items-center w-full bg-white/10 backdrop-blur-md rounded-full px-6 py-4 border border-white/20 shadow-lg">
+                <i class="fa-solid fa-search text-gray-300 mr-3 text-lg"></i>
+                <input 
+                    type="text" 
+                    id="search-input"
+                    placeholder="Search for movies..." 
+                    class="bg-transparent border-none outline-none text-lg w-full text-white placeholder-gray-300 focus:ring-0"
+                    autocomplete="off"
+                >
+                <button 
+                    id="clear-search" 
+                    class="hidden text-gray-300 hover:text-white ml-3 transition-opacity duration-200"
+                    onclick="clearSearch()"
+                >
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movies Grid -->
+    <div id="movies-container" class="container mx-auto px-4 py-8">
+        <h2 id="section-title" class="text-2xl font-bold text-white mb-6 text-center md:text-left">
+            <span id="title-text">Popular Movies</span>
+            <span id="search-count" class="text-sm font-normal text-gray-400 ml-2 hidden"></span>
+        </h2>
+        
+        <!-- Loading Skeleton -->
+        <div id="loading-skeleton" class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            <!-- Skeleton cards will be added here -->
+        </div>
+        
+        <!-- Movies Grid -->
+        <div id="movies-grid" class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            <!-- Movies will load here dynamically -->
+        </div>
+        
+        <!-- Load More Button -->
+        <div id="load-more-container" class="text-center mt-10">
+            <button 
+                id="load-more" 
+                class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hidden"
+            >
+                <i class="fa-solid fa-plus mr-2"></i> Load More
+            </button>
+        </div>
+        
+        <!-- No Results Message -->
+        <div id="no-results" class="no-results hidden">
+            <i class="fa-solid fa-film text-5xl mb-4 opacity-50"></i>
+            <h3 class="text-xl font-semibold mb-2">No movies found</h3>
+            <p class="text-gray-400">Try searching for a different movie</p>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = "4113f3ad734e747a5b463cde8c55de42";
+        const imageBaseURL = "https://image.tmdb.org/t/p/w500";
+        let currentPage = 1;
+        let isSearching = false;
+        let currentSearchTerm = '';
+        let searchTimeout;
+        let totalResults = 0;
+
+        // DOM Elements
+        const moviesGrid = document.getElementById("movies-grid");
+        const loadMoreBtn = document.getElementById("load-more");
+        const searchInput = document.getElementById("search-input");
+        const clearSearchBtn = document.getElementById("clear-search");
+        const sectionTitle = document.getElementById("title-text");
+        const searchCount = document.getElementById("search-count");
+        const loadMoreContainer = document.getElementById("load-more-container");
+        const noResultsDiv = document.getElementById("no-results");
+        const loadingSkeleton = document.getElementById("loading-skeleton");
+
+        // Initialize with popular movies
+        fetchPopularMovies();
+
+        // Search as you type
+        searchInput.addEventListener('input', function(e) {
+            clearTimeout(searchTimeout);
+            const query = e.target.value.trim();
+            
+            // Show/hide clear button
+            if (query) {
+                clearSearchBtn.classList.remove('hidden');
+            } else {
+                clearSearchBtn.classList.add('hidden');
+                // If search is cleared, show popular movies
+                if (isSearching) {
+                    resetToPopularMovies();
+                }
+                return;
+            }
+            
+            // Debounce search to avoid too many API calls
+            searchTimeout = setTimeout(() => {
+                currentSearchTerm = query;
+                currentPage = 1;
+                isSearching = true;
+                
+                // Clear previous results
+                moviesGrid.innerHTML = '';
+                noResultsDiv.classList.add('hidden');
+                loadMoreBtn.classList.add('hidden');
+                
+                // Show loading skeleton
+                showLoadingSkeleton();
+                
+                // Fetch search results
+                fetchSearchResults(query, currentPage);
+            }, 500); // 500ms delay
+        });
+
+        // Also trigger search on Enter key
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = e.target.value.trim();
+                if (query) {
+                    currentSearchTerm = query;
+                    currentPage = 1;
+                    isSearching = true;
+                    moviesGrid.innerHTML = '';
+                    noResultsDiv.classList.add('hidden');
+                    showLoadingSkeleton();
+                    fetchSearchResults(query, currentPage);
+                }
+            }
+        });
+
+        // Load more functionality
+        loadMoreBtn.addEventListener('click', () => {
+            currentPage++;
+            if (isSearching) {
+                fetchSearchResults(currentSearchTerm, currentPage);
+            } else {
+                fetchPopularMovies(currentPage, true);
+            }
+        });
+
+        // Function to fetch popular movies
+        function fetchPopularMovies(page = 1, append = false) {
+            isSearching = false;
+            showLoadingSkeleton();
+            
+            fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=${page}`)
+                .then(res => res.json())
+                .then(data => {
+                    hideLoadingSkeleton();
+                    sectionTitle.textContent = "Popular Movies";
+                    searchCount.classList.add('hidden');
+                    
+                    if (!append) {
+                        moviesGrid.innerHTML = '';
+                    }
+                    
+                    if (data.results.length > 0) {
+                        displayMovies(data.results, append);
+                        if (data.page < data.total_pages) {
+                            loadMoreBtn.classList.remove('hidden');
+                        } else {
+                            loadMoreBtn.classList.add('hidden');
+                        }
+                        noResultsDiv.classList.add('hidden');
+                    } else {
+                        noResultsDiv.classList.remove('hidden');
+                        loadMoreBtn.classList.add('hidden');
+                    }
+                })
+                .catch(err => {
+                    console.error("Error fetching movies:", err);
+                    hideLoadingSkeleton();
+                });
+        }
+
+        // Function to search movies
+        function fetchSearchResults(query, page = 1, append = false) {
+            if (!query.trim()) return;
+            
+            showLoadingSkeleton();
+            
+            fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&language=en-US&query=${encodeURIComponent(query)}&page=${page}`)
+                .then(res => res.json())
+                .then(data => {
+                    hideLoadingSkeleton();
+                    sectionTitle.textContent = "Search Results";
+                    searchCount.textContent = `(${data.total_results} found)`;
+                    searchCount.classList.remove('hidden');
+                    
+                    totalResults = data.total_results;
+                    
+                    if (!append) {
+                        moviesGrid.innerHTML = '';
+                    }
+                    
+                    if (data.results.length > 0) {
+                        displayMovies(data.results, append);
+                        
+                        if (data.page < data.total_pages) {
+                            loadMoreBtn.classList.remove('hidden');
+                        } else {
+                            loadMoreBtn.classList.add('hidden');
+                        }
+                        noResultsDiv.classList.add('hidden');
+                    } else {
+                        noResultsDiv.classList.remove('hidden');
+                        loadMoreBtn.classList.add('hidden');
+                    }
+                })
+                .catch(err => {
+                    console.error("Error searching movies:", err);
+                    hideLoadingSkeleton();
+                });
+        }
+
+        // Function to display movies
+        function displayMovies(movies, append = false) {
+            if (!append) {
+                moviesGrid.innerHTML = '';
+            }
+            
+            movies.forEach(movie => {
+                const card = document.createElement("div");
+                card.classList.add("card", "dark:text-white", "text-black");
+                
+                // Format release date
+                let releaseDate = "N/A";
+                if (movie.release_date) {
+                    const date = new Date(movie.release_date);
+                    releaseDate = date.getFullYear();
+                }
+                
+                // Handle missing poster
+                const posterUrl = movie.poster_path 
+                    ? imageBaseURL + movie.poster_path
+                    : 'https://via.placeholder.com/291x376?text=No+Poster';
+                
+                card.innerHTML = `
+          
+              <div>
+                <a href="#">
+                  <img class="w-[291px] h-[376px] object-cover mx-auto rounded-3xl transform transition-transform duration-300 hover:scale-95 "
+                       src="${imageBaseURL + movie.poster_path}" alt="${movie.title}">
+                </a>
+              </div>
+              <div class="mt-2 mb-2 flex justify-around items-start">
+                <div>
+                  <span class="font-semibold text-[20px] line-clamp-1">${movie.title}</span>
+                  <p class="text-[16px]">Release: ${movie.release_date}</p>
+                </div>
+                <span class="text-[18px] mt-1 flex items-center gap-1.5 text-yellow-400">
+                  <i class="fa-solid fa-star"></i>
+                  <span>${movie.vote_average}</span>
+                </span>
+              </div>
+            `;
+            moviesGrid.appendChild(card);
+            });
+        }
+
+        // Function to clear search
+        function clearSearch() {
+            searchInput.value = '';
+            clearSearchBtn.classList.add('hidden');
+            resetToPopularMovies();
+        }
+
+        // Reset to popular movies
+        function resetToPopularMovies() {
+            isSearching = false;
+            currentPage = 1;
+            moviesGrid.innerHTML = '';
+            noResultsDiv.classList.add('hidden');
+            sectionTitle.textContent = "Popular Movies";
+            searchCount.classList.add('hidden');
+            showLoadingSkeleton();
+            fetchPopularMovies(1);
+        }
+
+        // Loading skeleton functions
+        function showLoadingSkeleton() {
+            loadingSkeleton.classList.remove('hidden');
+            moviesGrid.classList.add('hidden');
+            
+            // Create skeleton cards
+            loadingSkeleton.innerHTML = '';
+            for (let i = 0; i < 10; i++) {
+                const skeletonCard = document.createElement("div");
+                skeletonCard.className = "card";
+                skeletonCard.innerHTML = `
+                    <div class="skeleton w-full h-[376px] rounded-2xl"></div>
+                    <div class="mt-3 mb-2 flex justify-between items-start px-2">
+                        <div class="flex-1 min-w-0 pr-2">
+                            <div class="skeleton h-6 w-3/4 rounded"></div>
+                            <div class="skeleton h-4 w-1/2 rounded mt-2"></div>
+                        </div>
+                        <div class="skeleton w-16 h-8 rounded-lg"></div>
+                    </div>
+                `;
+                loadingSkeleton.appendChild(skeletonCard);
+            }
+        }
+
+        function hideLoadingSkeleton() {
+            loadingSkeleton.classList.add('hidden');
+            moviesGrid.classList.remove('hidden');
+        }
+
+        // Auto-focus search input on page load
+        window.addEventListener('load', () => {
+            searchInput.focus();
+        });
+    </script>
+</body>
+</html>
