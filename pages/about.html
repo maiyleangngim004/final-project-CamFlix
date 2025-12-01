@@ -100,7 +100,7 @@
     <nav id="mainNav"
         class="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-2 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent transition-all duration-300">
         <div class="flex items-center gap-2 z-50">
-            <a href="#homePage" rel="noopener noreferrer">
+            <a href="../index.html" rel="noopener noreferrer">
                 <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-12 w-auto object-contain">
             </a>
         </div>
@@ -108,16 +108,16 @@
         <!-- Desktop Search Bar -->
         <div
             class="hidden md:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 flex-1 max-w-md mx-6 xl:w-96 border border-white/10 focus-within:border-primary transition-colors">
-            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+            <a href="search.html" class=" flex "> <i class="fa-solid fa-search text-gray-400 mr-3"></i>
             <input type="text" placeholder="Search movies..."
-                class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400 focus:ring-0">
+                class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400 focus:ring-0"></a>
         </div>
 
         <!-- Desktop Navigation Links -->
         <div class="hidden md:flex items-center gap-6 text-sm font-medium">
             <!-- <a href="#homePage" class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition">Home</a> -->
-            <a href="pages/about.html" class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition">About us</a>
-            <a href="pages/explored.html" class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition flex items-center gap-1 whitespace-nowrap">Let's Explore 
+            <a href="about.html" class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition">About us</a>
+            <a href="explored.html" class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition flex items-center gap-1 whitespace-nowrap">Let's Explore 
                 <svg class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
@@ -153,14 +153,17 @@
 
         <!-- Mobile Search -->
         <div class="w-3/4 max-w-sm flex items-center bg-white/10 rounded-full px-4 py-3 border border-white/20">
-            <i class="fa-solid fa-search text-gray-400 mr-3 hover:outline"></i>
-            <input type="text" placeholder="Search..."
+            <a href="search.html" class=" flex ">
+                <i class="fa-solid fa-search text-gray-400 mr-3 hover:outline"></i>
+            <input type="text" placeholder="Search movies..."
                 class="bg-transparent border-none outline-none text-base w-full text-white placeholder-gray-400">
+            </a>
+            
         </div>
-        <a href="#homePage" class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition" onclick="toggleMenu()">Home</a>
-        <a href="pages/about.html" class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition" onclick="toggleMenu()">About
+        <a href="../index.html" class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition" onclick="toggleMenu()">Home</a>
+        <a href="about.html" class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition" onclick="toggleMenu()">About
             us</a>
-        <a href="pages/explored.html" class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition"
+        <a href="explored.html" class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition"
             onclick="toggleMenu()">Explore</a>
         <button id="theme-toggle-mobile" 
                 class="p-1 rounded-full bg-white dark:bg-gray-800 text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition shadow-lg">
@@ -182,12 +185,12 @@
 
     <!-- Main Content -->
 
-    <main class="bg-gray-900 text-gray-50 flex-1 pt-[100px]">
+    <main class="dark:bg-gray-900 bg-white text-gray-50 flex-1 pt-[100px]">
 
         <!-- Hero section  -->
         <!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
         <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
-        <section class=" relative bg-gray-900 bg-no-repeat bg-cover bg-center -mt-8"
+        <section class=" relative dark:not-odd:bg-gray-900 bg-no-repeat bg-cover bg-center -mt-8"
             style="background-image: url('../Images_for_contact_page/bg-for-hero-section.jpg');">
             <div class="absolute inset-0 bg-black/50"></div>
             <div class="relative isolate px-6 pt-0 lg:px-8">
@@ -201,7 +204,7 @@
                     <div class="text-center">
                         <h1 class="text-3xl sm:text-5xl md:text-7xl tracking-tight text-balance text-white">Unlimited
                             movies and shows, just for you</h1>
-                        <p class="mt-8 text-size-body font-medium text-pretty text-white sm:text-xl/8 indent-8">Our streaming
+                        <p class="mt-8 text-size-body font-medium text-pretty text-white xs:text-xs sm:text-xl/8 indent-8">Our streaming
                             website
                             makes it easy to watch your favorite movies and shows. You can browse a big collection of
                             content, pick what you like, and start watching right away. Create your own watchlist, get
@@ -586,24 +589,24 @@
                 <div class="space-y-4">
                     <div class="flex items-center gap">
                         <a href="index.html" rel="noopener noreferrer">
-                            <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-16 w-auto object-contain">
+                            <img href="../index.html" src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-16 w-auto object-contain">
                         </a>
                     </div>
-                    <div class="space-y-4 text-sm">
-                        <a href="mailto:support@camflix.com"
-                            class="block text-gray-400 hover:text-primary transition">support@camflix.com</a>
-                        <div class="flex gap-4">
-                            <a href="#"
-                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a href="#"
-                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
-                                    class="fab fa-twitter"></i></a>
-                            <a href="#"
-                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
-                                    class="fab fa-instagram"></i></a>
+                        <div class="space-y-4 text-sm">
+                            <a href="mailto:support@camflix.com"
+                                class="block text-gray-400 hover:text-primary transition">support@camflix.com</a>
+                            <div class="flex gap-4">
+                                <a href="#"
+                                    class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a href="#"
+                                    class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                        class="fab fa-twitter"></i></a>
+                                <a href="#"
+                                    class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
                 <div class="space-y-4">
