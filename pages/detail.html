@@ -1,426 +1,409 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail page</title>
-    <link rel="stylesheet" href="../src/output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>CamFlix - Free Movies</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans"', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366F1', // Indigo 500
+                        dark: '#0B0D17',
+                        card: '#151926',
+                        accent: '#6366F1'
+                    },
+                    screens: {
+                        'xs': '475px',
+                        // default tailwind breakpoints: sm: 640px, md: 768px, lg: 1024px, xl: 1280px
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar to match the dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0B0D17;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .menu-closed {
+            transform: translateY(-100%);
+            /* Moves it UP above the screen */
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .menu-open {
+            transform: translateY(0);
+            /* Slides DOWN to natural position */
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+
 </head>
-<body class="bg-gray-900 gap-2">
-    <!-- Main Scrollable Container -->
-    <div class="relative z-10 w-full h-screen flex flex-col overflow-y-auto scroll-container">
-        <!-- Header: Made Absolute to overlay the Hero Section -->
-        <header class="absolute top-0 left-0 w-full px-6 py-4 flex items-center justify-between z-50 mb-10">
 
-            <nav class="absolute top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent">
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">CamFlix</span>
-                </div>
-
-                <div class="hidden md:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 w-96 border border-white/10">
-                    <i class="fa-solid fa-search text-gray-400 mr-3"></i>
-                    <input type="text" placeholder="Search movies..." class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400">
-                </div>
-
-                <div class="flex items-center gap-6 text-sm font-medium">
-                    <a href="#" class="text-white hover:text-blue-400 transition">Home</a>
-                    <a href="#" class="text-gray-300 hover:text-white transition">About us</a>
-                    <a href="#" class="text-gray-300 hover:text-white transition">Let's Explore</a>
-                    <div class="w-8 h-8 rounded-full bg-gray-600 overflow-hidden border border-white/20">
-                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80" alt="User" />
-                    </div>
-                </div>
-            </nav>
-
-            <button id="mobile-menu-btn" class="md:hidden text-white p-2 focus:outline-none drop-shadow-md">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
-                    </path>
-                </svg>
-            </button>
-        </header>
-
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu"
-            class="fixed inset-0 bg-black/95 z-[60] hidden flex-col items-center justify-center space-y-8 transition-opacity duration-300 md:hidden">
-            <button id="close-menu-btn" class="absolute top-6 right-6 text-gray-400 hover:text-white">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
-            </button>
-            <a href="#"
-                class="text-2xl font-bold text-white hover:text-[var(--color-indigo-500)] transition-colors mobile-link">Home</a>
-            <a href="#"
-                class="text-2xl font-bold text-white hover:text-[var(--color-indigo-500)] transition-colors mobile-link">About
-                us</a>
-            <a href="#"
-                class="text-2xl font-bold text-white hover:text-[var(--color-indigo-500)] transition-colors mobile-link flex items-center gap-2">Let's
-                Explore</a>
+<body id="homePage" class="bg-background-light dark:bg-background text-text-color-light dark:text-text-color font-sans antialiased overflow-x-hidden">
+    <!-- Navigation -->
+    <nav id="mainNav"
+        class="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-2 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent transition-all duration-300">
+        <div class="flex items-center gap-2 z-50">
+            <a href="#homePage" rel="noopener noreferrer">
+                <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-12 w-auto object-contain">
+            </a>
         </div>
 
-        <!-- Main Content Area -->
-        <main class="bg-gray-900 text-gray-50 flex-1 mt-[100px]">
-            <!-- SECTION 2: MOVIE DETAILS -->
-            <section class="py-12">
-                <div class="container mx-auto px-4">
-                    <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
-                        <!-- Movie Poster -->
-                        <div class="flex-shrink-0">
-                            <img class="w-full max-w-md lg:max-w-lg rounded-2xl shadow-lg" 
-                                src="https://media.posterstore.com/site_images/68631db092c536b9cc92b06f_775081888_WB0101-5.jpg" 
-                                alt="Avatar movie poster">
-                        </div>
-                        
-                        <!-- Movie Details -->
-                        <div class="mt-5 flex-1 space-y-6">
-                            <!-- Title -->
-                            <h1 class="text-4xl lg:text-5xl font-bold">Avatar 1</h1>
-                            
-                            <!-- Metadata -->
-                            <div class="space-y-4">
-                                <div class="flex items-center">
-                                    <i class="fa-regular fa-calendar mr-3 text-lg"></i>
-                                    <p class="text-lg">19 November 2025</p>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="fa-solid fa-hashtag mr-3 text-lg"></i>
-                                    <p class="text-lg">Action / Romance</p>
-                                </div>
-                                
-                                <!-- Overview -->
-                                <div>
-                                    <div class="flex items-center mb-3">
-                                        <i class="fa-solid fa-layer-group mr-3 text-lg"></i>
-                                        <h3 class="font-semibold text-xl">Overview</h3>
-                                    </div>
-                                    <p class="text-lg text-justify leading-relaxed">
-                                        Avatar is the film series that is a science fiction saga about humans using genetically engineered Na'vi bodies (avatars) to interact with the native inhabitants of the moon Pandora while mining a valuable resource.
-                                    </p>
-                                </div>
-                                
-                                <!-- User Interactions -->
-                                <div class="flex space-x-12 pt-4">
-                                    <!-- Favorite -->
-                                    <div class="text-center">
-                                        <i class="fa-regular fa-heart text-2xl mb-1"></i>
-                                        <p class="text-sm">Favorite</p>
-                                    </div>
-                                    
-                                    <!-- Share -->
-                                    <div class="text-center">
-                                        <i class="fa-solid fa-share-nodes text-2xl mb-1"></i>
-                                        <p class="text-sm">Share</p>
-                                    </div>
-                                    
-                                    <!-- Rating -->
-                                    <div class="text-center">
-                                        <div class="text-amber-400 text-xl mb-1">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                        <p class="text-sm">Rating</p>
-                                    </div>
-                                </div>
-                                
-                                <!-- Action Buttons -->
-                                <div class="flex flex-col sm:flex-row gap-4 pt-6">
-                                    <button class="bg-blue-600 hover:bg-blue-700 text-white text-xl font-medium py-3 px-6 rounded-xl transition duration-200 flex items-center justify-center gap-2">
-                                        View Trailer
-                                        <i class="fa-regular fa-circle-play"></i>
-                                    </button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Divider -->
-                    <div class="border-t border-gray-700 mt-12 pt-8"></div>
-                </div>
-            </section>
+        <!-- Desktop Search Bar -->
+        <div
+            class="hidden md:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 flex-1 max-w-md mx-6 xl:w-96 border border-white/10 focus-within:border-primary transition-colors">
+            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+            <input type="text" placeholder="Search movies..."
+                class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400 focus:ring-0">
+        </div>
 
-            <!-- SECTION 3: ACTORS AND ACTRESSES -->
-            <section class="py-12">
-                <div class="container mx-auto px-4">
-                    <h2 class="text-3xl font-bold mb-8">Actor and Actresses of movie</h2>
-                    
-                    <div class="relative">
-                        <div class="w-full overflow-x-auto pb-6">
-                            <div class="flex gap-6">
-                                <!-- Actor Card 1 -->
-                                <div class="flex-shrink-0 w-64 h-80 transform transition-transform duration-300 hover:scale-95 ease-in-out">
-                                    <div class="relative w-full h-full rounded-2xl overflow-hidden">
-                                        <img class="w-full h-full object-cover" 
-                                            src="https://m.media-amazon.com/images/M/MV5BZWZhNjllZGYtN2JlOS00Nzc5LTkyODUtMzlkN2Y0ODQ3YWE3XkEyXkFqcGc@._V1_.jpg" 
-                                            alt="Actor">
-                                        <div class="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-black/40 p-4 text-center">
-                                            <p class="font-medium text-xl">Daredevil</p>
-                                            <p class="text-gray-300">Superhero</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Repeat actor cards as needed -->
-                                <!-- Actor Card 2 -->
-                                <div class="flex-shrink-0 w-64 h-80 transform transition-transform duration-300 hover:scale-95 ease-in-out">
-                                    <div class="relative w-full h-full rounded-2xl overflow-hidden">
-                                        <img class="w-full h-full object-cover" 
-                                            src="https://m.media-amazon.com/images/M/MV5BZWZhNjllZGYtN2JlOS00Nzc5LTkyODUtMzlkN2Y0ODQ3YWE3XkEyXkFqcGc@._V1_.jpg" 
-                                            alt="Actor">
-                                        <div class="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-black/40 p-4 text-center">
-                                            <p class="font-medium text-xl">Daredevil</p>
-                                            <p class="text-gray-300">Superhero</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Actor Card 3 -->
-                                <div class="flex-shrink-0 w-64 h-80 transform transition-transform duration-300 hover:scale-95 ease-in-out">
-                                    <div class="relative w-full h-full rounded-2xl overflow-hidden">
-                                        <img class="w-full h-full object-cover" 
-                                            src="https://m.media-amazon.com/images/M/MV5BZWZhNjllZGYtN2JlOS00Nzc5LTkyODUtMzlkN2Y0ODQ3YWE3XkEyXkFqcGc@._V1_.jpg" 
-                                            alt="Actor">
-                                        <div class="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-black/40 p-4 text-center">
-                                            <p class="font-medium text-xl">Daredevil</p>
-                                            <p class="text-gray-300">Superhero</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Actor Card 4 -->
-                                <div class="flex-shrink-0 w-64 h-80 transform transition-transform duration-300 hover:scale-95 ease-in-out">
-                                    <div class="relative w-full h-full rounded-2xl overflow-hidden">
-                                        <img class="w-full h-full object-cover" 
-                                            src="https://m.media-amazon.com/images/M/MV5BZWZhNjllZGYtN2JlOS00Nzc5LTkyODUtMzlkN2Y0ODQ3YWE3XkEyXkFqcGc@._V1_.jpg" 
-                                            alt="Actor">
-                                        <div class="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-black/40 p-4 text-center">
-                                            <p class="font-medium text-xl">Daredevil</p>
-                                            <p class="text-gray-300">Superhero</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Actor Card 5 -->
-                                <div class="flex-shrink-0 w-64 h-80 transform transition-transform duration-300 hover:scale-95 ease-in-out">
-                                    <div class="relative w-full h-full rounded-2xl overflow-hidden">
-                                        <img class="w-full h-full object-cover" 
-                                            src="https://m.media-amazon.com/images/M/MV5BZWZhNjllZGYtN2JlOS00Nzc5LTkyODUtMzlkN2Y0ODQ3YWE3XkEyXkFqcGc@._V1_.jpg" 
-                                            alt="Actor">
-                                        <div class="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-black/40 p-4 text-center">
-                                            <p class="font-medium text-xl">Daredevil</p>
-                                            <p class="text-gray-300">Superhero</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+            <a href="../index.html" class="text-gray-300 hover:text-primary transition">Home</a>
+            <a href="about.html" class="text-gray-300 hover:text-primary transition">About us</a>
+            <a href="explored.html" class="text-gray-300 hover:text-primary transition flex items-center gap-1 whitespace-nowrap">Let's Explore 
+                <svg class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+            <!-- <i class="fa-solid fa-sun fa-lg"></i> -->
+            <button id="theme-toggle" class="p-1 rounded-full bg-white text-black hover:bg-gray-200 transition shadow-lg">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+            </button>
+        </div>
 
-            <!-- SECTION 4: RELATED MOVIES -->
-            <section class="py-12">
-                <div class="container mx-auto px-4">
-                    <div class="flex justify-between items-center mb-8">
-                        <h2 class="text-3xl font-bold">Related Movies</h2>
-                        <a href="#" class="text-sky-400 hover:text-sky-300 text-lg font-medium transition duration-200">
-                            See All
-                        </a>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        <!-- Movie Card 1 -->
-                        <div class="bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-95">
-                            <div class="relative">
-                                <a href="#">
-                                    <img class="w-full h-96 object-cover"
-                                        src="https://goldendiscs.ie/cdn/shop/files/HP.jpg?v=1701949807"
-                                        alt="Movie poster">
-                                </a>
-                            </div>
-                            
-                            <div class="p-4">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <h3 class="font-semibold text-xl">John Carter</h3>
-                                        <p class="text-gray-400">Action / Romance</p>
-                                    </div>
-                                    <div class="flex items-center gap-1 text-amber-300">
-                                        <i class="fa-solid fa-star"></i>
-                                        <span class="text-white">4.2</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Movie Card 2 -->
-                        <div class="bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-95">
-                            <div class="relative">
-                                <a href="#">
-                                    <img class="w-full h-96 object-cover"
-                                        src="https://goldendiscs.ie/cdn/shop/files/HP.jpg?v=1701949807"
-                                        alt="Movie poster">
-                                </a>
-                            </div>
-                            
-                            <div class="p-4">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <h3 class="font-semibold text-xl">John Carter</h3>
-                                        <p class="text-gray-400">Action / Romance</p>
-                                    </div>
-                                    <div class="flex items-center gap-1 text-amber-300">
-                                        <i class="fa-solid fa-star"></i>
-                                        <span class="text-white">4.2</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Movie Card 3 -->
-                        <div class="bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-95">
-                            <div class="relative">
-                                <a href="#">
-                                    <img class="w-full h-96 object-cover"
-                                        src="https://goldendiscs.ie/cdn/shop/files/HP.jpg?v=1701949807"
-                                        alt="Movie poster">
-                                </a>
-                            </div>
-                            
-                            <div class="p-4">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <h3 class="font-semibold text-xl">John Carter</h3>
-                                        <p class="text-gray-400">Action / Romance</p>
-                                    </div>
-                                    <div class="flex items-center gap-1 text-amber-300">
-                                        <i class="fa-solid fa-star"></i>
-                                        <span class="text-white">4.2</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Movie Card 4 -->
-                        <div class="bg-gray-800 rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-95">
-                            <div class="relative">
-                                <a href="#">
-                                    <img class="w-full h-96 object-cover"
-                                        src="https://goldendiscs.ie/cdn/shop/files/HP.jpg?v=1701949807"
-                                        alt="Movie poster">
-                                </a>
-                            </div>
-                            
-                            <div class="p-4">
-                                <div class="flex justify-between items-start">
-                                    <div>
-                                        <h3 class="font-semibold text-xl">John Carter</h3>
-                                        <p class="text-gray-400">Action / Romance</p>
-                                    </div>
-                                    <div class="flex items-center gap-1 text-amber-300">
-                                        <i class="fa-solid fa-star"></i>
-                                        <span class="text-white">4.2</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden z-50 text-white focus:outline-none p-2">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+    </nav>
 
-                <!-- Footer (Normal flow after carousel) -->
-        <footer class="bg-gray-900 border-t border-gray-800 pt-16 pb-8 shrink-0 snap-start">
-            <div class="max-w-7xl mx-auto px-8">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-2">
-                            <span class="text-2xl font-bold font-serif text-white">Cam<span
-                                    class="text-[var(--color-indigo-500)]">Flix</span></span>
-                        </div>
-                        <div class="space-y-4">
-                            <a href="mailto:support@camflix.com"
-                                class="block text-gray-400 hover:text-white transition">support@camflix.com</a>
-                            <div class="flex gap-6">
-                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Mobile Full Screen Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-dark/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 menu-closed md:hidden">
+        <!-- Close Button (Also handled by main toggle, but visual clarity) -->
 
-                    <div class="space-y-6">
-                        <div class="flex items-center gap-2">
-                            <img src="./img/istad-logo.png" alt="istad-logo" class="w-24 h-auto">
-                        </div>
-                        <div class="space-y-4">
-                            <a href="mailto:info.istad@gmail.com"
-                                class="block text-gray-400 hover:text-white transition">info.istad@gmail.com</a>
-                            <div class="flex gap-6">
-                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Mobile Search -->
+        <div class="w-3/4 max-w-sm flex items-center bg-white/10 rounded-full px-4 py-3 border border-white/20">
+            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+            <input type="text" placeholder="Search..."
+                class="bg-transparent border-none outline-none text-base w-full text-white placeholder-gray-400">
+        </div>
 
-                    <div>
-                        <h4 class="font-bold mb-6 text-white">Quick link</h4>
-                        <ul class="space-y-4 text-gray-400 text-sm">
-                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Home</a></li>
-                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">About us</a></li>
-                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Explore Movies</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h4 class="font-bold mb-6 text-white">Support</h4>
-                        <ul class="space-y-4 text-gray-400 text-sm">
-                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">FAQs</a></li>
-                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Support Centre</a>
-                            </li>
-                            <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="border-t border-gray-800 pt-8 text-center">
-                    <p class="text-gray-500 text-xs">copyright 2025 CamFlix. All right reserved.</p>
-                </div>
-            </div>
-        </footer>
+        <a href="#" class="text-2xl font-bold text-white hover:text-primary transition" onclick="toggleMenu()">Home</a>
+        <a href="#" class="text-2xl font-bold text-gray-300 hover:text-primary transition" onclick="toggleMenu()">About
+            us</a>
+        <a href="#" class="text-2xl font-bold text-gray-300 hover:text-primary transition"
+            onclick="toggleMenu()">Explore</a>
 
     </div>
 
-    <script>
-        // Mobile menu functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const closeMenuBtn = document.getElementById('close-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            if (mobileMenuBtn && closeMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    mobileMenu.classList.remove('hidden');
-                });
+    <!-- Main Content -->
+        <!-- Hero / masthead -->
+    <main class="bg-gray-900 text-gray-50 flex-1 pt-24">
+
+        
+        <section id="movie-details" class=" mt-[50px]" aria-labelledby="details-heading">
+            <div class="max-w-6xl mx-auto px-6">
+                <!-- <img id="hero-bg" alt="Movie still" class="absolute inset-0 w-full h-full object-cover opacity-50 blur-4xl scale-40" aria-hidden="true"> -->
+                <div class=" relative flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+                    <figure class="flex-shrink-0 relative">
+                        <div id="poster-loader" class="absolute inset-0 w-full lg:w-100 rounded-2xl shadow-lg bg-gradient-to-br from-gray-700 to-gray-900 animate-pulse"></div>
+                        <img id="movie-poster" class="w-full lg:w-100 min-h-auto rounded-2xl shadow-lg object-cover opacity-0 transition-opacity duration-300" 
+                            src="" 
+                            loading="lazy"
+                            decoding="async"
+                            alt="Movie poster">
+                    </figure>
+                    
+                    <article class="mt-5 flex-1 space-y-6">
+                        <header class="space-y-2">
+                            <p class="text-sm uppercase tracking-[0.3em] text-gray-400" id="details-heading">Movie overview</p>
+                            <h1 id="movie-title" class="text-4xl lg:text-5xl font-bold">Loading title...</h1>
+                        </header>
+                        
+                        <dl class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-regular fa-calendar text-lg"></i>
+                                <div>
+                                    <dt class="sr-only">Release date</dt>
+                                    <dd id="movie-release-date" class="text-lg">--</dd>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-hashtag text-lg"></i>
+                                <div>
+                                    <dt class="sr-only">Genres</dt>
+                                    <dd id="movie-genres" class="text-lg">--</dd>
+                                </div>
+                            </div>
+                        </dl>
+                        
+                        <section class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-layer-group text-lg"></i>
+                                <h2 class="font-semibold text-xl">Overview</h2>
+                            </div>
+                            <p id="movie-overview" class="text-lg text-justify leading-relaxed">
+                                Loading storyline...
+                            </p>
+                        </section>
+                        
+                        <section class="flex flex-wrap gap-8 pt-4">
+                            <div class="text-center">
+                                <i class="fa-regular fa-heart text-2xl mb-1"></i>
+                                <p class="text-sm">Favorite</p>
+                            </div>
+                            <div class="text-center">
+                                <i class="fa-solid fa-share-nodes text-2xl mb-1"></i>
+                                <p class="text-sm">Share</p>
+                            </div>
+                            <div class="text-center">
+                                <div id="rating-stars" class="text-amber-400 text-xl mb-1">
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                                <p id="rating-label" class="text-sm text-gray-300">Rating --/5</p>
+                            </div>
+                        </section>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                            <button id="trailer-btn" class="bg-blue-600 hover:bg-blue-700 text-white text-xl font-medium py-3 px-6 rounded-xl transition duration-200 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
+                                View Trailer
+                                <i class="fa-regular fa-circle-play"></i>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+                <div class="border-t border-gray-700 mt-12 pt-8"></div>
+            </div>
+        </section>
+
+        <section class="py-12" id="cast" aria-labelledby="cast-heading">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 id="cast-heading" class="text-3xl font-bold">Actors and Actresses</h2>
+                    <p class="text-sm text-gray-400">Top billed actors</p>
+                </div>
+                <div class="w-full overflow-x-auto pb-6">
+                    <div id="actors-wrapper" class="flex gap-6 min-w-max"></div>
+                </div>
+                <template id="actor-card-template">
+                    <article class="flex-shrink-0 w-64 h-80 transform transition-transform duration-300 hover:scale-95 ease-in-out">
+                        <div class="relative w-full h-full rounded-2xl overflow-hidden bg-gray-800">
+                            <img class="w-full h-full object-cover actor-image" src="https://placehold.co/256x384?text=No+Photo" alt="Actor">
+                            <div class="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-black/40 p-4 text-center">
+                                <p class="font-medium text-xl actor-name">Actor name</p>
+                                <p class="text-gray-300 actor-role">Character</p>
+                            </div>
+                        </div>
+                    </article>
+                </template>
+            </div>
+        </section>
+
+        <section class="py-12" id="related" aria-labelledby="related-heading">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 id="related-heading" class="text-3xl font-bold">Recommended Movies</h2>
+                    <a href="./explored.html" class="text-sky-400 hover:text-sky-300 text-lg font-medium transition duration-200">
+                        See All
+                    </a>
+                </div>
                 
-                closeMenuBtn.addEventListener('click', function() {
-                    mobileMenu.classList.add('hidden');
-                });
+                <div id="related-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+
+                <template id="related-card-template">
+                <div class="group cursor-pointer movie-card" data-movie-id="">
+                    <div class="relative aspect-2/3 rounded-xl overflow-hidden mb-3">
+                        <img src="" class="w-full min-h-70 object-cover group-hover:scale-110 transition duration-300" alt="Movie Poster">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition"></div>
+                    </div>
+                    <div class="flex place-content-between">
+                        <h3 class="font-semibold truncate movie-title"></h3>
+                        <span class="text-yellow-400 flex items-center gap-1"><i class="fa-solid fa-star"></i> <span class="movie-rating"></span></span>
+                    </div>
+                    <div class="flex items-center text-xs text-gray-400 gap-2 mt-1">
+                        <span class="movie-genre"></span>
+                    </div>
+                </div>
+            </template>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 pt-12 md:pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12 justify-items-center">
+                <div class="space-y-4">
+                    <div class="flex items-center gap">
+                        <a href="index.html" rel="noopener noreferrer">
+                            <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-16 w-auto object-contain">
+                        </a>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <a href="mailto:support@camflix.com"
+                            class="block text-gray-400 hover:text-primary transition">support@camflix.com</a>
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <a href="https://www.cstad.edu.kh/" target="_blank" rel="noopener noreferrer">
+                            <img src="../Images/ISTAD-log.png" alt="ISTAD Logo" class="h-10 w-auto object-contain">
+                        </a>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <a href="mailto:info.istad@gmail.com"
+                            class="block text-gray-400 hover:text-primary transition">info.istad@gmail.com</a>
+                        <div class="flex gap-4">
+                            <a href="https://www.facebook.com/istad.com" target="_blank"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-primary transition">Home</a></li>
+                        <li><a href="#" class="hover:text-primary transition">About us</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Explore Movies</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Support</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-primary transition">FAQs</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Support Centre</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500 text-xs">copyright 2025 CamFlix. All right reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scripts to make the blur when scroll down -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('menu-closed');
+                mobileMenu.classList.add('menu-open');
+                // Change icon to X
+                menuBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                mobileMenu.classList.remove('menu-open');
+                mobileMenu.classList.add('menu-closed');
+                // Change icon back to bars
+                menuBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
+                document.body.style.overflow = ''; // Enable scrolling
+            }
+        }
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // Background navigation on scroll
+        // Scroll Event Listener
+        window.addEventListener('scroll', () => {
+            const mainNav = document.getElementById('mainNav');
+
+            if (window.scrollY > 50) {
+                mainNav.classList.remove('bg-gradient-to-b', 'from-black/90', 'to-transparent');
+                mainNav.classList.add('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+            } else {
+                // AT THE TOP: Reset to original
+                mainNav.classList.remove('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+                mainNav.classList.add('bg-gradient-to-b', 'from-black/90', 'to-transparent');
             }
         });
     </script>
+
+
+
+
+    <script src="../js/cardDetail.js" defer></script>
 </body>
+
 </html>

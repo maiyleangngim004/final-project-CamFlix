@@ -1,108 +1,243 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail page</title>
-    <link rel="stylesheet" href="../src/output.css">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>CamFlix - Free Movies</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans"', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366F1', // Indigo 500
+                        dark: '#0B0D17',
+                        card: '#151926',
+                        accent: '#6366F1'
+                    },
+                    screens: {
+                        'xs': '475px',
+                        // default tailwind breakpoints: sm: 640px, md: 768px, lg: 1024px, xl: 1280px
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar to match the dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0B0D17;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .menu-closed {
+            transform: translateY(-100%);
+            /* Moves it UP above the screen */
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .menu-open {
+            transform: translateY(0);
+            /* Slides DOWN to natural position */
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+
+    <!-- script for sending email -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init("YOUR_PUBLIC_KEY"); 
+    </script>
+
 </head>
 
-<body class="bg-gray-900 gap-2 relative z-10 w-full h-screen flex flex-col overflow-y-auto scroll-container">
-    <!-- Main Scrollable Container -->
+<body id="homePage"
+    class="bg-background-light dark:text-background-light dark:bg-background text-white font-sans antialiased overflow-x-hidden">
+    <!-- Navigation -->
+    <nav id="mainNav"
+        class="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-2 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent transition-all duration-300">
+        <div class="flex items-center gap-2 z-50">
+            <a href="#homePage" rel="noopener noreferrer">
+                <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-12 w-auto object-contain">
+            </a>
+        </div>
 
-    <!-- Header: Made Absolute to overlay the Hero Section -->
-    <header class="absolute top-0 left-0 w-full px-6 py-4 flex items-center justify-between z-50 mb-10">
+        <!-- Desktop Search Bar -->
+        <div
+            class="hidden md:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 flex-1 max-w-md mx-6 xl:w-96 border border-white/10 focus-within:border-primary transition-colors">
+            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+            <input type="text" placeholder="Search movies..."
+                class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400 focus:ring-0">
+        </div>
 
-        <nav
-            class="absolute top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-gradient-to-b from-whitetext-white/80 to-transparent">
-            <div class="flex items-center gap-2">
-                <span
-                    class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">CamFlix</span>
-            </div>
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+            <a href="../index.html" class="text-gray-300 hover:text-primary transition">Home</a>
+            <a href="about.html" class="text-gray-300 hover:text-primary transition">About us</a>
+            <a href="explored.html"
+                class="text-gray-300 hover:text-primary transition flex items-center gap-1 whitespace-nowrap">Let's
+                Explore
+                <svg class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+            <!-- <i class="fa-solid fa-sun fa-lg"></i> -->
+            <button id="theme-toggle"
+                class="p-1 rounded-full bg-white text-black hover:bg-gray-200 transition shadow-lg">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+            </button>
+        </div>
 
-            <div
-                class="hidden md:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 w-96 border border-white/10">
-                <i class="fa-solid fa-search text-gray-400 mr-3"></i>
-                <input type="text" placeholder="Search movies..."
-                    class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400">
-            </div>
-
-            <div class="flex items-center gap-6 text-sm font-medium">
-                <a href="#" class="text-white hover:text-blue-400 transition">Home</a>
-                <a href="#" class="text-gray-300 hover:text-white transition">About us</a>
-                <a href="#" class="text-gray-300 hover:text-white transition">Let's Explore</a>
-                <div class="w-8 h-8 rounded-full bg-gray-600 overflow-hidden border border-white/20">
-                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80"
-                        alt="User" />
-                </div>
-            </div>
-        </nav>
-
-        <button id="mobile-menu-btn" class="md:hidden text-white p-2 focus:outline-none drop-shadow-md">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
-                </path>
-            </svg>
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden z-50 text-white focus:outline-none p-2">
+            <i class="fa-solid fa-bars text-2xl"></i>
         </button>
-    </header>
+    </nav>
 
-    <!-- Mobile Menu Overlay -->
+    <!-- Mobile Full Screen Menu -->
     <div id="mobile-menu"
-        class="fixed inset-0 bg-black/95 z-[60] hidden flex-col items-center justify-center space-y-8 transition-opacity duration-300 md:hidden">
-        <button id="close-menu-btn" class="absolute top-6 right-6 text-gray-400 hover:text-white">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                </path>
-            </svg>
-        </button>
-        <a href="#"
-            class="text-2xl font-bold text-white hover:text-[var(--color-indigo-500)] transition-colors mobile-link">Home</a>
-        <a href="#"
-            class="text-2xl font-bold text-white hover:text-[var(--color-indigo-500)] transition-colors mobile-link">About
+        class="fixed inset-0 bg-dark/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 menu-closed md:hidden">
+        <!-- Close Button (Also handled by main toggle, but visual clarity) -->
+
+        <!-- Mobile Search -->
+        <div class="w-3/4 max-w-sm flex items-center bg-white/10 rounded-full px-4 py-3 border border-white/20">
+            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+            <input type="text" placeholder="Search..."
+                class="bg-transparent border-none outline-none text-base w-full text-white placeholder-gray-400">
+        </div>
+
+        <a href="#" class="text-2xl font-bold text-white hover:text-primary transition" onclick="toggleMenu()">Home</a>
+        <a href="#" class="text-2xl font-bold text-gray-300 hover:text-primary transition" onclick="toggleMenu()">About
             us</a>
-        <a href="#"
-            class="text-2xl font-bold text-white hover:text-[var(--color-indigo-500)] transition-colors mobile-link flex items-center gap-2">Let's
-            Explore</a>
+        <a href="#" class="text-2xl font-bold text-gray-300 hover:text-primary transition"
+            onclick="toggleMenu()">Explore</a>
+
     </div>
 
+    <!-- Main Content -->
+
+    <main class="bg-gray-900 text-gray-50 flex-1 pt-[100px]">
+
+        <!-- Hero section  -->
+        <!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
+        <section class=" relative bg-gray-900 bg-no-repeat bg-cover bg-center -mt-8"
+            style="background-image: url('../Images_for_contact_page/bg-for-hero-section.jpg');">
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="relative isolate px-6 pt-0 lg:px-8">
+                <div aria-hidden="true"
+                    class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+                    <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+                        class="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75">
+                    </div>
+                </div>
+                <div class="mx-auto max-w-2xl py-30 sm:py-10 lg:py-32">
+                    <div class="text-center">
+                        <h1 class="text-3xl sm:text-5xl md:text-7xl tracking-tight text-balance text-white">Unlimited
+                            movies and shows, just for you</h1>
+                        <p class="mt-8 text-size-body font-medium text-pretty text-white sm:text-xl/8">Our streaming
+                            website
+                            makes it easy to watch your favorite movies and shows. You can browse a big collection of
+                            content, pick what you like, and start watching right away. Create your own watchlist, get
+                            recommendations, and enjoy smooth, high-quality streaming anytime.</p>
+                    </div>
+                </div>
+                <div aria-hidden="true"
+                    class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+                    <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
+                        class="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- who are we  -->
+        <section class="py-10 px-4 sm:px-8 lg:px-32 lg:mx-24 ">
+            <h2 class="text-size-h2 font-type font-bold text-center mb-6 sm:text-3xl">Who Are We?</h2>
+            <div class="flex flex-col-reverse lg:flex-row items-center lg:items-center gap-6 lg:gap-12">
+                <!-- info -->
+                <div class=" w-full  lg:flex-1 space-y-4">
+                    <p class="text-base sm:text-lg lg:text-lg text-justify leading-relaxed ">
+                        ComaFlix is a modern streaming platform with a sleek, Netflix-inspired interface, designed to
+                        make discovering and watching your favorite movies and shows effortless. Developed by the
+                        Institute of Science and Technology Advanced Development students in 2025. ComaFlix brings
+                        together an extensive collection of films and series with a seamless, interactive user
+                        experience.
+                </div>
+                <!--  image -->
+                <div class="flex-shrink-0 w-full sm:w-80 lg:w-[350px]">
+                    <img class="w-full h-56 sm:h-64 lg:h-[250px] rounded-2xl shadow-lg mx-auto object-cover"
+                        loading="lazy" width="350" height="250" src="../Images_for_contact_page/movie time.jpg"
+                        alt="Movie time poster">
+                </div>
+            </div>
+        </section>
 
 
 
-    <!-- Main Content Area -->
-    <main class="bg-gray-900 text-gray-50 flex-1 mt-[100px]">
-        <!-- SECTION 2: MOVIE DETAILS -->
-        <section class="py-6 px-4 sm:px-8 lg:px-32 lg:mx-48">
+        <section class="py-10 px-4 sm:px-8 lg:px-32 lg:mx-24">
             <h2 class="text-size-h2 font-type font-bold text-center mb-6 sm:text-3xl">ABOUT US</h2>
             <div class="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-6 lg:gap-12">
-
-                <!--  Poster -->
+                <!--  image -->
                 <div class="flex-shrink-0 w-full sm:w-80 lg:w-[350px]">
                     <img class="w-full h-56 sm:h-64 lg:h-[250px] rounded-2xl shadow-lg mx-auto object-cover"
                         loading="lazy" width="350" height="250" src="../Images_for_contact_page/movie time.jpg"
                         alt="Movie time poster">
                 </div>
 
-                <!-- Details -->
-                <div class=" w-full  lg:flex-1 space-y-4">
-
-                    <p class="text-base sm:text-lg lg:text-lg text-justify leading-relaxed">
+                <!-- info -->
+                <div class=" w-full flex lg:flex-1 iterms-center space-y-4">
+                    <p class="text-base sm:text-lg lg:text-lg text-justify leading-relaxed mt-[100px]">
                         Your ultimate destination for everything cinema! We are a comprehensive online platform
                         dedicated to connecting movie lovers with the films they adore.
                     </p>
-
                 </div>
-
             </div>
-
             <!-- Divider -->
             <div class="border-t border-gray-700 mt-12 pt-8"></div>
-
         </section>
 
         <!-- mentors info -->
@@ -358,7 +493,6 @@
 
 
         <!-- contact form -->
-
         <section class="pb-12 px-4 sm:px-10 lg:px-32 xl:px-64">
             <!-- HEADER / HERO -->
             <header class="pt-2 md:pt-4 pb-8 px-6 text-center relative z-10">
@@ -378,15 +512,12 @@
                     class="absolute bottom-0 left-0 w-32 sm:w-40 md:w-64 h-32 md:h-64 bg-purple-600/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2">
                 </div>
 
-                <form action="#" class="space-y-5 md:space-y-6 relative z-10">
-
+                <form id="contactForm" class="space-y-5 md:space-y-6 relative z-10">
                     <!-- Name Field -->
                     <div class="space-y-2">
                         <label class="text-sm font-medium text-gray-300">Your Name</label>
-
-                        <input type="name" placeholder="enter your name..."
+                        <input id="nameInput" type="text" placeholder="enter your name..."
                             class="w-full bg-[#0B0D17] border border-white/10 rounded-lg pl-5 pr-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600">
-
                     </div>
 
                     <!-- Email Field -->
@@ -396,7 +527,7 @@
                             <span class="absolute left-4 top-3.5 text-gray-500">
                                 <i class="fa-regular fa-envelope"></i>
                             </span>
-                            <input type="email" placeholder="you@example.com"
+                            <input id="emailInput" type="email" placeholder="you@example.com"
                                 class="w-full bg-[#0B0D17] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600">
                         </div>
                     </div>
@@ -404,86 +535,95 @@
                     <!-- Message Field -->
                     <div class="space-y-2">
                         <label class="text-sm font-medium text-gray-300">Message</label>
-                        <textarea rows="6" placeholder="How can we help you?"
+                        <textarea id="messageInput" rows="6" placeholder="How can we help you?"
                             class="w-full bg-[#0B0D17] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition resize-none placeholder-gray-600"></textarea>
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="button"
+                    <button id="sendBtn" type="button"
                         class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 md:py-4 rounded-lg transition duration-300 shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 group">
                         Send Message
                         <i class="fa-solid fa-paper-plane group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </form>
             </div>
-
-
         </section>
 
     </main>
 
 
 
-    
 
-    <!-- Footer (Normal flow after carousel) -->
-    <footer class="bg-gray-900 border-t border-gray-800 pt-16 py-8 shrink-0 snap-start">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-                <div class="space-y-6">
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl font-bold font-serif text-white text-size-small">Cam<span
-                                class="text-[var(--color-indigo-500)]">Flix</span></span>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 pt-12 md:pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12 justify-items-center">
+                <div class="space-y-4">
+                    <div class="flex items-center gap">
+                        <a href="index.html" rel="noopener noreferrer">
+                            <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-16 w-auto object-contain">
+                        </a>
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-4 text-sm">
                         <a href="mailto:support@camflix.com"
-                            class="block text-gray-400 hover:text-white transition">support@camflix.com</a>
-                        <div class="flex gap-6">
-                            <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
+                            class="block text-gray-400 hover:text-primary transition">support@camflix.com</a>
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
                                     class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
                                     class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
                                     class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
 
-                <div class="space-y-6">
+                <div class="space-y-4">
                     <div class="flex items-center gap-2">
-                        <img src="./img/istad-logo.png" alt="istad-logo" class="w-24 h-auto">
+                        <a href="https://www.cstad.edu.kh/" target="_blank" rel="noopener noreferrer">
+                            <img src="../Images/ISTAD-log.png" alt="ISTAD Logo" class="h-10 w-auto object-contain">
+                        </a>
                     </div>
-                    <div class="space-y-4">
+                    <div class="space-y-4 text-sm">
                         <a href="mailto:info.istad@gmail.com"
-                            class="block text-gray-400 hover:text-white transition">info.istad@gmail.com</a>
-                        <div class="flex gap-6">
-                            <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
+                            class="block text-gray-400 hover:text-primary transition">info.istad@gmail.com</a>
+                        <div class="flex gap-4">
+                            <a href="https://www.facebook.com/istad.com" target="_blank"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
                                     class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
                                     class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-white hover:text-[var(--color-indigo-500)] transition"><i
+                            <a href="#"
+                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
                                     class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <h4 class="font-bold mb-6 text-white">Quick link</h4>
-                    <ul class="space-y-4 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Home</a></li>
-                        <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">About us</a></li>
-                        <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Explore Movies</a>
-                        </li>
+                    <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-primary transition">Home</a></li>
+                        <li><a href="#" class="hover:text-primary transition">About us</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Explore Movies</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Terms of Service</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-bold mb-6 text-white">Support</h4>
-                    <ul class="space-y-4 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">FAQs</a></li>
-                        <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Support Centre</a>
-                        </li>
-                        <li><a href="#" class="hover:text-[var(--color-indigo-500)] transition">Contact Us</a></li>
+                    <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Support</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-primary transition">FAQs</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Support Centre</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-primary transition">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -495,25 +635,78 @@
     </footer>
 
 
-
+    <!-- Scripts to make the blur when scroll down -->
     <script>
-        // Mobile menu functionality
-        document.addEventListener('DOMContentLoaded', function () {
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const closeMenuBtn = document.getElementById('close-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
 
-            if (mobileMenuBtn && closeMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', function () {
-                    mobileMenu.classList.remove('hidden');
-                });
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('menu-closed');
+                mobileMenu.classList.add('menu-open');
+                // Change icon to X
+                menuBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                mobileMenu.classList.remove('menu-open');
+                mobileMenu.classList.add('menu-closed');
+                // Change icon back to bars
+                menuBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
+                document.body.style.overflow = ''; // Enable scrolling
+            }
+        }
+        menuBtn.addEventListener('click', toggleMenu);
 
-                closeMenuBtn.addEventListener('click', function () {
-                    mobileMenu.classList.add('hidden');
-                });
+        // Background navigation on scroll
+        // Scroll Event Listener
+        window.addEventListener('scroll', () => {
+            const mainNav = document.getElementById('mainNav');
+
+            if (window.scrollY > 50) {
+                mainNav.classList.remove('bg-gradient-to-b', 'from-black/90', 'to-transparent');
+                mainNav.classList.add('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+            } else {
+                // AT THE TOP: Reset to original
+                mainNav.classList.remove('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+                mainNav.classList.add('bg-gradient-to-b', 'from-black/90', 'to-transparent');
             }
         });
     </script>
+
+
+    <!-- script for sending email -->
+    <script>
+        document.getElementById("sendBtn").addEventListener("click", function () {
+
+            const name = document.getElementById("nameInput").value;
+            const email = document.getElementById("emailInput").value;
+            const message = document.getElementById("messageInput").value;
+
+            if (!name || !email || !message) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            // Send Email using EmailJS
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+                user_name: name,
+                user_email: email,
+                user_message: message
+            })
+                .then(() => {
+                    alert("Message Sent Successfully!");
+                    document.getElementById("contactForm").reset();
+                })
+                .catch((err) => {
+                    alert("Failed to send message: " + JSON.stringify(err));
+                });
+
+        });
+    </script>
+
+
 </body>
 
 </html>

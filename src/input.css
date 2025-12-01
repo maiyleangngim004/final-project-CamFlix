@@ -13,7 +13,7 @@
     --color-description-color: #6A7282;
 
     /* color style for light mode */
-    --color-primary-light: oklch(45.7% 0.24 277.023);
+    --color-primary-light: oklch(45.7% 0.24 277.023); 
     --color-secondary-light: oklch(90.5% 0.182 98.111);
     --color-accents: oklch(35.9% 0.144 278.697);
     --color-text-color-light: oklch(25.7% 0.09 281.288);
