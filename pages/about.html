@@ -13,8 +13,9 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link rel="stylesheet" href="../src/output.css">
     <script src="https://cdn.tailwindcss.com"></script>
+
 
     <script>
         tailwind.config = {
@@ -81,11 +82,15 @@
         }
     </style>
 
+    <!-- for dark mode and light mode -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
     <!-- script for sending email -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        emailjs.init("YOUR_PUBLIC_KEY"); 
-    </script>
 
 </head>
 
@@ -93,9 +98,9 @@
     class="bg-background-light dark:text-background-light dark:bg-background text-white font-sans antialiased overflow-x-hidden">
     <!-- Navigation -->
     <nav id="mainNav"
-        class="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-2 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent transition-all duration-300">
+        class="fixed top-0 bg-gray-800 opacity-75 left-0 w-full z-50 px-4 md:px-8 py-2 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent transition-all duration-300">
         <div class="flex items-center gap-2 z-50">
-            <a href="#homePage" rel="noopener noreferrer">
+            <a href="../index.html" rel="noopener noreferrer">
                 <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-12 w-auto object-contain">
             </a>
         </div>
@@ -103,27 +108,35 @@
         <!-- Desktop Search Bar -->
         <div
             class="hidden md:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 flex-1 max-w-md mx-6 xl:w-96 border border-white/10 focus-within:border-primary transition-colors">
-            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
-            <input type="text" placeholder="Search movies..."
-                class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400 focus:ring-0">
+            <a href="search.html" class=" flex "> <i class="fa-solid fa-search text-gray-400 mr-3"></i>
+                <input type="text" placeholder="Search movies..."
+                    class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400 focus:ring-0"></a>
         </div>
 
         <!-- Desktop Navigation Links -->
         <div class="hidden md:flex items-center gap-6 text-sm font-medium">
-            <a href="../index.html" class="text-gray-300 hover:text-primary transition">Home</a>
-            <a href="about.html" class="text-gray-300 hover:text-primary transition">About us</a>
+            <!-- <a href="#homePage" class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition">Home</a> -->
+            <a href="about.html" class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition">About us</a>
             <a href="explored.html"
-                class="text-gray-300 hover:text-primary transition flex items-center gap-1 whitespace-nowrap">Let's
+                class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition flex items-center gap-1 whitespace-nowrap">Let's
                 Explore
                 <svg class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
             </a>
-            <!-- <i class="fa-solid fa-sun fa-lg"></i> -->
             <button id="theme-toggle"
-                class="p-1 rounded-full bg-white text-black hover:bg-gray-200 transition shadow-lg">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                class="p-1 rounded-full bg-white dark:bg-gray-800 text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition shadow-lg">
+
+                <!-- Moon icon (show in LIGHT mode) -->
+                <svg id="moon-icon" class="w-5 h-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                </svg>
+
+                <!-- Sun icon (show in DARK mode) -->
+                <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
@@ -137,35 +150,54 @@
     </nav>
 
     <!-- Mobile Full Screen Menu -->
-    <div id="mobile-menu"
-        class="fixed inset-0 bg-dark/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 menu-closed md:hidden">
+    <div id="mobile-menu" class="fixed right-0 top-16 w-full bg-dark/90 backdrop-blur-xl z-40 flex flex-col items-start space-y-4 p-6 
+           rounded-xl shadow-xl menu-closed md:hidden transition-all duration-300">
         <!-- Close Button (Also handled by main toggle, but visual clarity) -->
 
         <!-- Mobile Search -->
         <div class="w-3/4 max-w-sm flex items-center bg-white/10 rounded-full px-4 py-3 border border-white/20">
-            <i class="fa-solid fa-search text-gray-400 mr-3"></i>
-            <input type="text" placeholder="Search..."
-                class="bg-transparent border-none outline-none text-base w-full text-white placeholder-gray-400">
+            <a href="search.html" class=" flex ">
+                <i class="fa-solid fa-search text-gray-400 mr-3 hover:outline"></i>
+                <input type="text" placeholder="Search movies..."
+                    class="bg-transparent border-none outline-none text-base w-full text-white placeholder-gray-400">
+            </a>
+
         </div>
-
-        <a href="#" class="text-2xl font-bold text-white hover:text-primary transition" onclick="toggleMenu()">Home</a>
-        <a href="#" class="text-2xl font-bold text-gray-300 hover:text-primary transition" onclick="toggleMenu()">About
+        <a href="../index.html" class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition"
+            onclick="toggleMenu()">Home</a>
+        <a href="about.html" class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition"
+            onclick="toggleMenu()">About
             us</a>
-        <a href="#" class="text-2xl font-bold text-gray-300 hover:text-primary transition"
+        <a href="explored.html" class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition"
             onclick="toggleMenu()">Explore</a>
+        <button id="theme-toggle-mobile"
+            class="p-1 rounded-full bg-white dark:bg-gray-800 text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition shadow-lg">
 
+            <!-- Moon icon (show in LIGHT mode) -->
+            <svg id="moon-icon" class="w-5 h-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+            </svg>
+
+            <!-- Sun icon (show in DARK mode) -->
+            <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+        </button>
     </div>
+
 
     <!-- Main Content -->
 
-    <main class="bg-gray-900 text-gray-50 flex-1 pt-[100px]">
+    <main class="dark:bg-gray-900 bg-white text-gray-50 flex-1 pt-[100px]">
 
         <!-- Hero section  -->
         <!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
         <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
-        <section class=" relative bg-gray-900 bg-no-repeat bg-cover bg-center -mt-8"
+        <section class=" relative dark:not-odd:bg-gray-900 bg-no-repeat bg-cover bg-center -mt-9"
             style="background-image: url('../Images_for_contact_page/bg-for-hero-section.jpg');">
-            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="absolute inset-0 dark:bg-black/50 bg-white/30"></div>
             <div class="relative isolate px-6 pt-0 lg:px-8">
                 <div aria-hidden="true"
                     class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
@@ -175,10 +207,12 @@
                 </div>
                 <div class="mx-auto max-w-2xl py-30 sm:py-10 lg:py-32">
                     <div class="text-center">
-                        <h1 class="text-3xl sm:text-5xl md:text-7xl tracking-tight text-balance text-white">Unlimited
+                        <h1 class="text-[32px] sm:text-[32px] md:text-[40px] font-type font-bold tracking-tight text-balance text-black dark:text-white">Unlimited
                             movies and shows, just for you</h1>
-                        <p class="mt-8 text-size-body font-medium text-pretty text-white sm:text-xl/8">Our streaming
-                            website makes it easy to watch your favorite movies and shows. You can browse a big collection of
+                        <p
+                            class="mt-8 text-size-body xs:text-size-extra-small sm:text-size-small md:text-size-small text-pretty text-black dark:text-white ">
+                            Our streaming website
+                            makes it easy to watch your favorite movies and shows. You can browse a big collection of
                             content, pick what you like, and start watching right away. Create your own watchlist, get
                             recommendations, and enjoy smooth, high-quality streaming anytime.</p>
                     </div>
@@ -195,12 +229,12 @@
 
         <!-- who are we  -->
         <section class="py-10 px-4 sm:px-8 lg:px-32 lg:mx-24 ">
-            <h2 class="text-size-h2 font-type font-bold text-center mb-6 sm:text-3xl">Who Are We?</h2>
+            <h2 class="text-[32px] sm:text-[32px] md:text-[40px] font-type font-bold text-center mb-6 text-black dark:text-white">WHO ARE WE?</h2>
             <div class="flex flex-col-reverse lg:flex-row items-center lg:items-center gap-6 lg:gap-12">
                 <!-- info -->
                 <div class=" w-full  lg:flex-1 space-y-4">
-                    <p class="text-base sm:text-lg lg:text-lg text-justify leading-relaxed ">
-                        ComaFlix is a modern streaming platform with a sleek, Netflix-inspired interface, designed to
+                    <p class="text-size-body xs:text-size-extra-small sm:text-size-small md:text-size-small leading-relaxed text-black dark:text-white">
+                        ComFlix is a modern streaming platform with a sleek, Netflix-inspired interface, designed to
                         make discovering and watching your favorite movies and shows effortless. Developed by the
                         Institute of Science and Technology Advanced Development students in 2025. ComaFlix brings
                         together an extensive collection of films and series with a seamless, interactive user
@@ -218,7 +252,7 @@
 
 
         <section class="py-10 px-4 sm:px-8 lg:px-32 lg:mx-24">
-            <h2 class="text-size-h2 font-type font-bold text-center mb-6 sm:text-3xl">ABOUT US</h2>
+            <h2 class="text-[32px] sm:text-[32px] md:text-[40px] font-type font-bold text-center mb-6 text-black dark:text-white">ABOUT US</h2>
             <div class="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-6 lg:gap-12">
                 <!--  image -->
                 <div class="flex-shrink-0 w-full sm:w-80 lg:w-[350px]">
@@ -229,7 +263,7 @@
 
                 <!-- info -->
                 <div class=" w-full flex lg:flex-1 iterms-center space-y-4">
-                    <p class="text-base sm:text-lg lg:text-lg text-justify leading-relaxed mt-[100px]">
+                    <p class="text-size-body xs:text-size-extra-small sm:text-size-small md:text-size-small leading-relaxed mt-[70px] text-black dark:text-white">
                         Your ultimate destination for everything cinema! We are a comprehensive online platform
                         dedicated to connecting movie lovers with the films they adore.
                     </p>
@@ -242,7 +276,7 @@
         <!-- mentors info -->
         <section class="pb-12 px-4 sm:px-8 lg:px-32 ">
             <div class="container mx-auto ">
-                <h2 class="text-3xl font-bold mb-10 text-center">OUR MENTORS</h2>
+                <h2 class="font-type text-[32px] sm:text-[32px] md:text-[40px] font-bold mb-10 text-center text-black dark:text-white">OUR MENTORS</h2>
 
                 <div
                     class="w-full grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center gap-10 justify-items-center">
@@ -256,16 +290,16 @@
 
                         </div>
 
-                        <p class="text-size-h3 text-center my-4">Eung Lyzhia</p>
+                        <p class="text-size-h3 text-center my-4 text-black dark:text-white">Eung Lyzhia</p>
 
 
                         <!-- Info about mentor -->
                         <div class="px-2">
-                            <div class="flex flex-row justify-between text-2xl">
+                            <div class="flex flex-row justify-between text-2xl text-black dark:text-white text-black dark:text-white">
                                 <p><i class="fa-brands fa-linkedin-in"></i></p>
                                 <p><i class="fa-brands fa-telegram"></i></p>
                                 <p><i class="fa-brands fa-github"></i></p>
-                                <p><i class="fa-regular fa-message"></i></p>
+                                <p><i class="fa-regular fa-envelope"></i></p>
                             </div>
 
                         </div>
@@ -280,15 +314,15 @@
 
                         </div>
 
-                        <p class="text-size-h3 text-center my-4 whitespace-nowrap">Kim Chansokpheng</p>
+                        <p class="text-size-h3 text-center my-4 whitespace-nowrap text-black dark:text-white -ml-4">Kim Chansokpheng</p>
 
                         <!-- Info about mentor -->
                         <div class="px-2">
-                            <div class="flex flex-row justify-between text-2xl">
+                            <div class="flex flex-row justify-between text-2xl text-black dark:text-white text-black dark:text-white">
                                 <p><i class="fa-brands fa-linkedin-in"></i></p>
                                 <p><i class="fa-brands fa-telegram"></i></p>
                                 <p><i class="fa-brands fa-github"></i></p>
-                                <p><i class="fa-regular fa-message"></i></p>
+                                <p><i class="fa-regular fa-envelope"></i></p>
                             </div>
                         </div>
                     </div>
@@ -301,7 +335,7 @@
         <!-- 3 members info -->
         <section class="pb-12 px-4 sm:px-8 lg:px-32 ">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center"> TEAM MEMBERS</h2>
+                <h2 class="text-[32px] sm:text-[32px] md:text-[40px] font-bold mb-8 text-center text-black dark:text-white"> TEAM MEMBERS</h2>
 
                 <div
                     class="w-full grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center gap-10 justify-items-center">
@@ -315,16 +349,16 @@
 
                         </div>
 
-                        <p class="text-size-h3 text-center my-4">Maiy Leangngim</p>
+                        <p class="text-size-h3 text-center my-4 text-black dark:text-white">Maiy Leangngim</p>
 
 
                         <!-- Info about member -->
                         <div class="px-2">
-                            <div class="flex flex-row justify-between text-2xl">
+                            <div class="flex flex-row justify-between text-2xl text-black dark:text-white">
                                 <p><i class="fa-brands fa-linkedin-in"></i></p>
                                 <p><i class="fa-brands fa-telegram"></i></p>
                                 <p><i class="fa-brands fa-github"></i></p>
-                                <p><i class="fa-regular fa-message"></i></p>
+                                <p><i class="fa-regular fa-envelope"></i></p>
                             </div>
 
                         </div>
@@ -339,15 +373,15 @@
 
                         </div>
 
-                        <p class="text-size-h3 text-center my-4 whitespace-nowrap px-0">Pe Kakda</p>
+                        <p class="text-size-h3 text-center my-4 whitespace-nowrap px-0 text-black dark:text-white">Pe Kakda</p>
 
                         <!-- Info about mentor -->
                         <div class="px-2">
-                            <div class="flex flex-row justify-between text-2xl">
+                            <div class="flex flex-row justify-between text-2xl text-black dark:text-white">
                                 <p><i class="fa-brands fa-linkedin-in "></i></p>
                                 <p><i class="fa-brands fa-telegram "></i></p>
                                 <p><i class="fa-brands fa-github "></i></p>
-                                <p><i class="fa-regular fa-message "></i></p>
+                                <p><i class="fa-regular fa-envelope"></i></i></p>
                             </div>
                         </div>
                     </div>
@@ -362,16 +396,16 @@
 
                         </div>
 
-                        <p class="text-size-h3 text-center my-4">Heng Soleakna</p>
+                        <p class="text-size-h3 text-center my-4 text-black dark:text-white">Heng Soleakna</p>
 
 
                         <!-- Info about member -->
                         <div class="px-2">
-                            <div class="flex flex-row justify-between text-2xl">
+                            <div class="flex flex-row justify-between text-2xl text-black dark:text-white">
                                 <p><i class="fa-brands fa-linkedin-in"></i></p>
                                 <p><i class="fa-brands fa-telegram"></i></p>
                                 <p><i class="fa-brands fa-github"></i></p>
-                                <p><i class="fa-regular fa-message"></i></p>
+                                <p><i class="fa-regular fa-envelope"></i></p>
                             </div>
 
                         </div>
@@ -398,16 +432,16 @@
 
                     </div>
 
-                    <p class="text-size-h3 text-center my-4 -ml-0.5">Heng Menghong</p>
+                    <p class="text-size-h3 text-center my-4 -ml-0.5 text-black dark:text-white">Heng Menghong</p>
 
 
                     <!-- Info about member -->
                     <div class="px-2">
-                        <div class="flex flex-row justify-between text-2xl">
+                        <div class="flex flex-row justify-between text-2xl text-black dark:text-white">
                             <p><i class="fa-brands fa-linkedin-in"></i></p>
                             <p><i class="fa-brands fa-telegram"></i></p>
                             <p><i class="fa-brands fa-github"></i></p>
-                            <p><i class="fa-regular fa-message"></i></p>
+                            <p><i class="fa-regular fa-envelope"></i></p>
                         </div>
 
                     </div>
@@ -421,15 +455,15 @@
 
                     </div>
 
-                    <p class="text-size-h3 text-center my-4">Sovan Rotha</p>
+                    <p class="text-size-h3 text-center my-4 text-black dark:text-white">Sovan Rotha</p>
 
                     <!-- Info about mentor -->
                     <div class="px-2">
-                        <div class="flex flex-row justify-between text-2xl">
+                        <div class="flex flex-row justify-between text-2xl text-black dark:text-white">
                             <p><i class="fa-brands fa-linkedin-in"></i></p>
                             <p><i class="fa-brands fa-telegram"></i></p>
                             <p><i class="fa-brands fa-github"></i></p>
-                            <p><i class="fa-regular fa-message"></i></p>
+                            <p><i class="fa-regular fa-envelope"></i></p>
                         </div>
                     </div>
                 </div>
@@ -443,16 +477,16 @@
 
                     </div>
 
-                    <p class="text-size-h3 text-center my-4">Sem Sila</p>
+                    <p class="text-size-h3 text-center my-4 text-black dark:text-white">Sem Sila</p>
 
 
                     <!-- Info about member -->
                     <div class="px-2">
-                        <div class="flex flex-row justify-between text-2xl">
+                        <div class="flex flex-row justify-between text-2xl text-black dark:text-white">
                             <p><i class="fa-brands fa-linkedin-in"></i></p>
                             <p><i class="fa-brands fa-telegram"></i></p>
                             <p><i class="fa-brands fa-github"></i></p>
-                            <p><i class="fa-regular fa-message"></i></p>
+                            <p><i class="fa-regular fa-envelope"></i></p>
                         </div>
 
                     </div>
@@ -467,16 +501,16 @@
 
                     </div>
 
-                    <p class="text-size-h3 text-center my-4">Soeurn Broseth</p>
+                    <p class="text-size-h3 text-center my-4 text-black dark:text-white">Soeurn Broseth</p>
 
 
                     <!-- Info about member -->
                     <div class="px-2">
-                        <div class="flex flex-row justify-between text-2xl">
+                        <div class="flex flex-row justify-between text-2xl text-black dark:text-white">
                             <p><i class="fa-brands fa-linkedin-in "></i></p>
                             <p><i class="fa-brands fa-telegram "></i></p>
                             <p><i class="fa-brands fa-github "></i></p>
-                            <p><i class="fa-regular fa-message "></i></p>
+                            <p><i class="fa-regular fa-envelope"></i></p>
                         </div>
 
                     </div>
@@ -495,14 +529,14 @@
         <section class="pb-12 px-4 sm:px-10 lg:px-32 xl:px-64">
             <!-- HEADER / HERO -->
             <header class="pt-2 md:pt-4 pb-8 px-6 text-center relative z-10">
-                <h1 class="text-3xl md:text-5xl font-bold mb-4">Get in Touch</h1>
-                <p class="text-gray-200 max-w-xl mx-auto text-sm md:text-base">
+                <h1 class="text-[32px] sm:text-[32px] md:text-[40px] font-bold mb-4 text-black dark:text-white">Get in Touch</h1>
+                <p class=" max-w-xl mx-auto text-sm md:text-base text-black dark:text-white">
                     We'd love to hear from you. Send us a message below.
                 </p>
             </header>
             <!-- Contact Form (Centered) -->
             <div
-                class="bg-[#151926] p-6 md:p-8 rounded-2xl border border-white/5 relative overflow-hidden shadow-2xl shadow-blue-900/10 mx-auto">
+                class="bg-gray-200 dark:bg-[#151926] dark:border-white/5  p-6 md:p-8 rounded-2xl border relative overflow-hidden shadow-2xl shadow-blue-900/10 mx-auto">
                 <!-- Background decorative glow -->
                 <div
                     class="absolute top-0 right-0 w-32 sm:w-40 md:w-64 h-32 md:h-64 bg-blue-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
@@ -511,36 +545,39 @@
                     class="absolute bottom-0 left-0 w-32 sm:w-40 md:w-64 h-32 md:h-64 bg-purple-600/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2">
                 </div>
 
-                <form id="contactForm" class="space-y-5 md:space-y-6 relative z-10">
+                <form action="https://api.web3forms.com/submit" method="POST"
+                    class="space-y-5 md:space-y-6 relative z-10">
+                    <input type="hidden" name="access_key" value="07dff83d-a16b-4a2f-b642-67bc57710ba2">
+
                     <!-- Name Field -->
                     <div class="space-y-2">
-                        <label class="text-sm font-medium text-gray-300">Your Name</label>
-                        <input id="nameInput" type="text" placeholder="enter your name..."
-                            class="w-full bg-[#0B0D17] border border-white/10 rounded-lg pl-5 pr-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600">
+                        <label class="text-sm font-medium dark:text-gray-300 text-gray-800">Your Name</label>
+                        <input id="nameInput" type="text" name="name" placeholder="enter your name..." required
+                            class="w-full bg-gray-300 dark:bg-[#0B0D17] border border-white/10 rounded-lg pl-5 pr-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600">
                     </div>
 
                     <!-- Email Field -->
                     <div class="space-y-2">
-                        <label class="text-sm font-medium text-gray-300">Email Address</label>
+                        <label class="text-sm font-medium dark:text-gray-300 text-gray-800">Email Address</label>
                         <div class="relative">
                             <span class="absolute left-4 top-3.5 text-gray-500">
                                 <i class="fa-regular fa-envelope"></i>
                             </span>
-                            <input id="emailInput" type="email" placeholder="you@example.com"
-                                class="w-full bg-[#0B0D17] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600">
+                            <input id="emailInput" type="email" name="email" placeholder="you@example.com" required
+                                class="w-full bg-gray-300 dark:bg-[#0B0D17] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600">
                         </div>
                     </div>
 
                     <!-- Message Field -->
                     <div class="space-y-2">
-                        <label class="text-sm font-medium text-gray-300">Message</label>
-                        <textarea id="messageInput" rows="6" placeholder="How can we help you?"
-                            class="w-full bg-[#0B0D17] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition resize-none placeholder-gray-600"></textarea>
+                        <label class="text-sm font-medium dark:text-gray-300 text-gray-800">Message</label>
+                        <textarea id="messageInput" name="message" rows="6" placeholder="How can we help you?" required
+                            class="w-full bg-gray-300 dark:bg-[#0B0D17] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition resize-none placeholder-gray-600"></textarea>
                     </div>
 
                     <!-- Submit Button -->
-                    <button id="sendBtn" type="button"
-                        class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 md:py-4 rounded-lg transition duration-300 shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 group">
+                    <button id="sendBtn" type="submit"
+                        class="w-full bg:gray-300 bg-blue-400 dark:bg-blue-600 dark:from-blue-600 dark:to-indigo-600 dark:hover:from-blue-700 dark:hover:to-indigo-700 text-gray-800 dark:text-white font-bold py-3 md:py-4 rounded-lg transition duration-300 shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 group">
                         Send Message
                         <i class="fa-solid fa-paper-plane group-hover:translate-x-1 transition-transform"></i>
                     </button>
@@ -552,18 +589,15 @@
 
 
 
-
-
-
-
     <!-- Footer -->
-    <footer class="bg-gray-900 border-t border-gray-800 pt-12 md:pt-16 pb-8">
+    <footer class=" bg-white dark:bg-gray-900 border-t border-gray-800 pt-12 md:pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-6 md:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12 justify-items-center">
                 <div class="space-y-4">
                     <div class="flex items-center gap">
                         <a href="index.html" rel="noopener noreferrer">
-                            <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-16 w-auto object-contain">
+                            <img href="../index.html" src="../images/CamFlix-Logo.png" alt="camflix Logo"
+                                class="h-16 w-auto object-contain">
                         </a>
                     </div>
                     <div class="space-y-4 text-sm">
@@ -634,46 +668,6 @@
     </footer>
 
 
-    <!-- Scripts to make the blur when scroll down -->
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        let isMenuOpen = false;
-
-        function toggleMenu() {
-            isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                mobileMenu.classList.remove('menu-closed');
-                mobileMenu.classList.add('menu-open');
-                // Change icon to X
-                menuBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
-            } else {
-                mobileMenu.classList.remove('menu-open');
-                mobileMenu.classList.add('menu-closed');
-                // Change icon back to bars
-                menuBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
-                document.body.style.overflow = ''; // Enable scrolling
-            }
-        }
-        menuBtn.addEventListener('click', toggleMenu);
-
-        // Background navigation on scroll
-        // Scroll Event Listener
-        window.addEventListener('scroll', () => {
-            const mainNav = document.getElementById('mainNav');
-
-            if (window.scrollY > 50) {
-                mainNav.classList.remove('bg-gradient-to-b', 'from-black/90', 'to-transparent');
-                mainNav.classList.add('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
-            } else {
-                // AT THE TOP: Reset to original
-                mainNav.classList.remove('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
-                mainNav.classList.add('bg-gradient-to-b', 'from-black/90', 'to-transparent');
-            }
-        });
-    </script>
-
 
     <!-- script for sending email -->
     <script>
@@ -703,6 +697,92 @@
                 });
 
         });
+    </script>
+
+    <!-- Script for dark mode -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleButton = document.getElementById("theme-toggle");
+            const html = document.documentElement;
+
+            // Load saved theme
+            if (localStorage.getItem("theme") === "dark") {
+                html.classList.add("dark");
+            }
+
+            // Toggle
+            toggleButton.addEventListener("click", () => {
+                html.classList.toggle("dark");
+
+                // Save theme
+                localStorage.setItem("theme",
+                    html.classList.contains("dark") ? "dark" : "light"
+                );
+            });
+        });
+    </script>
+
+    <!-- Script for dark mode on mobile menu -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleButton = document.getElementById("theme-toggle-mobile");
+            const html = document.documentElement;
+
+            // Load saved theme
+            if (localStorage.getItem("theme") === "dark") {
+                html.classList.add("dark");
+            }
+
+            // Toggle
+            toggleButton.addEventListener("click", () => {
+                html.classList.toggle("dark");
+
+                // Save theme
+                localStorage.setItem("theme",
+                    html.classList.contains("dark") ? "dark" : "light"
+                );
+            });
+        });
+    </script>
+
+    <!-- Scripts for mobile menu -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('menu-closed');
+                mobileMenu.classList.add('menu-open');
+                // Change icon to X
+                menuBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                mobileMenu.classList.remove('menu-open');
+                mobileMenu.classList.add('menu-closed');
+                // Change icon back to bars
+                menuBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
+                document.body.style.overflow = ''; // Enable scrolling
+            }
+        }
+        menuBtn.addEventListener('click', toggleMenu);
+        // Background navigation on scroll
+        // Scroll Event Listener
+        window.addEventListener('scroll', () => {
+            const mainNav = document.getElementById('mainNav');
+
+            if (window.scrollY > 50) {
+                mainNav.classList.remove('bg-gradient-to-b', 'from-black/90', 'to-transparent');
+                mainNav.classList.add('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+            } else {
+                // AT THE TOP: Reset to original
+                mainNav.classList.remove('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
+                mainNav.classList.add('bg-gradient-to-b', 'from-black/90', 'to-transparent');
+            }
+        });
+
     </script>
 
 
