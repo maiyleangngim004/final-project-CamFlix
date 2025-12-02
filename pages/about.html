@@ -1,788 +1,1166 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CamFlix - About Us</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Inter:wght@300;400;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="icon" href="../images/CamFlix-Logo.png" type="image/png">
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../images/CamFlix-Logo.png" type="image/png" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../src/output.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../src/output.css" />
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Noto Sans"', 'Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#6366F1', // Indigo 500
-                        dark: '#0B0D17',
-                        card: '#151926',
-                        accent: '#6366F1'
-                    },
-                    screens: {
-                        'xs': '475px',
-                        // default tailwind breakpoints: sm: 640px, md: 768px, lg: 1024px, xl: 1280px
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Noto Sans"', "Inter", "sans-serif"],
+            },
+            colors: {
+              primary: "#6366F1", // Indigo 500
+              dark: "#0B0D17",
+              card: "#151926",
+              accent: "#6366F1",
+            },
+            screens: {
+              xs: "475px",
+              // default tailwind breakpoints: sm: 640px, md: 768px, lg: 1024px, xl: 1280px
+            },
+          },
+        },
+      };
     </script>
 
     <style>
-        /* Custom scrollbar to match the dark theme */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+      /* Custom scrollbar to match the dark theme */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
 
-        ::-webkit-scrollbar-track {
-            background: #0B0D17;
-        }
+      ::-webkit-scrollbar-track {
+        background: #0b0d17;
+      }
 
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
-        }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+      }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
 
-        .text-shadow {
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
 
-        /* Mobile Menu Animation */
-        #mobile-menu {
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-        }
+      /* Mobile Menu Animation */
+      #mobile-menu {
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      }
 
-        .menu-closed {
-            transform: translateY(-100%);
-            /* Moves it UP above the screen */
-            opacity: 0;
-            pointer-events: none;
-        }
+      .menu-closed {
+        transform: translateY(-100%);
+        /* Moves it UP above the screen */
+        opacity: 0;
+        pointer-events: none;
+      }
 
-        .menu-open {
-            transform: translateY(0);
-            /* Slides DOWN to natural position */
-            opacity: 1;
-            pointer-events: auto;
-        }
+      .menu-open {
+        transform: translateY(0);
+        /* Slides DOWN to natural position */
+        opacity: 1;
+        pointer-events: auto;
+      }
     </style>
 
     <!-- for dark mode and light mode -->
-     <script>
-        tailwind.config = {
-            darkMode: 'class',
-        }
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+      };
     </script>
 
     <!-- script for sending email -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  </head>
 
-</head>
-
-<body id="homePage">
-     <!-- class=" dark:bg-background text-gray-800 dark:text-white font-sans antialiased overflow-x-hidden" -->
+  <body id="homePage">
+    <!-- class=" dark:bg-background text-gray-800 dark:text-white font-sans antialiased overflow-x-hidden" -->
     <!-- Navigation -->
-    <nav id="mainNav"
-        class="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-2 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent transition-all duration-300">
-        <div class="flex items-center gap-2 z-50">
-            <a href="../index.html" rel="noopener noreferrer">
-                <img src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-12 w-auto object-contain">
-            </a>
-        </div>
+    <nav
+      id="mainNav"
+      class="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-2 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent transition-all duration-300"
+    >
+      <div class="flex items-center gap-2 z-50">
+        <a href="../index.html" rel="noopener noreferrer">
+          <img
+            src="../images/CamFlix-Logo.png"
+            alt="camflix Logo"
+            class="h-12 w-auto object-contain"
+          />
+        </a>
+      </div>
 
-        <!-- Desktop Search Bar -->
-        <div
-            class="hidden md:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 flex-1 max-w-md mx-6 xl:w-96 border border-white/10 focus-within:border-primary transition-colors">
-            <a href="search.html" class=" flex "> <i class="fa-solid fa-search text-gray-400 mr-3 pt-1"></i>
-            <input type="text" placeholder="Search movies..."
-                class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400 focus:ring-0"></a>
-        </div>
+      <!-- Desktop Search Bar -->
+      <div
+        class="hidden md:flex items-center bg-white/10 backdrop-blur-md rounded-full px-4 py-2 flex-1 max-w-md mx-6 xl:w-96 border border-white/10 focus-within:border-primary transition-colors"
+      >
+        <a href="search.html" class="flex">
+          <i class="fa-solid fa-search text-gray-400 mr-3 pt-1"></i>
+          <input
+            type="text"
+            placeholder="Search movies..."
+            class="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-400 focus:ring-0"
+        /></a>
+      </div>
 
-        <!-- Desktop Navigation Links -->
-        <div class="hidden md:flex items-center gap-6 text-sm font-medium">
-            <!-- <a href="#homePage" class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition">Home</a> -->
-            <a href="about.html" class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition">About us</a>
-            <a href="explored.html" class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition flex items-center gap-1 whitespace-nowrap">Let's Explore 
-                <svg class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </a>
-            <button id="theme-toggle" 
-                class="p-1 rounded-full bg-white dark:bg-gray-900 text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition shadow-lg">
+      <!-- Desktop Navigation Links -->
+      <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <!-- <a href="#homePage" class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition">Home</a> -->
+        <a
+          href="about.html"
+          class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition"
+          >About us</a
+        >
+        <a
+          href="explored.html"
+          class="text-gray-300 hover:text-blue-500 focus:text-blue-500 transition flex items-center gap-1 whitespace-nowrap"
+          >Let's Explore
+          <svg
+            class="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </a>
+        <button
+          id="theme-toggle"
+          class="p-1 rounded-full bg-white dark:bg-gray-900 text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition shadow-lg"
+        >
+          <!-- Moon icon (show in LIGHT mode) -->
+          <svg
+            id="moon-icon"
+            class="w-5 h-5 dark:hidden"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
+            />
+          </svg>
 
-                <!-- Moon icon (show in LIGHT mode) -->
-                <svg id="moon-icon" class="w-5 h-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-                </svg>
-
-                <!-- Sun icon (show in DARK mode) -->
-                <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-            </button>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button id="menu-btn" class="md:hidden z-50 text-white focus:outline-none p-2">
-            <i class="fa-solid fa-bars text-2xl"></i>
+          <!-- Sun icon (show in DARK mode) -->
+          <svg
+            id="sun-icon"
+            class="w-5 h-5 hidden dark:block"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+            />
+          </svg>
         </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="menu-btn"
+        class="md:hidden z-50 text-white focus:outline-none p-2"
+      >
+        <i class="fa-solid fa-bars text-2xl"></i>
+      </button>
     </nav>
 
     <!-- Mobile Full Screen Menu -->
-    <div id="mobile-menu"
-        class="fixed right-0 top-16 w-full bg-dark/90 backdrop-blur-xl z-40 flex flex-col items-start space-y-4 p-6 
-           rounded-xl shadow-xl menu-closed md:hidden transition-all duration-300">
-        <!-- Close Button (Also handled by main toggle, but visual clarity) -->
+    <div
+      id="mobile-menu"
+      class="fixed right-0 top-16 w-full bg-dark/90 backdrop-blur-xl z-40 flex flex-col items-start space-y-4 p-6 rounded-xl shadow-xl menu-closed md:hidden transition-all duration-300"
+    >
+      <!-- Close Button (Also handled by main toggle, but visual clarity) -->
 
-        <!-- Mobile Search -->
-        <div class="w-3/4 max-w-sm flex items-center rounded-full px-4 py-3 border border-white/20">
-            <a href="search.html" class=" flex ">
-                <i class="fa-solid fa-search text-gray-400 mr-3 pt-1 hover:outline"></i>
-            <input type="text" placeholder="Search movies..."
-                class="bg-transparent border-none outline-none text-base w-full text-white placeholder-gray-400">
-            </a>
-            
-        </div>
-        <a href="../index.html" class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition" onclick="toggleMenu()">Home</a>
-        <a href="about.html" class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition" onclick="toggleMenu()">About
-            us</a>
-        <a href="explored.html" class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition"
-            onclick="toggleMenu()">Explore</a>
-        <button id="theme-toggle-mobile" 
-                class="p-1 rounded-full bg-white dark:bg-gray-900 text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition shadow-lg">
+      <!-- Mobile Search -->
+      <div
+        class="w-3/4 max-w-sm flex items-center rounded-full px-4 py-3 border border-white/20"
+      >
+        <a href="search.html" class="flex">
+          <i
+            class="fa-solid fa-search text-gray-400 mr-3 pt-1 hover:outline"
+          ></i>
+          <input
+            type="text"
+            placeholder="Search movies..."
+            class="bg-transparent border-none outline-none text-base w-full text-white placeholder-gray-400"
+          />
+        </a>
+      </div>
+      <a
+        href="../index.html"
+        class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition"
+        onclick="toggleMenu()"
+        >Home</a
+      >
+      <a
+        href="about.html"
+        class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition"
+        onclick="toggleMenu()"
+        >About us</a
+      >
+      <a
+        href="explored.html"
+        class="text-2xl font-bold text-white hover:text-blue-500 focus:text-blue-500 transition"
+        onclick="toggleMenu()"
+        >Explore</a
+      >
+      <button
+        id="theme-toggle-mobile"
+        class="p-1 rounded-full bg-white dark:bg-gray-900 text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition shadow-lg"
+      >
+        <!-- Moon icon (show in LIGHT mode) -->
+        <svg
+          id="moon-icon"
+          class="w-5 h-5 dark:hidden"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
+          />
+        </svg>
 
-                <!-- Moon icon (show in LIGHT mode) -->
-                <svg id="moon-icon" class="w-5 h-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-                </svg>
-
-                <!-- Sun icon (show in DARK mode) -->
-                <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-        </button>
+        <!-- Sun icon (show in DARK mode) -->
+        <svg
+          id="sun-icon"
+          class="w-5 h-5 hidden dark:block"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          />
+        </svg>
+      </button>
     </div>
-
 
     <!-- Main Content -->
 
     <main class="dark:bg-gray-900 bg-white text-gray-50 flex-1 pt-[100px]">
-
-        <!-- Hero section  -->
-        <!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
-        <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
-        <section class=" relative dark:not-odd:bg-gray-900 bg-no-repeat bg-cover bg-center -mt-[100px]"
-            style="background-image: url('../Images_for_contact_page/bg-about.jpg');">
-            <div class="absolute inset-0 dark:bg-black/50 bg-white/10"></div>
-            <div class="relative isolate px-6 pt-0 lg:px-8">
-                <div aria-hidden="true"
-                    class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-                    <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-                        class="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75">
-                    </div>
-                </div>
-                <div class="mx-auto max-w-2xl py-30 sm:py-10 lg:py-32">
-                    <div class="text-center">
-                        <h1 class="text-[32px] sm:text-[20px] sm:mt-[50px] sm:pt-[50px] md:text-[34px] lg:text-[40px] font-type font-bold tracking-tight text-balance text-white">Unlimited
-                            movies and shows, just for you</h1>
-                        <p
-                            class="mt-8 text-size-body xs:text-size-extra-small sm:text-size-small md:text-size-small text-pretty text-white ">
-                            Our streaming website
-                            makes it easy to watch your favorite movies and shows. You can browse a big collection of
-                            content, pick what you like, and start watching right away. Create your own watchlist, get
-                            recommendations, and enjoy smooth, high-quality streaming anytime.</p>
-                    </div>
-                </div>
-                <div aria-hidden="true"
-                    class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
-                    <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"
-                        class="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- who are we  -->
-        <section class="py-10 px-4 sm:px-8 lg:px-32 lg:mx-24 ">
-            <h2 class="text-[32px] sm:text-[32px] md:text-[40px] font-type font-bold text-center mb-6 text-black dark:text-white">WHO ARE WE?</h2>
-            <div class="flex flex-col-reverse lg:flex-row items-center lg:items-center gap-6 lg:gap-12">
-                <!-- info -->
-                <div class=" w-full  lg:flex-1 space-y-4">
-                    <p class="text-size-body xs:text-size-extra-small sm:text-[xl] md:text-xl lg:text-2xl  leading-relaxed text-black dark:text-white">
-                        ComFlix is a modern streaming platform with a sleek, Netflix-inspired interface, designed to
-                        make discovering and watching your favorite movies and shows effortless. Developed by the
-                        Institute of Science and Technology Advanced Development students in 2025. ComaFlix brings
-                        together an extensive collection of films and series with a seamless, interactive user
-                        experience.
-                </div>
-                <!--  image -->
-                <div class="flex-shrink-0 w-full sm:w-80 lg:w-[350px]">
-                    <img class="w-full h-56 sm:h-64 lg:h-[250px] rounded-2xl shadow-lg mx-auto object-cover"
-                        loading="lazy" width="350" height="250" src="../Images/team.jpg"
-                        alt="Movie time poster">
-                </div>
-            </div>
-        </section>
-
-
-
-        <section class="py-10 px-4 sm:px-8 lg:px-32 lg:mx-24">
-            <h2 class="text-[32px] sm:text-[32px] md:text-[40px] font-type font-bold text-center mb-6 text-black dark:text-white">ABOUT US</h2>
-            <div class="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-6 lg:gap-12">
-                <!--  image -->
-                <div class="flex-shrink-0 w-full sm:w-80 lg:w-[350px]">
-                    <img class="w-full h-56 sm:h-64 lg:h-[250px] rounded-2xl shadow-lg mx-auto object-cover"
-                        loading="lazy" width="350" height="250" src="../Images_for_contact_page/movie time.jpg"
-                        alt="Movie time poster">
-                </div>
-
-                <!-- info -->
-                <div class=" w-full flex lg:flex-1 iterms-center space-y-4">
-                    <p class="text-size-body xs:text-size-extra-small sm:text-size-small md:text-size-small leading-relaxe mt-[70px] text-black dark:text-white">
-                        Your ultimate destination for everything cinema! We are a comprehensive online platform
-                        dedicated to connecting movie lovers with the films they adore.
-                    </p>
-                </div>
-            </div>
-            <!-- Divider -->
-            <div class="border-t border-gray-700 mt-12 pt-8"></div>
-        </section>
-
-        <!-- mentors info -->
-        <section class="pb-12 px-4 sm:px-8 lg:px-32 ">
-            <div class="container mx-auto ">
-                <h2 class="font-type text-[32px] sm:text-[32px] md:text-[40px] font-bold mb-10 text-center text-black dark:text-white">OUR MENTORS</h2>
-
-                <div
-                    class="w-full grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center gap-10 justify-items-center">
-
-                    <!-- Card 1 -->
-                    <div
-                        class="w-60 h-auto py-6 transform transition-transform duration-300">
-                        <div class="relative w-full h-72 rounded-2xl overflow-hidden">
-                            <img class="w-full h-full object-cover" src="../Images_for_contact_page/mentor-lyshai.jpg"
-                                alt="Eung Lyzhia">
-
-                        </div>
-
-                        <p class="text-size-h3 text-center my-4 text-black dark:text-white">Eung Lyzhia</p>
-
-
-                        <!-- Info about mentor -->
-                        <div class="px-2">
-                            <div class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white text-black dark:text-white">
-                                <a href="https://www.linkedin.com/in/sila-sem-78b3872b8/"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fa-brands fa-telegram"></i></a>
-                                <a href="#"><i class="fa-brands fa-github"></i></a>
-                                <a href="#"><i class="fa-regular fa-envelope"></i></a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!--  Card 2 -->
-                    <div
-                        class=" w-60 h-auto py-6 transform transition-transform duration-300">
-                        <div class=" relative w-full h-72 rounded-2xl overflow-hidden">
-                            <img class="w-full h-full object-cover"
-                                src="../Images_for_contact_page/mentor-chansokpheng.jpg" alt="Kim Chansokpheng">
-
-                        </div>
-
-                        <p class="text-size-h3 text-center my-4 whitespace-nowrap text-black dark:text-white -ml-4">Kim Chansokpheng</p>
-
-                        <!-- Info about mentor -->
-                        <div class="px-2">
-                            <div class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white text-black dark:text-white">
-                                <a href="https://www.linkedin.com/in/sila-sem-78b3872b8/"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fa-brands fa-telegram"></i></a>
-                                <a href="#"><i class="fa-brands fa-github"></i></a>
-                                <a href="#"><i class="fa-regular fa-envelope"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </section>
-
-        <!-- 3 members info -->
-        <section class="pb-12 px-4 sm:px-8 lg:px-32 ">
-            <div class="container mx-auto px-4">
-                <h2 class="text-[32px] sm:text-[32px] md:text-[40px] font-bold mb-8 text-center text-black dark:text-white"> TEAM MEMBERS</h2>
-
-                <div
-                    class="w-full grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center gap-10 justify-items-center">
-
-                    <!-- Card 1 -->
-                    <div
-                        class=" w-60 h-auto py-6 transform transition-transform duration-300 ">
-                        <div class="relative w-full h-72 rounded-2xl">
-                            <img class="w-full h-full object-cover rounded-2xl"
-                                src="../Images_for_contact_page/ISTAD_LEANGNGIM.jpg" alt="Maiy Leangngim">
-
-                        </div>
-
-                        <p class="text-size-h3 text-center my-4 text-black dark:text-white">Maiy Leangngim</p>
-
-
-                        <!-- Info about member -->
-                        <div class="px-2">
-                            <div class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white">
-                                <a href="https://www.linkedin.com/in/maiy-leangngim-969715382/"><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="https://t.me/maiyleangngim"><i class="fa-brands fa-telegram"></i></a>
-                                <a href="https://github.com/maiyleangngim004"><i class="fa-brands fa-github"></i></a>
-                                <a href="mailto: maiyleangngim004@gmail.com"><i class="fa-regular fa-envelope"></i></a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!--  Card 2 -->
-                    <div
-                        class="w-64 h-auto py-6 transform transition-transform duration-300 rounded-2xl">
-                        <div class="relative w-full h-72 rounded-2xl ">
-                            <img class="w-full h-full object-cover rounded-2xl"
-                                src="../Images_for_contact_page/ISTAD_KAKADA.jpg" alt="Pe Kakda">
-
-                        </div>
-
-                        <p class="text-size-h3 text-center my-4 whitespace-nowrap px-0 text-black dark:text-white">Pe Kakda</p>
-
-                        <!-- Info about mentor -->
-                        <div class="px-2">
-                            <div class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white">
-                                <a href="https://www.linkedin.com/in/kakda-pe-639ab634a/"><i class="fa-brands fa-linkedin-in "></i></a>
-                                <a href="https://t.me/kakda_pe"><i class="fa-brands fa-telegram "></i></a>
-                                <a href="https://github.com/kakdape97-dotcom"><i class="fa-brands fa-github "></i></a>
-                                <a href="mailto: kakdape97@gmail.com"><i class="fa-regular fa-envelope"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- card 3 -->
-                    <div
-                        class=" w-60 h-auto py-6 transform transition-transform duration-300">
-                        <div class="relative w-full h-72 rounded-2xl">
-                            <img class="w-full h-full object-cover rounded-2xl"
-                                src="../Images_for_contact_page/ISTAD_SOLEAKNA.jpg" alt="Heng Soleakna">
-
-                        </div>
-
-                        <p class="text-size-h3 text-center my-4 text-black dark:text-white">Heng Soleakna</p>
-
-
-                        <!-- Info about member -->
-                        <div class="px-2">
-                            <div class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white">
-                                <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fa-brands fa-telegram"></i></a>
-                                <a href="#"><i class="fa-brands fa-github"></i></a>
-                                <a href="#"><i class="fa-regular fa-envelope"></i></a>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </section>
-
-
-
-        <!-- 4 members info -->
-        <section class="pb-12 px-4 sm:px-8 lg:px-32 ">
+      <!-- Hero section  -->
+      <!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
+      <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
+      <section
+        class="relative dark:not-odd:bg-gray-900 bg-no-repeat bg-cover bg-center -mt-[100px]"
+        style="background-image: url('../Images_for_contact_page/bg-about.jpg')"
+      >
+        <div class="absolute inset-0 dark:bg-black/50 bg-white/10"></div>
+        <div class="relative isolate px-6 pt-0 lg:px-8">
+          <div
+            aria-hidden="true"
+            class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          >
             <div
-                class="w-full grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center gap-10 justify-items-center">
-
-
-                <!-- Card 1 -->
-                <div class=" w-60 h-auto py-6 transform transition-transform duration-300 ">
-                    <div class="relative w-full h-72 rounded-2xl">
-                        <img class="w-full h-full object-cover rounded-2xl"
-                            src="../Images_for_contact_page/ISTAD_MENGHONG.jpg" alt="Actor">
-
-                    </div>
-
-                    <p class="text-size-h3 text-center my-4 -ml-0.5 text-black dark:text-white">Heng Menghong</p>
-
-
-                    <!-- Info about member -->
-                    <div class="px-2">
-                        <div class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white">
-                            <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fa-brands fa-telegram"></i></a>
-                            <a href=""><i class="fa-brands fa-github"></i></a>
-                            <a href="#"><i class="fa-regular fa-envelope"></i></a>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!--  Card 2 -->
-                <div class="w-60 h-auto py-6 transform transition-transform duration-300 ">
-                    <div class="relative w-full h-72 rounded-2xl">
-                        <img class="w-full h-full object-cover rounded-2xl"
-                            src="../Images_for_contact_page/ISTAD_ROTHA.jpg" alt="Sovan Rotha">
-
-                    </div>
-
-                    <p class="text-size-h3 text-center my-4 text-black dark:text-white">Sovan Rotha</p>
-
-                    <!-- Info about mentor -->
-                    <div class="px-2">
-                        <div class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white">
-                            <a href="https://www.linkedin.com/in/sila-sem-78b3872b8/"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fa-brands fa-telegram"></i></a>
-                            <a href="#"><i class="fa-brands fa-github"></i></a>
-                            <a href="#"><i class="fa-regular fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- card 3 -->
-                <div class=" w-60 h-auto py-6 transform transition-transform duration-300 ">
-                    <div class="relative w-full h-72 rounded-2xl">
-                        <img class="w-full h-full object-cover rounded-2xl"
-                            src="../Images_for_contact_page/ISTAD_SILA.jpg" alt="Sem Sila">
-
-                    </div>
-
-                    <p class="text-size-h3 text-center my-4 text-black dark:text-white">Sem Sila</p>
-
-
-                    <!-- Info about member -->
-                    <div class="px-2">
-                        <div class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white">
-                            <a href="https://www.linkedin.com/in/sila-sem-78b3872b8/"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fa-brands fa-telegram"></i></a>
-                            <a href="#"><i class="fa-brands fa-github"></i></a>
-                            <a href="#"><i class="fa-regular fa-envelope"></i></a>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <!-- card 3 -->
-                <div class=" w-60 h-auto py-6 transform transition-transform duration-300 ">
-                    <div class="relative w-full h-72 rounded-2xl">
-                        <img class="w-full h-full object-cover rounded-2xl"
-                            src="../Images_for_contact_page/ISTAD_SETH.jpg" alt="Soeurn Broseth">
-
-                    </div>
-
-                    <p class="text-size-h3 text-center my-4 text-black dark:text-white">Soeurn Broseth</p>
-
-
-                    <!-- Info about member -->
-                    <div class="px-2">
-                        <div class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white">
-                            <a href="https://www.linkedin.com/in/sila-sem-78b3872b8/"><i class="fa-brands fa-linkedin-in "></i></a>
-                            <a href="#"><i class="fa-brands fa-telegram "></i></a>
-                            <a href="#"><i class="fa-brands fa-github "></i></a>
-                            <a href="#"><i class="fa-regular fa-envelope"></i></a>
-                        </div>
-
-                    </div>
-                </div>
-
+              style="
+                clip-path: polygon(
+                  74.1% 44.1%,
+                  100% 61.6%,
+                  97.5% 26.9%,
+                  85.5% 0.1%,
+                  80.7% 2%,
+                  72.5% 32.5%,
+                  60.2% 62.4%,
+                  52.4% 68.1%,
+                  47.5% 58.3%,
+                  45.2% 34.5%,
+                  27.5% 76.7%,
+                  0.1% 64.9%,
+                  17.9% 100%,
+                  27.6% 76.8%,
+                  76.1% 97.7%,
+                  74.1% 44.1%
+                );
+              "
+              class="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"
+            ></div>
+          </div>
+          <div class="mx-auto max-w-2xl py-30 sm:py-10 lg:py-32">
+            <div class="text-center">
+              <h1
+                class="text-[32px] sm:text-[20px] sm:mt-[50px] sm:pt-[50px] md:text-[34px] lg:text-[40px] font-type font-bold tracking-tight text-balance text-white"
+              >
+                Unlimited movies and shows, just for you
+              </h1>
+              <p
+                class="mt-8 text-size-body xs:text-size-extra-small sm:text-size-small md:text-size-small text-pretty text-white"
+              >
+                Our streaming website makes it easy to watch your favorite
+                movies and shows. You can browse a big collection of content,
+                pick what you like, and start watching right away. Create your
+                own watchlist, get recommendations, and enjoy smooth,
+                high-quality streaming anytime.
+              </p>
             </div>
-
-            <!-- Divider -->
-            <div class="border-t border-gray-700 mt-12 pt-8"></div>
-
-
-        </section>
-
-
-        <!-- contact form -->
-        <section class="pb-12 px-4 sm:px-10 lg:px-32 xl:px-64">
-            <!-- HEADER / HERO -->
-            <header class="pt-2 md:pt-4 pb-8 px-6 text-center relative z-10">
-                <h1 class="text-[32px] sm:text-[32px] md:text-[40px] font-bold mb-4 text-black dark:text-white">Get in Touch</h1>
-                <p class=" max-w-xl mx-auto text-sm md:text-base text-black dark:text-white">
-                    We'd love to hear from you. Send us a message below.
-                </p>
-            </header>
-            <!-- Contact Form (Centered) -->
+          </div>
+          <div
+            aria-hidden="true"
+            class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+          >
             <div
-                class="bg-gray-200 dark:bg-[#151926] dark:border-white/5  p-6 md:p-8 rounded-2xl border relative overflow-hidden shadow-2xl shadow-blue-900/10 mx-auto">
-                <!-- Background decorative glow -->
+              style="
+                clip-path: polygon(
+                  74.1% 44.1%,
+                  100% 61.6%,
+                  97.5% 26.9%,
+                  85.5% 0.1%,
+                  80.7% 2%,
+                  72.5% 32.5%,
+                  60.2% 62.4%,
+                  52.4% 68.1%,
+                  47.5% 58.3%,
+                  45.2% 34.5%,
+                  27.5% 76.7%,
+                  0.1% 64.9%,
+                  17.9% 100%,
+                  27.6% 76.8%,
+                  76.1% 97.7%,
+                  74.1% 44.1%
+                );
+              "
+              class="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- who are we  -->
+      <section class="py-10 px-4 sm:px-8 lg:px-32 lg:mx-24">
+        <h2
+          class="text-[32px] sm:text-[32px] md:text-[40px] font-type font-bold text-center mb-6 text-black dark:text-white"
+        >
+          WHO ARE WE?
+        </h2>
+        <div
+          class="flex flex-col-reverse lg:flex-row items-center lg:items-center gap-6 lg:gap-12"
+        >
+          <!-- info -->
+          <div class="w-full lg:flex-1 space-y-4">
+            <p
+              class="text-size-body xs:text-size-extra-small sm:text-[xl] md:text-xl lg:text-2xl leading-relaxed text-black dark:text-white"
+            >
+              ComFlix is a modern streaming platform with a sleek,
+              Netflix-inspired interface, designed to make discovering and
+              watching your favorite movies and shows effortless. Developed by
+              the Institute of Science and Technology Advanced Development
+              students in 2025. ComaFlix brings together an extensive collection
+              of films and series with a seamless, interactive user experience.
+            </p>
+          </div>
+
+          <!--  image -->
+          <div class="flex-shrink-0 w-full sm:w-80 lg:w-[350px]">
+            <img
+              class="w-full h-56 sm:h-64 lg:h-[250px] rounded-2xl shadow-lg mx-auto object-cover"
+              loading="lazy"
+              width="350"
+              height="250"
+              src="../Images/team.jpg"
+              alt="Movie time poster"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="py-10 px-4 sm:px-8 lg:px-32 lg:mx-24">
+        <h2
+          class="text-[32px] sm:text-[32px] md:text-[40px] font-type font-bold text-center mb-6 text-black dark:text-white"
+        >
+          ABOUT US
+        </h2>
+        <div
+          class="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-6 lg:gap-12"
+        >
+          <!--  image -->
+          <div class="flex-shrink-0 w-full sm:w-80 lg:w-[350px]">
+            <img
+              class="w-full h-56 sm:h-64 lg:h-[250px] rounded-2xl shadow-lg mx-auto object-cover"
+              loading="lazy"
+              width="350"
+              height="250"
+              src="../Images_for_contact_page/movie time.jpg"
+              alt="Movie time poster"
+            />
+          </div>
+
+          <!-- info -->
+          <div class="w-full flex lg:flex-1 iterms-center space-y-4">
+            <p
+              class="text-size-body xs:text-size-extra-small sm:text-size-small md:text-size-small leading-relaxe mt-[70px] text-black dark:text-white"
+            >
+              Your ultimate destination for everything cinema! We are a
+              comprehensive online platform dedicated to connecting movie lovers
+              with the films they adore.
+            </p>
+          </div>
+        </div>
+        <!-- Divider -->
+        <div class="border-t border-gray-700 mt-12 pt-8"></div>
+      </section>
+
+      <!-- mentors info -->
+      <section class="pb-12 px-4 sm:px-8 lg:px-32">
+        <div class="container mx-auto">
+          <h2
+            class="font-type text-[32px] sm:text-[32px] md:text-[40px] font-bold mb-10 text-center text-black dark:text-white"
+          >
+            OUR MENTORS
+          </h2>
+
+          <div
+            class="w-full grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center gap-10 justify-items-center"
+          >
+            <!-- Card 1 -->
+            <div
+              class="w-60 h-auto py-6 transform transition-transform duration-300"
+            >
+              <div class="relative w-full h-72 rounded-2xl overflow-hidden">
+                <img
+                  class="w-full h-full object-cover"
+                  src="../Images_for_contact_page/mentor-lyshai.jpg"
+                  alt="Eung Lyzhia"
+                />
+              </div>
+
+              <p
+                class="text-size-h3 text-center my-4 text-black dark:text-white"
+              >
+                Eung Lyzhia
+              </p>
+
+              <!-- Info about mentor -->
+              <div class="px-2">
                 <div
-                    class="absolute top-0 right-0 w-32 sm:w-40 md:w-64 h-32 md:h-64 bg-blue-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+                  class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white text-black dark:text-white"
+                >
+                  <a href="https://www.linkedin.com/in/sila-sem-78b3872b8/"
+                    ><i class="fa-brands fa-linkedin-in"></i
+                  ></a>
+                  <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                  <a href="#"><i class="fa-brands fa-github"></i></a>
+                  <a href="#"><i class="fa-regular fa-envelope"></i></a>
                 </div>
-                <div
-                    class="absolute bottom-0 left-0 w-32 sm:w-40 md:w-64 h-32 md:h-64 bg-purple-600/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2">
-                </div>
-
-                <form action="https://api.web3forms.com/submit" method="POST"
-                    class="space-y-5 md:space-y-6 relative z-10">
-                    <input type="hidden" name="access_key" value="07dff83d-a16b-4a2f-b642-67bc57710ba2">
-
-                    <!-- Name Field -->
-                    <div class="space-y-2">
-                        <label class="text-sm font-medium dark:text-gray-300 text-gray-800">Your Name</label>
-                        <input id="nameInput" type="text" name="name" placeholder="Enter your name..." required
-                            class="w-full bg-gray-300 dark:bg-[#0B0D17] border border-white/10 rounded-lg pl-5 pr-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600">
-                    </div>
-
-                    <!-- Email Field -->
-                    <div class="space-y-2">
-                        <label class="text-sm font-medium dark:text-gray-300 text-gray-800">Email Address</label>
-                        <div class="relative">
-                            <span class="absolute left-4 top-3.5 text-gray-500">
-                                <i class="fa-regular fa-envelope"></i>
-                            </span>
-                            <input id="emailInput" type="email" name="email" placeholder="you@example.com" required
-                                class="w-full bg-gray-300 dark:bg-[#0B0D17] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600">
-                        </div>
-                    </div>
-
-                    <!-- Message Field -->
-                    <div class="space-y-2">
-                        <label class="text-sm font-medium dark:text-gray-300 text-gray-800">Message</label>
-                        <textarea id="messageInput" name="message" rows="6" placeholder="How can we help you?" required
-                            class="w-full bg-gray-300 dark:bg-[#0B0D17] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition resize-none placeholder-gray-600"></textarea>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button id="sendBtn" type="submit"
-                        class="w-full bg:gray-300 bg-indigo-600 dark:bg-indigo-700 dark:from-indigo-700 dark:to-indigo-600 dark:hover:from-blue-700 dark:hover:to-indigo-700 text-white font-bold py-3 md:py-4 rounded-lg transition duration-300 flex items-center justify-center gap-2 group">
-                        Send Message
-                        <i class="fa-solid fa-paper-plane group-hover:translate-x-1 transition-transform"></i>
-                    </button>
-                </form>
+              </div>
             </div>
-        </section>
 
+            <!--  Card 2 -->
+            <div
+              class="w-60 h-auto py-6 transform transition-transform duration-300"
+            >
+              <div class="relative w-full h-72 rounded-2xl overflow-hidden">
+                <img
+                  class="w-full h-full object-cover"
+                  src="../Images_for_contact_page/mentor-chansokpheng.jpg"
+                  alt="Kim Chansokpheng"
+                />
+              </div>
+
+              <p
+                class="text-size-h3 text-center my-4 whitespace-nowrap text-black dark:text-white -ml-4"
+              >
+                Kim Chansokpheng
+              </p>
+
+              <!-- Info about mentor -->
+              <div class="px-2">
+                <div
+                  class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white text-black dark:text-white"
+                >
+                  <a href="https://www.linkedin.com/in/sila-sem-78b3872b8/"
+                    ><i class="fa-brands fa-linkedin-in"></i
+                  ></a>
+                  <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                  <a href="#"><i class="fa-brands fa-github"></i></a>
+                  <a href="#"><i class="fa-regular fa-envelope"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 members info -->
+      <section class="pb-12 px-4 sm:px-8 lg:px-32">
+        <div class="container mx-auto px-4">
+          <h2
+            class="text-[32px] sm:text-[32px] md:text-[40px] font-bold mb-8 text-center text-black dark:text-white"
+          >
+            TEAM MEMBERS
+          </h2>
+
+          <div
+            class="w-full grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center gap-10 justify-items-center"
+          >
+            <!-- Card 1 -->
+            <div
+              class="w-60 h-auto py-6 transform transition-transform duration-300"
+            >
+              <div class="relative w-full h-72 rounded-2xl">
+                <img
+                  class="w-full h-full object-cover rounded-2xl"
+                  src="../Images_for_contact_page/ISTAD_LEANGNGIM.jpg"
+                  alt="Maiy Leangngim"
+                />
+              </div>
+
+              <p
+                class="text-size-h3 text-center my-4 text-black dark:text-white"
+              >
+                Maiy Leangngim
+              </p>
+
+              <!-- Info about member -->
+              <div class="px-2">
+                <div
+                  class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white"
+                >
+                  <a
+                    href="https://www.linkedin.com/in/maiy-leangngim-969715382/"
+                    ><i class="fa-brands fa-linkedin-in"></i
+                  ></a>
+                  <a href="https://t.me/maiyleangngim"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                  <a href="https://github.com/maiyleangngim004"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="mailto: maiyleangngim004@gmail.com"
+                    ><i class="fa-regular fa-envelope"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <!--  Card 2 -->
+            <div
+              class="w-64 h-auto py-6 transform transition-transform duration-300 rounded-2xl"
+            >
+              <div class="relative w-full h-72 rounded-2xl">
+                <img
+                  class="w-full h-full object-cover rounded-2xl"
+                  src="../Images_for_contact_page/ISTAD_KAKADA.jpg"
+                  alt="Pe Kakda"
+                />
+              </div>
+
+              <p
+                class="text-size-h3 text-center my-4 whitespace-nowrap px-0 text-black dark:text-white"
+              >
+                Pe Kakda
+              </p>
+
+              <!-- Info about mentor -->
+              <div class="px-2">
+                <div
+                  class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white"
+                >
+                  <a href="https://www.linkedin.com/in/kakda-pe-639ab634a/"
+                    ><i class="fa-brands fa-linkedin-in"></i
+                  ></a>
+                  <a href="https://t.me/kakda_pe"
+                    ><i class="fa-brands fa-telegram"></i
+                  ></a>
+                  <a href="https://github.com/kakdape97-dotcom"
+                    ><i class="fa-brands fa-github"></i
+                  ></a>
+                  <a href="mailto: kakdape97@gmail.com"
+                    ><i class="fa-regular fa-envelope"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- card 3 -->
+            <div
+              class="w-60 h-auto py-6 transform transition-transform duration-300"
+            >
+              <div class="relative w-full h-72 rounded-2xl">
+                <img
+                  class="w-full h-full object-cover rounded-2xl"
+                  src="../Images_for_contact_page/ISTAD_SOLEAKNA.jpg"
+                  alt="Heng Soleakna"
+                />
+              </div>
+
+              <p
+                class="text-size-h3 text-center my-4 text-black dark:text-white"
+              >
+                Heng Soleakna
+              </p>
+
+              <!-- Info about member -->
+              <div class="px-2">
+                <div
+                  class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white"
+                >
+                  <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+                  <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                  <a href="#"><i class="fa-brands fa-github"></i></a>
+                  <a href="#"><i class="fa-regular fa-envelope"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 members info -->
+      <section class="pb-12 px-4 sm:px-8 lg:px-32">
+        <div
+          class="w-full grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap lg:justify-center gap-10 justify-items-center"
+        >
+          <!-- Card 1 -->
+          <div
+            class="w-60 h-auto py-6 transform transition-transform duration-300"
+          >
+            <div class="relative w-full h-72 rounded-2xl">
+              <img
+                class="w-full h-full object-cover rounded-2xl"
+                src="../Images_for_contact_page/ISTAD_MENGHONG.jpg"
+                alt="Actor"
+              />
+            </div>
+
+            <p
+              class="text-size-h3 text-center my-4 -ml-0.5 text-black dark:text-white"
+            >
+              Heng Menghong
+            </p>
+
+            <!-- Info about member -->
+            <div class="px-2">
+              <div
+                class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white"
+              >
+                <a href=""><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                <a href=""><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-regular fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!--  Card 2 -->
+          <div
+            class="w-60 h-auto py-6 transform transition-transform duration-300"
+          >
+            <div class="relative w-full h-72 rounded-2xl">
+              <img
+                class="w-full h-full object-cover rounded-2xl"
+                src="../Images_for_contact_page/ISTAD_ROTHA.jpg"
+                alt="Sovan Rotha"
+              />
+            </div>
+
+            <p class="text-size-h3 text-center my-4 text-black dark:text-white">
+              Sovan Rotha
+            </p>
+
+            <!-- Info about mentor -->
+            <div class="px-2">
+              <div
+                class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white"
+              >
+                <a href="https://www.linkedin.com/in/sila-sem-78b3872b8/"
+                  ><i class="fa-brands fa-linkedin-in"></i
+                ></a>
+                <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-regular fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- card 3 -->
+          <div
+            class="w-60 h-auto py-6 transform transition-transform duration-300"
+          >
+            <div class="relative w-full h-72 rounded-2xl">
+              <img
+                class="w-full h-full object-cover rounded-2xl"
+                src="../Images_for_contact_page/ISTAD_SILA.jpg"
+                alt="Sem Sila"
+              />
+            </div>
+
+            <p class="text-size-h3 text-center my-4 text-black dark:text-white">
+              Sem Sila
+            </p>
+
+            <!-- Info about member -->
+            <div class="px-2">
+              <div
+                class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white"
+              >
+                <a href="https://www.linkedin.com/in/sila-sem-78b3872b8/"
+                  ><i class="fa-brands fa-linkedin-in"></i
+                ></a>
+                <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-regular fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- card 3 -->
+          <div
+            class="w-60 h-auto py-6 transform transition-transform duration-300"
+          >
+            <div class="relative w-full h-72 rounded-2xl">
+              <img
+                class="w-full h-full object-cover rounded-2xl"
+                src="../Images_for_contact_page/ISTAD_SETH.jpg"
+                alt="Soeurn Broseth"
+              />
+            </div>
+
+            <p class="text-size-h3 text-center my-4 text-black dark:text-white">
+              Soeurn Broseth
+            </p>
+
+            <!-- Info about member -->
+            <div class="px-2">
+              <div
+                class="flex flex-row justify-center gap-[20px] text-2xl text-black dark:text-white"
+              >
+                <a href="https://www.linkedin.com/in/sila-sem-78b3872b8/"
+                  ><i class="fa-brands fa-linkedin-in"></i
+                ></a>
+                <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-regular fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-gray-700 mt-12 pt-8"></div>
+      </section>
+
+      <!-- contact form -->
+      <section class="pb-12 px-4 sm:px-10 lg:px-32 xl:px-64">
+        <!-- HEADER / HERO -->
+        <header class="pt-2 md:pt-4 pb-8 px-6 text-center relative z-10">
+          <h1
+            class="text-[32px] sm:text-[32px] md:text-[40px] font-bold mb-4 text-black dark:text-white"
+          >
+            Get in Touch
+          </h1>
+          <p
+            class="max-w-xl mx-auto text-sm md:text-base text-black dark:text-white"
+          >
+            We'd love to hear from you. Send us a message below.
+          </p>
+        </header>
+        <!-- Contact Form (Centered) -->
+        <div
+          class="bg-gray-200 dark:bg-[#151926] dark:border-white/5 p-6 md:p-8 rounded-2xl border relative overflow-hidden shadow-2xl shadow-blue-900/10 mx-auto"
+        >
+          <!-- Background decorative glow -->
+          <div
+            class="absolute top-0 right-0 w-32 sm:w-40 md:w-64 h-32 md:h-64 bg-blue-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 w-32 sm:w-40 md:w-64 h-32 md:h-64 bg-purple-600/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"
+          ></div>
+
+          <form
+            action="https://api.web3forms.com/submit"
+            method="POST"
+            class="space-y-5 md:space-y-6 relative z-10"
+          >
+            <input
+              type="hidden"
+              name="access_key"
+              value="07dff83d-a16b-4a2f-b642-67bc57710ba2"
+            />
+
+            <!-- Name Field -->
+            <div class="space-y-2">
+              <label
+                class="text-sm font-medium dark:text-gray-300 text-gray-800"
+                >Your Name</label
+              >
+              <input
+                id="nameInput"
+                type="text"
+                name="name"
+                placeholder="Enter your name..."
+                required
+                class="w-full bg-gray-300 dark:bg-[#0B0D17] border border-white/10 rounded-lg pl-5 pr-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600"
+              />
+            </div>
+
+            <!-- Email Field -->
+            <div class="space-y-2">
+              <label
+                class="text-sm font-medium dark:text-gray-300 text-gray-800"
+                >Email Address</label
+              >
+              <div class="relative">
+                <span class="absolute left-4 top-3.5 text-gray-500">
+                  <i class="fa-regular fa-envelope"></i>
+                </span>
+                <input
+                  id="emailInput"
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                  class="w-full bg-gray-300 dark:bg-[#0B0D17] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition placeholder-gray-600"
+                />
+              </div>
+            </div>
+
+            <!-- Message Field -->
+            <div class="space-y-2">
+              <label
+                class="text-sm font-medium dark:text-gray-300 text-gray-800"
+                >Message</label
+              >
+              <textarea
+                id="messageInput"
+                name="message"
+                rows="6"
+                placeholder="How can we help you?"
+                required
+                class="w-full bg-gray-300 dark:bg-[#0B0D17] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition resize-none placeholder-gray-600"
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              id="sendBtn"
+              type="submit"
+              class="w-full bg:gray-300 bg-indigo-600 dark:bg-indigo-700 dark:from-indigo-700 dark:to-indigo-600 dark:hover:from-blue-700 dark:hover:to-indigo-700 text-white font-bold py-3 md:py-4 rounded-lg transition duration-300 flex items-center justify-center gap-2 group"
+            >
+              Send Message
+              <i
+                class="fa-solid fa-paper-plane group-hover:translate-x-1 transition-transform"
+              ></i>
+            </button>
+          </form>
+        </div>
+      </section>
     </main>
-
-
-
 
     <!-- Footer -->
     <footer class="bg-gray-900 border-t border-gray-800 pt-12 md:pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-6 md:px-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12 justify-items-center">
-                <div class="space-y-4">
-                    <div class="flex items-center gap">
-                        <a href="../index.html" rel="noopener noreferrer">
-                            <img href="../index.html" src="../images/CamFlix-Logo.png" alt="camflix Logo" class="h-16 w-auto object-contain">
-                        </a>
-                    </div>
-                        <div class="space-y-4 text-sm">
-                            <a href="mailto:support@camflix.com"
-                                class="block text-gray-400 hover:text-primary transition">support@camflix.com</a>
-                            <div class="flex gap-4">
-                                <a href="#"
-                                    class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a href="#"
-                                    class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
-                                        class="fab fa-twitter"></i></a>
-                                <a href="#"
-                                    class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="flex items-center gap-2">
-                        <a href="https://www.cstad.edu.kh/" target="_blank" rel="noopener noreferrer">
-                            <img src="../Images/ISTAD-log.png" alt="ISTAD Logo" class="h-10 w-auto object-contain">
-                        </a>
-                    </div>
-                    <div class="space-y-4 text-sm">
-                        <a href="mailto:info.istad@gmail.com"
-                            class="block text-gray-400 hover:text-primary transition">info.istad@gmail.com</a>
-                        <div class="flex gap-4">
-                            <a href="https://www.facebook.com/istad.com" target="_blank"
-                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a href="#"
-                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
-                                    class="fab fa-twitter"></i></a>
-                            <a href="#"
-                                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"><i
-                                    class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Quick Links</h4>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-primary transition">Home</a></li>
-                        <li><a href="#" class="hover:text-primary transition">About us</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Explore Movies</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Terms of Service</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Support</h4>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-primary transition">FAQs</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Support Centre</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Contact Us</a></li>
-                        <li><a href="#" class="hover:text-primary transition">Privacy Policy</a></li>
-                    </ul>
-                </div>
+      <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12 justify-items-center"
+        >
+          <div class="space-y-4">
+            <div class="flex items-center gap">
+              <a href="../index.html" rel="noopener noreferrer">
+                <img
+                  href="../index.html"
+                  src="../images/CamFlix-Logo.png"
+                  alt="camflix Logo"
+                  class="h-16 w-auto object-contain"
+                />
+              </a>
             </div>
-
-            <div class="border-t border-gray-800 pt-8 text-center">
-                <p class="text-gray-500 text-xs">copyright 2025 CamFlix. All right reserved.</p>
+            <div class="space-y-4 text-sm">
+              <a
+                href="mailto:support@camflix.com"
+                class="block text-gray-400 hover:text-primary transition"
+                >support@camflix.com</a
+              >
+              <div class="flex gap-4">
+                <a
+                  href="#"
+                  class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a
+                  href="#"
+                  class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a
+                  href="#"
+                  class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </div>
             </div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-2">
+              <a
+                href="https://www.cstad.edu.kh/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="../Images/ISTAD-log.png"
+                  alt="ISTAD Logo"
+                  class="h-10 w-auto object-contain"
+                />
+              </a>
+            </div>
+            <div class="space-y-4 text-sm">
+              <a
+                href="mailto:info.istad@gmail.com"
+                class="block text-gray-400 hover:text-primary transition"
+                >info.istad@gmail.com</a
+              >
+              <div class="flex gap-4">
+                <a
+                  href="https://www.facebook.com/istad.com"
+                  target="_blank"
+                  class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a
+                  href="#"
+                  class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a
+                  href="#"
+                  class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-primary transition"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">
+              Quick Links
+            </h4>
+            <ul class="space-y-3 text-gray-400 text-sm">
+              <li>
+                <a href="#" class="hover:text-primary transition">Home</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition">About us</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition"
+                  >Explore Movies</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition"
+                  >Terms of Service</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-bold mb-4 md:mb-6 text-white text-lg">Support</h4>
+            <ul class="space-y-3 text-gray-400 text-sm">
+              <li>
+                <a href="#" class="hover:text-primary transition">FAQs</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition"
+                  >Support Centre</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition">Contact Us</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-primary transition"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
+
+        <div class="border-t border-gray-800 pt-8 text-center">
+          <p class="text-gray-500 text-xs">
+            copyright 2025 CamFlix. All right reserved.
+          </p>
+        </div>
+      </div>
     </footer>
-
-
 
     <!-- script for sending email -->
     <script>
-        document.getElementById("sendBtn").addEventListener("click", function () {
+      document.getElementById("sendBtn").addEventListener("click", function () {
+        const name = document.getElementById("nameInput").value;
+        const email = document.getElementById("emailInput").value;
+        const message = document.getElementById("messageInput").value;
 
-            const name = document.getElementById("nameInput").value;
-            const email = document.getElementById("emailInput").value;
-            const message = document.getElementById("messageInput").value;
+        if (!name || !email || !message) {
+          alert("Please fill out all fields.");
+          return;
+        }
 
-            if (!name || !email || !message) {
-                alert("Please fill out all fields.");
-                return;
-            }
-
-            // Send Email using EmailJS
-            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-                user_name: name,
-                user_email: email,
-                user_message: message
-            })
-                .then(() => {
-                    alert("Message Sent Successfully!");
-                    document.getElementById("contactForm").reset();
-                })
-                .catch((err) => {
-                    alert("Failed to send message: " + JSON.stringify(err));
-                });
-
-        });
+        // Send Email using EmailJS
+        emailjs
+          .send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+            user_name: name,
+            user_email: email,
+            user_message: message,
+          })
+          .then(() => {
+            alert("Message Sent Successfully!");
+            document.getElementById("contactForm").reset();
+          })
+          .catch((err) => {
+            alert("Failed to send message: " + JSON.stringify(err));
+          });
+      });
     </script>
 
     <!-- Script for dark mode -->
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const toggleButton = document.getElementById("theme-toggle");
-            const html = document.documentElement;
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggleButton = document.getElementById("theme-toggle");
+        const html = document.documentElement;
 
         // Load saved theme
         if (localStorage.getItem("theme") === "dark") {
-            html.classList.add("dark");
+          html.classList.add("dark");
         }
 
         // Toggle
         toggleButton.addEventListener("click", () => {
-            html.classList.toggle("dark");
+          html.classList.toggle("dark");
 
-            // Save theme
-            localStorage.setItem("theme",
-                html.classList.contains("dark") ? "dark" : "light"
-                );
-            });
+          // Save theme
+          localStorage.setItem(
+            "theme",
+            html.classList.contains("dark") ? "dark" : "light"
+          );
         });
+      });
     </script>
 
     <!-- Script for dark mode on mobile menu -->
     <script>
-    document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener("DOMContentLoaded", () => {
         const toggleButton = document.getElementById("theme-toggle-mobile");
         const html = document.documentElement;
 
-    // Load saved theme
-    if (localStorage.getItem("theme") === "dark") {
-        html.classList.add("dark");
-    }
+        // Load saved theme
+        if (localStorage.getItem("theme") === "dark") {
+          html.classList.add("dark");
+        }
 
-    // Toggle
-    toggleButton.addEventListener("click", () => {
-        html.classList.toggle("dark");
+        // Toggle
+        toggleButton.addEventListener("click", () => {
+          html.classList.toggle("dark");
 
-        // Save theme
-        localStorage.setItem("theme",
+          // Save theme
+          localStorage.setItem(
+            "theme",
             html.classList.contains("dark") ? "dark" : "light"
-            );
+          );
         });
-    });
+      });
     </script>
 
     <!-- Scripts for mobile menu -->
     <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        let isMenuOpen = false;
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      let isMenuOpen = false;
 
-        function toggleMenu() {
-            isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                mobileMenu.classList.remove('menu-closed');
-                mobileMenu.classList.add('menu-open');
-                // Change icon to X
-                menuBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
-            } else {
-                mobileMenu.classList.remove('menu-open');
-                mobileMenu.classList.add('menu-closed');
-                // Change icon back to bars
-                menuBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
-                document.body.style.overflow = ''; // Enable scrolling
-            }
+      function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          mobileMenu.classList.remove("menu-closed");
+          mobileMenu.classList.add("menu-open");
+          // Change icon to X
+          menuBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
+          document.body.style.overflow = "hidden"; // Prevent scrolling
+        } else {
+          mobileMenu.classList.remove("menu-open");
+          mobileMenu.classList.add("menu-closed");
+          // Change icon back to bars
+          menuBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
+          document.body.style.overflow = ""; // Enable scrolling
         }
-        menuBtn.addEventListener('click', toggleMenu);
-                // Background navigation on scroll
-        // Scroll Event Listener
-        window.addEventListener('scroll', () => {
-            const mainNav = document.getElementById('mainNav');
+      }
+      menuBtn.addEventListener("click", toggleMenu);
+      // Background navigation on scroll
+      // Scroll Event Listener
+      window.addEventListener("scroll", () => {
+        const mainNav = document.getElementById("mainNav");
 
-            if (window.scrollY > 50) {
-                mainNav.classList.remove('bg-gradient-to-b', 'from-black/90', 'to-transparent');
-                mainNav.classList.add('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
-            } else {
-                // AT THE TOP: Reset to original
-                mainNav.classList.remove('bg-black/40', 'backdrop-blur-md', 'border-b', 'border-white/10', 'shadow-lg');
-                mainNav.classList.add('bg-gradient-to-b', 'from-black/90', 'to-transparent');
-            }
-        });
-
+        if (window.scrollY > 50) {
+          mainNav.classList.remove(
+            "bg-gradient-to-b",
+            "from-black/90",
+            "to-transparent"
+          );
+          mainNav.classList.add(
+            "bg-black/40",
+            "backdrop-blur-md",
+            "border-b",
+            "border-white/10",
+            "shadow-lg"
+          );
+        } else {
+          // AT THE TOP: Reset to original
+          mainNav.classList.remove(
+            "bg-black/40",
+            "backdrop-blur-md",
+            "border-b",
+            "border-white/10",
+            "shadow-lg"
+          );
+          mainNav.classList.add(
+            "bg-gradient-to-b",
+            "from-black/90",
+            "to-transparent"
+          );
+        }
+      });
     </script>
-
-
-</body>
-
+  </body>
 </html>
