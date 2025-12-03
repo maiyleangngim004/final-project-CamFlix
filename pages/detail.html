@@ -495,14 +495,14 @@
         });
     </script>
     <!-- media share -->
-    <script>
-        const link =encodeURI(window.location.href);
-        const msg = encodeURIComponent('Hey, I found this article');
-        const title = encodeURIComponent(document.querySelector('title').textContent);
+    <script>;
+    const link = encodeURI(window.location.href); 
+    const msg = encodeURIComponent('Hey, I found this article'); 
+    const title = encodeURIComponent(document.querySelector('title').textContent);
 
-        console.log([link, msg, title]);
-        const fb = document.querySelector('.share');
-        fb.href = `https://www.facebook.com/share.php?u=$(link)`;
-    </script>
+    console.log([link, msg, title]);
+    const fb = document.querySelector('.share');
+    fb.href = `https://www.facebook.com/share.php?u=${link}`; 
+</script>
 </body>
 </html>
